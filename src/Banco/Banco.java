@@ -14,13 +14,14 @@ import java.sql.Statement;
 /**
  *
  * @author apmagalhaes
+ * 
  */
 public class Banco {
      // driver JDBC e a URL para o banco
     static final String JDBC_DRIVER = "com.mysql.jdbc.driver";
 
     // MySQL
-    //static final String URL = "jdbc:mysql://localhost:3309/SistAcademico";
+    //static final String URL = "jdbc:mysql://localhost:3306/SistAcademico";
 
     // access
     static final String URL = "jdbc:odbc:db_restaurante";
