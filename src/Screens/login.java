@@ -45,6 +45,8 @@ public class login extends javax.swing.JFrame {
         label_esqueciSenha = new javax.swing.JLabel();
         botao_entrar = new javax.swing.JButton();
         label_nomeRestaurante = new javax.swing.JLabel();
+        label_cpfCliente = new javax.swing.JLabel();
+        label_senhaCliente = new javax.swing.JLabel();
 
         textoSenha.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         textoSenha.setBorder(null);
@@ -175,6 +177,18 @@ public class login extends javax.swing.JFrame {
         label_nomeRestaurante.setText("Restaurante Lombinho de Porco II");
         label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        label_cpfCliente.setBackground(new java.awt.Color(204, 204, 204));
+        label_cpfCliente.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
+        label_cpfCliente.setForeground(new java.awt.Color(204, 204, 204));
+        label_cpfCliente.setText("CPF");
+        label_cpfCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        label_senhaCliente.setBackground(new java.awt.Color(204, 204, 204));
+        label_senhaCliente.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
+        label_senhaCliente.setForeground(new java.awt.Color(204, 204, 204));
+        label_senhaCliente.setText("Senha");
+        label_senhaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
@@ -183,29 +197,41 @@ public class login extends javax.swing.JFrame {
             .addGroup(kGradientPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(label_esqueciSenha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(botao_entrar)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
-                .addContainerGap(69, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_nomeRestaurante)
-                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label_CPF)
-                            .addComponent(label_senha))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
                         .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                                    .addComponent(label_CPF)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(textoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                                    .addComponent(label_cpfCliente)
+                                    .addGap(76, 76, 76))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                                    .addComponent(label_senha)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(textoSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(label_nomeRestaurante)
                             .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                                .addComponent(checkbox_lembrarme)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label_lembrarme))
-                            .addComponent(textoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textoSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(label_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label_realLogin)))))
-                .addGap(55, 55, 55))
+                                .addGap(37, 37, 37)
+                                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                                        .addComponent(checkbox_lembrarme)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(label_lembrarme))
+                                    .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(label_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(label_realLogin)))))
+                        .addGap(55, 55, 55))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                        .addComponent(label_senhaCliente)
+                        .addGap(137, 137, 137))))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,25 +243,26 @@ public class login extends javax.swing.JFrame {
                 .addComponent(label_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_realLogin)
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(label_cpfCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                        .addComponent(textoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(label_senha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textoSenha1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(43, 43, 43)
-                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_lembrarme, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(checkbox_lembrarme, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(33, 33, 33)
-                        .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label_esqueciSenha)
-                            .addComponent(botao_entrar)))
-                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                        .addComponent(label_CPF)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(textoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_CPF))
+                .addGap(18, 18, 18)
+                .addComponent(label_senhaCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(label_senha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textoSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_lembrarme, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(checkbox_lembrarme, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(33, 33, 33)
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_esqueciSenha)
+                    .addComponent(botao_entrar))
                 .addContainerGap())
         );
 
@@ -306,6 +333,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkbox_lembrarme;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JLabel label_CPF;
+    private javax.swing.JLabel label_cpfCliente;
     private javax.swing.JLabel label_esqueciSenha;
     private javax.swing.JLabel label_fechar;
     private javax.swing.JLabel label_icon;
@@ -314,6 +342,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel label_nomeRestaurante;
     private javax.swing.JLabel label_realLogin;
     private javax.swing.JLabel label_senha;
+    private javax.swing.JLabel label_senhaCliente;
     private javax.swing.JPanel panel_fechar;
     private javax.swing.JPanel panel_minimizar;
     private javax.swing.JTextField textoCPF;
