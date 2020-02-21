@@ -44,7 +44,7 @@ public class login extends javax.swing.JFrame {
         label_lembrarme = new javax.swing.JLabel();
         label_esqueciSenha = new javax.swing.JLabel();
         botao_entrar = new javax.swing.JButton();
-        label_esqueciSenha1 = new javax.swing.JLabel();
+        label_nomeRestaurante = new javax.swing.JLabel();
 
         textoSenha.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         textoSenha.setBorder(null);
@@ -169,11 +169,11 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        label_esqueciSenha1.setBackground(new java.awt.Color(204, 204, 204));
-        label_esqueciSenha1.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
-        label_esqueciSenha1.setForeground(new java.awt.Color(204, 204, 204));
-        label_esqueciSenha1.setText("Restaurante Lombinho de Porco II");
-        label_esqueciSenha1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_nomeRestaurante.setBackground(new java.awt.Color(204, 204, 204));
+        label_nomeRestaurante.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
+        label_nomeRestaurante.setForeground(new java.awt.Color(204, 204, 204));
+        label_nomeRestaurante.setText("Restaurante Lombinho de Porco II");
+        label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
@@ -181,15 +181,15 @@ public class login extends javax.swing.JFrame {
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(barra_ferramentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addComponent(label_esqueciSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botao_entrar)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(69, Short.MAX_VALUE)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_esqueciSenha1)
+                    .addComponent(label_nomeRestaurante)
                     .addGroup(kGradientPanel2Layout.createSequentialGroup()
                         .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(label_CPF)
@@ -212,7 +212,7 @@ public class login extends javax.swing.JFrame {
             .addGroup(kGradientPanel2Layout.createSequentialGroup()
                 .addComponent(barra_ferramentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
-                .addComponent(label_esqueciSenha1)
+                .addComponent(label_nomeRestaurante)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -307,11 +307,11 @@ public class login extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JLabel label_CPF;
     private javax.swing.JLabel label_esqueciSenha;
-    private javax.swing.JLabel label_esqueciSenha1;
     private javax.swing.JLabel label_fechar;
     private javax.swing.JLabel label_icon;
     private javax.swing.JLabel label_lembrarme;
     private javax.swing.JLabel label_minimizar;
+    private javax.swing.JLabel label_nomeRestaurante;
     private javax.swing.JLabel label_realLogin;
     private javax.swing.JLabel label_senha;
     private javax.swing.JPanel panel_fechar;
