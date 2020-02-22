@@ -129,7 +129,7 @@ public class login extends javax.swing.JFrame {
         label_CPF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-login-arredondado-à-direita-25.png"))); // NOI18N
 
         textoCPF.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        textoCPF.setBorder(null);
+        textoCPF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         textoCPF.setPreferredSize(new java.awt.Dimension(0, 15));
         textoCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,7 +142,7 @@ public class login extends javax.swing.JFrame {
         label_senha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-senha-25.png"))); // NOI18N
 
         textoSenha1.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        textoSenha1.setBorder(null);
+        textoSenha1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         textoSenha1.setPreferredSize(new java.awt.Dimension(0, 15));
 
         checkbox_lembrarme.setBackground(new java.awt.Color(30, 0, 51));
