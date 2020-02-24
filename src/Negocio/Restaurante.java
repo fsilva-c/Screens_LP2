@@ -1,8 +1,6 @@
 
-package Estruturas;
-import Pessoas.Client;
-import Servicos.Bill;
-import Servicos.Date;
+package Negocio;
+
 import java.util.ArrayList;
 
 public class Restaurante {
@@ -18,8 +16,8 @@ public class Restaurante {
     
     public void SearchBill(Date date){
         Bill bill;
-        for(int index = 0; index < book.size(); index++){
-            bill = book.get(index);
+        for (Bill book1 : book) {
+            bill = book1;
             if(date.CheckDate(bill.getDate()))
                 bill.PrintBill();
         }
@@ -27,10 +25,10 @@ public class Restaurante {
     
     public void SearchBill(Client client){
         Client bill_client;
-        for(int index = 0; index < book.size(); index++){
-            bill_client = (book.get(index)).getClient();
-            if(bill_client.CheckClient(client)){
-                (book.get(index)).PrintBill();
+        for (Bill book1 : book) {
+            bill_client = (book1).getClient();
+            if (bill_client.CheckClient(client)) {
+                (book1).PrintBill();
             }
         }
     }

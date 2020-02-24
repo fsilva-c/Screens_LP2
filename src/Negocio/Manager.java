@@ -1,14 +1,11 @@
 
-package Pessoas;
-
-import Pratos.Menu;
-import Pratos.Menu_Item;
+package Negocio;
 
 public class Manager extends Person{
     private Menu menu;
 
-    public Manager(String name, String login, String pswd, Menu menu) {
-        super(name, login, pswd);
+    public Manager(String name, String pswd, Menu menu) {
+        super(name, pswd);
         this.menu = menu;
     }
 

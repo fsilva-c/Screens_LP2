@@ -1,12 +1,10 @@
 
-package Pessoas;
-
-import Servicos.Order;
+package Negocio;
 
 public class Cook extends Person{
     
-    Cook(String name, String login, String pswd){
-        super(name,login,pswd);
+    Cook(String name, String pswd){
+        super(name,pswd);
     }
     
     public boolean CloseOrder(Order order){

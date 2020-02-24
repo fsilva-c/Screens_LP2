@@ -1,16 +1,21 @@
-
-package Pessoas;
-import Servicos.Bonus;
+package Negocio;
+import Banco.CadPessoa_DAO;
 
 public class Client extends Person{
     protected String cpf, email;
     protected Bonus bonus;
 
-    public Client(String name, String login, String pswd, String cpf, String email, Bonus bonus) {
-        super(name, login, pswd);
+    public Client(String name, String pswd, String cpf, String email, Bonus bonus) {
+        super(name, pswd);
         this.cpf = cpf;
         this.email = email;
         this.bonus = bonus;
+    }
+    
+    public int incluir(){
+        CadPessoa_DAO cd;
+        cd = new CadPessoa_DAO();
+        return cd.incluir(this);
     }
 
     public String getCpf() {

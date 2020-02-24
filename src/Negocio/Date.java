@@ -1,4 +1,4 @@
-package Servicos;
+package Negocio;
 
 public class Date {
     private int ano, mes, dia;

@@ -1,13 +1,12 @@
 
-package Pessoas;
+package Negocio;
 
 public class Person{
     
 	protected String name, login, pswd;
 	
-	public Person(String name, String login, String pswd){
+	public Person(String name,String pswd){
 		this.name = name;
-		this.login = login;
 		this.pswd = pswd;
 	}
 	
@@ -17,14 +16,6 @@ public class Person{
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
 	}
 
 	public String getPswd() {

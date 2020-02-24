@@ -1,13 +1,11 @@
 
-package Estruturas;
+package Negocio;
 
-import Pessoas.Cook;
-import Servicos.Order;
 import java.util.ArrayList;
 
 public class Cozinha {
-    private ArrayList<Order> comandas;
-    private Cook cook;
+    private final ArrayList<Order> comandas;
+    private final Cook cook;
 
     public Cozinha(Cook cook) {
         this.cook = cook;
@@ -16,8 +14,8 @@ public class Cozinha {
     
     public void PrintClosedOrders(){
         Order order;
-        for(int index = 0; index < comandas.size(); index++){
-            order = comandas.get(index);
+        for (Order comanda : comandas) {
+            order = comanda;
             if((order.getStatus()).equals("Closed")){
                 order.PrintOrder();
             }
@@ -26,8 +24,8 @@ public class Cozinha {
     
         public void PrintOpenedOrders(){
         Order order;
-        for(int index = 0; index < comandas.size(); index++){
-            order = comandas.get(index);
+        for (Order comanda : comandas) {
+            order = comanda;
             if((order.getStatus()).equals("Opened")){
                 order.PrintOrder();
             }
@@ -36,12 +34,12 @@ public class Cozinha {
         
         public boolean CloseComandas(){
             Order order;
-            for(int index = 0; index < comandas.size(); index++){
-                order = comandas.get(index);
-                if((order.getStatus()).equals("Opened")){
-                    cook.CloseOrder(order);
-                }
+        for (Order comanda : comandas) {
+            order = comanda;
+            if((order.getStatus()).equals("Opened")){
+                cook.CloseOrder(order);
             }
+        }
             return true;
         }
         

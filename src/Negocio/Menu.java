@@ -1,5 +1,5 @@
 
-package Pratos;
+package Negocio;
 import java.util.ArrayList;
 import java.util.Scanner;
 

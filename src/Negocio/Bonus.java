@@ -1,4 +1,4 @@
-package Servicos;
+package Negocio;
 
 public class Bonus {
 //Atributos da classe

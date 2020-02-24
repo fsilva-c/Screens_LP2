@@ -40,7 +40,6 @@ public class login extends javax.swing.JFrame {
         label_icon = new javax.swing.JLabel();
         label_realLogin = new javax.swing.JLabel();
         label_CPF = new javax.swing.JLabel();
-        textoCPF = new javax.swing.JTextField();
         label_senha = new javax.swing.JLabel();
         textoSenha1 = new javax.swing.JPasswordField();
         checkbox_lembrarme = new javax.swing.JCheckBox();
@@ -50,6 +49,7 @@ public class login extends javax.swing.JFrame {
         label_nomeRestaurante = new javax.swing.JLabel();
         label_cpfCliente = new javax.swing.JLabel();
         label_senhaCliente = new javax.swing.JLabel();
+        text_cpf = new javax.swing.JFormattedTextField();
 
         textoSenha.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         textoSenha.setBorder(null);
@@ -144,15 +144,6 @@ public class login extends javax.swing.JFrame {
         label_CPF.setForeground(new java.awt.Color(204, 204, 204));
         label_CPF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-login-arredondado-à-direita-25.png"))); // NOI18N
 
-        textoCPF.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        textoCPF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        textoCPF.setPreferredSize(new java.awt.Dimension(0, 15));
-        textoCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoCPFActionPerformed(evt);
-            }
-        });
-
         label_senha.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         label_senha.setForeground(new java.awt.Color(204, 204, 204));
         label_senha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-senha-25.png"))); // NOI18N
@@ -205,6 +196,18 @@ public class login extends javax.swing.JFrame {
         label_senhaCliente.setText("Senha");
         label_senhaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        text_cpf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        try {
+            text_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        text_cpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_cpfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
         kGradientPanel2Layout.setHorizontalGroup(
@@ -225,7 +228,7 @@ public class login extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
                                     .addComponent(label_CPF)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(text_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
                                     .addComponent(label_cpfCliente)
                                     .addGap(76, 76, 76))
@@ -262,9 +265,9 @@ public class login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(label_cpfCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_CPF))
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(label_CPF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(text_cpf))
                 .addGap(18, 18, 18)
                 .addComponent(label_senhaCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -296,10 +299,6 @@ public class login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textoCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoCPFActionPerformed
-        // TODO add your handling code here
-    }//GEN-LAST:event_textoCPFActionPerformed
-
     private void label_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_fecharMouseClicked
         System.exit(0);
     }//GEN-LAST:event_label_fecharMouseClicked
@@ -326,6 +325,10 @@ public class login extends javax.swing.JFrame {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_barra_ferramentasMousePressed
+
+    private void text_cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_cpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_cpfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,7 +383,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel label_senhaCliente;
     private javax.swing.JPanel panel_fechar;
     private javax.swing.JPanel panel_minimizar;
-    private javax.swing.JTextField textoCPF;
+    private javax.swing.JFormattedTextField text_cpf;
     private javax.swing.JPasswordField textoSenha;
     private javax.swing.JPasswordField textoSenha1;
     // End of variables declaration//GEN-END:variables

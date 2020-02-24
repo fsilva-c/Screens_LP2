@@ -5,6 +5,10 @@
  */
 package Screens;
 
+import Negocio.Client;
+import Negocio.Date;
+import Negocio.Bonus;
+
 /**
  *
  * @author qwerty
@@ -38,7 +42,6 @@ public class cad_pessoa extends javax.swing.JFrame {
         label_fechar = new javax.swing.JLabel();
         panel_minimizar = new javax.swing.JPanel();
         label_minimizar = new javax.swing.JLabel();
-        textoCPF = new javax.swing.JTextField();
         label_CPF = new javax.swing.JLabel();
         label_senha = new javax.swing.JLabel();
         textoSenha1 = new javax.swing.JPasswordField();
@@ -53,6 +56,7 @@ public class cad_pessoa extends javax.swing.JFrame {
         label_emailCliente = new javax.swing.JLabel();
         label_salvar = new javax.swing.JLabel();
         label_Gravar = new javax.swing.JLabel();
+        text_cpf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -139,15 +143,6 @@ public class cad_pessoa extends javax.swing.JFrame {
             .addComponent(panel_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        textoCPF.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        textoCPF.setBorder(null);
-        textoCPF.setPreferredSize(new java.awt.Dimension(0, 15));
-        textoCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoCPFActionPerformed(evt);
-            }
-        });
-
         label_CPF.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         label_CPF.setForeground(new java.awt.Color(204, 204, 204));
         label_CPF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-login-arredondado-à-direita-25.png"))); // NOI18N
@@ -216,12 +211,24 @@ public class cad_pessoa extends javax.swing.JFrame {
 
         label_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-salvar-35.png"))); // NOI18N
         label_salvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_salvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_salvarMouseClicked(evt);
+            }
+        });
 
         label_Gravar.setBackground(new java.awt.Color(204, 204, 204));
         label_Gravar.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_Gravar.setForeground(new java.awt.Color(204, 204, 204));
         label_Gravar.setText("Gravar");
         label_Gravar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        text_cpf.setBorder(null);
+        try {
+            text_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -251,11 +258,11 @@ public class cad_pessoa extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(textoSenha1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                         .addComponent(label_CPF)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(text_cpf))
                                     .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                             .addComponent(label_Email)
@@ -309,9 +316,9 @@ public class cad_pessoa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(label_cpfCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_CPF))
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(label_CPF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(text_cpf))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(label_senhaCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -351,10 +358,6 @@ public class cad_pessoa extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_label_fecharMouseClicked
 
-    private void textoCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoCPFActionPerformed
-        // TODO add your handling code here
-    }//GEN-LAST:event_textoCPFActionPerformed
-
     private void textoEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textoEmailActionPerformed
@@ -375,6 +378,17 @@ public class cad_pessoa extends javax.swing.JFrame {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_barra_ferramentasMousePressed
+
+    private void label_salvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_salvarMouseClicked
+        // TODO add your handling code here:
+        Date d0;
+        d0 = new Date(24, 02, 2020);
+        Bonus b0 = new Bonus(0.0f, d0);
+        Client c1;
+        c1 = new Client(textoNome.getText(), textoSenha1.getText(), text_cpf.getText(), textoEmail.getText(), b0);
+        c1.incluir();
+        
+    }//GEN-LAST:event_label_salvarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -431,7 +445,7 @@ public class cad_pessoa extends javax.swing.JFrame {
     private javax.swing.JLabel label_senhaCliente;
     private javax.swing.JPanel panel_fechar;
     private javax.swing.JPanel panel_minimizar;
-    private javax.swing.JTextField textoCPF;
+    private javax.swing.JFormattedTextField text_cpf;
     private javax.swing.JTextField textoEmail;
     private javax.swing.JTextField textoNome;
     private javax.swing.JPasswordField textoSenha1;

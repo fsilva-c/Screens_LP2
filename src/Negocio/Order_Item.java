@@ -1,7 +1,5 @@
 
-package Servicos;
-
-import Pratos.Menu_Item;
+package Negocio;
 
 public class Order_Item {
     private Menu_Item item;

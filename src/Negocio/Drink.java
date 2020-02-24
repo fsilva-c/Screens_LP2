@@ -1,5 +1,5 @@
 
-package Pratos;
+package Negocio;
 
 public class Drink extends Menu_Item{
     private String provider;

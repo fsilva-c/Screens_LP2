@@ -1,5 +1,5 @@
-package Servicos;
-import Pratos.Menu_Item;
+package Negocio;
+
 import java.util.ArrayList;
 
 public class Order {

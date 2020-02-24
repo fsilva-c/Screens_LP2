@@ -1,8 +1,5 @@
 
-package Servicos;
-
-import Pessoas.Client;
-import Pratos.Menu_Item;
+package Negocio;
 
 public class Bill{
     private static int contador;

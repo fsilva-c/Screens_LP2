@@ -1,5 +1,5 @@
 
-package Pratos;
+package Negocio;
 
 public class Menu_Item{
 	protected String name;

@@ -57,9 +57,7 @@ public class Banco {
         catch(IllegalAccessException il){
             System.out.println(il.getMessage());
        }
-       finally{
-           return null;
-       }
+       return null;
    }
 
    public ResultSet Consulta(String sql){
@@ -75,7 +73,7 @@ public class Banco {
            return null;
         }
     }
-    public  int atualizar(String sql){
+    public int atualizar(String sql){
         try{
         return stm.executeUpdate(sql);
         }
