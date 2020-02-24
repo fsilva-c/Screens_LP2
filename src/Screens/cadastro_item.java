@@ -19,6 +19,7 @@ public class cadastro_item extends javax.swing.JFrame {
     public cadastro_item() {
         initComponents();
         
+        //buttoGroup para selecionar apenas um botão por vez
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup1.add(button_bebida);
         buttonGroup1.add(button_comida);
@@ -222,6 +223,7 @@ public class cadastro_item extends javax.swing.JFrame {
         jLabel3.setText("Preço");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-salvar-35.png"))); // NOI18N
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jtext_desc.setColumns(20);
         jtext_desc.setRows(5);
@@ -291,7 +293,7 @@ public class cadastro_item extends javax.swing.JFrame {
     
     private void label_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_fecharMouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+        cadastro_item.this.dispose();
     }//GEN-LAST:event_label_fecharMouseClicked
 
     private void label_minimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_minimizarMouseClicked

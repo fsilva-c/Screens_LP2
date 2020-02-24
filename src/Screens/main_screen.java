@@ -5,6 +5,7 @@
  */
 package Screens;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,11 +42,22 @@ public class main_screen extends javax.swing.JFrame {
         label_minimizar = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        label_iconRealizarPedido = new javax.swing.JLabel();
-        label_realizarPedido1 = new javax.swing.JLabel();
-        label_dadosCadastrais = new javax.swing.JLabel();
+        label_iconGerItens = new javax.swing.JLabel();
+        label_gerItens = new javax.swing.JLabel();
+        label_iconCardapio = new javax.swing.JLabel();
+        label_cozinha = new javax.swing.JLabel();
+        label_iconSair = new javax.swing.JLabel();
+        label_sair = new javax.swing.JLabel();
+        label_cardapio1 = new javax.swing.JLabel();
+        label_iconBonus = new javax.swing.JLabel();
+        label_bonus = new javax.swing.JLabel();
+        label_iconCozinha = new javax.swing.JLabel();
         label_DadosCadastrais = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        label_dadosCadastrais1 = new javax.swing.JLabel();
+        label_iconCozinha1 = new javax.swing.JLabel();
+        label_cozinha1 = new javax.swing.JLabel();
+        label_dadosCadastrais2 = new javax.swing.JLabel();
+        label_sair1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -123,7 +135,7 @@ public class main_screen extends javax.swing.JFrame {
             panel_barraTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_barraTarefasLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
                 .addComponent(panel_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_fechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -161,28 +173,71 @@ public class main_screen extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        label_iconRealizarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-ingredientes-96.png"))); // NOI18N
-        label_iconRealizarPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        label_realizarPedido1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_realizarPedido1.setForeground(new java.awt.Color(204, 204, 204));
-        label_realizarPedido1.setText("Gerenciamento de Itens");
-
-        label_dadosCadastrais.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-menu-de-usuário-masculino-96.png"))); // NOI18N
-        label_dadosCadastrais.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        label_dadosCadastrais.addMouseListener(new java.awt.event.MouseAdapter() {
+        label_iconGerItens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-ingredientes-96.png"))); // NOI18N
+        label_iconGerItens.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconGerItens.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                label_dadosCadastraisMouseClicked(evt);
+                label_iconGerItensMouseClicked(evt);
             }
         });
 
+        label_gerItens.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_gerItens.setForeground(new java.awt.Color(204, 204, 204));
+        label_gerItens.setText("Itens");
+
+        label_iconCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-equity-security-96.png"))); // NOI18N
+        label_iconCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        label_cozinha.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_cozinha.setForeground(new java.awt.Color(204, 204, 204));
+        label_cozinha.setText("Cozinha");
+
+        label_iconSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-sair-96.png"))); // NOI18N
+        label_iconSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_iconSairMouseClicked(evt);
+            }
+        });
+
+        label_sair.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_sair.setForeground(new java.awt.Color(204, 204, 204));
+        label_sair.setText("Gerente");
+
+        label_cardapio1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_cardapio1.setForeground(new java.awt.Color(204, 204, 204));
+        label_cardapio1.setText("Cardápio");
+
+        label_iconBonus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-presente-96.png"))); // NOI18N
+        label_iconBonus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        label_bonus.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_bonus.setForeground(new java.awt.Color(204, 204, 204));
+        label_bonus.setText("Bônus");
+
+        label_iconCozinha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-caixa-registradora-antiga-96.png"))); // NOI18N
+        label_iconCozinha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         label_DadosCadastrais.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_DadosCadastrais.setForeground(new java.awt.Color(204, 204, 204));
-        label_DadosCadastrais.setText("Gerenciamento de Clientes");
+        label_DadosCadastrais.setText("Clientes");
 
-        jButton1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-carrinho-de-compras-96.png"))); // NOI18N
-        jButton1.setText("Carrinho");
+        label_dadosCadastrais1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-empresária-96.png"))); // NOI18N
+        label_dadosCadastrais1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        label_iconCozinha1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-fogão-a-gás-96.png"))); // NOI18N
+        label_iconCozinha1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        label_cozinha1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_cozinha1.setForeground(new java.awt.Color(204, 204, 204));
+        label_cozinha1.setText("Caixa");
+
+        label_dadosCadastrais2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-menu-de-usuário-masculino-96.png"))); // NOI18N
+        label_dadosCadastrais2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        label_sair1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_sair1.setForeground(new java.awt.Color(204, 204, 204));
+        label_sair1.setText("Sair");
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -190,35 +245,101 @@ public class main_screen extends javax.swing.JFrame {
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(label_realizarPedido1)
-                .addGap(54, 54, 54)
-                .addComponent(label_DadosCadastrais)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(label_gerItens)
+                            .addGap(87, 87, 87))
+                        .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                            .addGap(68, 68, 68)
+                            .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(label_iconBonus)
+                                .addComponent(label_iconGerItens))
+                            .addGap(55, 55, 55)))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(label_bonus)
+                        .addGap(78, 78, 78)))
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(label_cardapio1)
+                        .addGap(109, 109, 109)
+                        .addComponent(label_cozinha)
+                        .addGap(113, 113, 113)
+                        .addComponent(label_cozinha1))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_iconCardapio)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(label_DadosCadastrais)))
+                        .addGap(77, 77, 77)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(label_sair))
+                            .addComponent(label_dadosCadastrais1)
+                            .addComponent(label_iconCozinha1))
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(label_iconSair)
+                                    .addComponent(label_iconCozinha)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(label_sair1)
+                                .addGap(45, 45, 45)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(label_iconRealizarPedido)
-                .addGap(160, 160, 160)
-                .addComponent(label_dadosCadastrais)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(54, 54, 54))
+            .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                    .addGap(229, 229, 229)
+                    .addComponent(label_dadosCadastrais2)
+                    .addContainerGap(370, Short.MAX_VALUE)))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(label_iconGerItens, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_iconCardapio))
+                        .addComponent(label_iconCozinha1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(label_iconCozinha, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(label_iconRealizarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(label_dadosCadastrais))
-                    .addComponent(jButton1))
-                .addGap(41, 41, 41)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_realizarPedido1)
-                    .addComponent(label_DadosCadastrais))
-                .addGap(0, 115, Short.MAX_VALUE))
+                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(label_cardapio1)
+                        .addComponent(label_cozinha)
+                        .addComponent(label_cozinha1))
+                    .addComponent(label_gerItens))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(label_iconBonus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(label_bonus)
+                            .addComponent(label_DadosCadastrais)))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(label_iconSair)
+                            .addComponent(label_dadosCadastrais1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(label_sair)
+                            .addComponent(label_sair1))))
+                .addGap(39, 39, 39))
+            .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                    .addContainerGap(289, Short.MAX_VALUE)
+                    .addComponent(label_dadosCadastrais2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(68, 68, 68)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -240,11 +361,6 @@ public class main_screen extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_label_fecharMouseClicked
 
-    private void label_dadosCadastraisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_dadosCadastraisMouseClicked
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "mensagem");
-    }//GEN-LAST:event_label_dadosCadastraisMouseClicked
-
     private void panel_barraTarefasMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_barraTarefasMouseDragged
         // TODO add your handling code here:
         int X = evt.getXOnScreen();
@@ -257,6 +373,17 @@ public class main_screen extends javax.swing.JFrame {
         xMouse = evt.getX();
 	yMouse = evt.getY();
     }//GEN-LAST:event_panel_barraTarefasMousePressed
+
+    private void label_iconGerItensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconGerItensMouseClicked
+        // TODO add your handling code here:
+        JFrame tela_cadastroItem = new cadastro_item();
+        tela_cadastroItem.setVisible(true);
+    }//GEN-LAST:event_label_iconGerItensMouseClicked
+
+    private void label_iconSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconSairMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_label_iconSairMouseClicked
 
     /**
      * @param args the command line arguments
@@ -294,17 +421,30 @@ public class main_screen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel label_DadosCadastrais;
-    private javax.swing.JLabel label_dadosCadastrais;
+    private javax.swing.JLabel label_bonus;
+    private javax.swing.JLabel label_cardapio1;
+    private javax.swing.JLabel label_cozinha;
+    private javax.swing.JLabel label_cozinha1;
+    private javax.swing.JLabel label_dadosCadastrais1;
+    private javax.swing.JLabel label_dadosCadastrais2;
     private javax.swing.JLabel label_fechar;
-    private javax.swing.JLabel label_iconRealizarPedido;
+    private javax.swing.JLabel label_gerItens;
+    private javax.swing.JLabel label_iconBonus;
+    private javax.swing.JLabel label_iconCardapio;
+    private javax.swing.JLabel label_iconCozinha;
+    private javax.swing.JLabel label_iconCozinha1;
+    private javax.swing.JLabel label_iconGerItens;
+    private javax.swing.JLabel label_iconRealizarPedido1;
+    private javax.swing.JLabel label_iconRealizarPedido2;
+    private javax.swing.JLabel label_iconSair;
     private javax.swing.JLabel label_minimizar;
-    private javax.swing.JLabel label_realizarPedido1;
+    private javax.swing.JLabel label_sair;
+    private javax.swing.JLabel label_sair1;
     private javax.swing.JPanel panel_barraTarefas;
     private javax.swing.JPanel panel_fechar;
     private javax.swing.JPanel panel_minimizar;

@@ -131,7 +131,7 @@ public class main_screenCliente extends javax.swing.JFrame {
             panel_barraTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_barraTarefasLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(panel_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_fechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -156,7 +156,8 @@ public class main_screenCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_barraTarefas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panel_barraTarefas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,36 +181,36 @@ public class main_screenCliente extends javax.swing.JFrame {
         label_iconCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-equity-security-96.png"))); // NOI18N
         label_iconCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        label_DadosCadastrais.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
+        label_DadosCadastrais.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_DadosCadastrais.setForeground(new java.awt.Color(204, 204, 204));
         label_DadosCadastrais.setText("Dados Cadastrais");
 
-        label_realizarPedido1.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
+        label_realizarPedido1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_realizarPedido1.setForeground(new java.awt.Color(204, 204, 204));
         label_realizarPedido1.setText("Realizar Pedido");
 
-        label_cardapio.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
+        label_cardapio.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_cardapio.setForeground(new java.awt.Color(204, 204, 204));
         label_cardapio.setText("Cardápio");
 
         label_iconSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-sair-96.png"))); // NOI18N
         label_iconSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        label_sair.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
+        label_sair.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_sair.setForeground(new java.awt.Color(204, 204, 204));
         label_sair.setText("Sair");
 
         label_iconConta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-conta-96.png"))); // NOI18N
         label_iconConta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        label_conta.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
+        label_conta.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_conta.setForeground(new java.awt.Color(204, 204, 204));
         label_conta.setText("Conta");
 
         label_iconBonus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-presente-96.png"))); // NOI18N
         label_iconBonus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        label_bonus.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
+        label_bonus.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_bonus.setForeground(new java.awt.Color(204, 204, 204));
         label_bonus.setText("Bônus");
 
@@ -219,44 +220,46 @@ public class main_screenCliente extends javax.swing.JFrame {
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(320, 320, 320)
-                .addComponent(label_bonus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(label_sair)
-                .addGap(124, 124, 124))
-            .addGroup(backgroundLayout.createSequentialGroup()
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label_DadosCadastrais)
-                            .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(backgroundLayout.createSequentialGroup()
-                                    .addGap(95, 95, 95)
-                                    .addComponent(label_iconRealizarPedido))
-                                .addGroup(backgroundLayout.createSequentialGroup()
-                                    .addGap(77, 77, 77)
-                                    .addComponent(label_realizarPedido1))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                        .addGap(45, 45, 45)
+                        .addComponent(label_realizarPedido1))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
                         .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_iconConta)
+                            .addComponent(label_iconRealizarPedido)
+                            .addComponent(label_dadosCadastrais)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(label_DadosCadastrais)))
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(backgroundLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(label_conta)))
-                        .addGap(94, 94, 94))
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(label_dadosCadastrais)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(label_iconBonus)
-                        .addGap(86, 86, 86)))
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_iconCardapio)
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
+                                .addGap(67, 67, 67)
+                                .addComponent(label_conta)
+                                .addGap(82, 82, 82))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
+                                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(backgroundLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(label_iconBonus))
+                                    .addComponent(label_iconConta))
+                                .addGap(66, 66, 66)))
                         .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_cardapio)
-                            .addComponent(label_iconSair))))
-                .addGap(84, 84, 84))
+                            .addComponent(label_iconCardapio)
+                            .addGroup(backgroundLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(label_cardapio))
+                            .addComponent(label_iconSair))
+                        .addGap(218, 218, 218))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(label_bonus)
+                        .addGap(117, 117, 117)
+                        .addComponent(label_sair)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,48 +267,42 @@ public class main_screenCliente extends javax.swing.JFrame {
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(backgroundLayout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(label_iconRealizarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label_iconCardapio))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label_realizarPedido1)
-                            .addComponent(label_cardapio)))
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addComponent(label_iconConta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label_conta)))
-                .addGap(54, 54, 54)
+                            .addComponent(label_iconConta)))
+                    .addComponent(label_iconCardapio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_realizarPedido1)
+                    .addComponent(label_conta)
+                    .addComponent(label_cardapio))
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label_iconBonus)
-                            .addComponent(label_dadosCadastrais, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54)
+                        .addComponent(label_dadosCadastrais, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(label_DadosCadastrais)
-                            .addComponent(label_bonus)))
+                            .addComponent(label_bonus)
+                            .addComponent(label_sair)))
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addComponent(label_iconSair)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label_sair)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                        .addGap(48, 48, 48)
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_iconSair)
+                            .addComponent(label_iconBonus))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

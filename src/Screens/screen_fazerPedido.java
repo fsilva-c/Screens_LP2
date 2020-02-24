@@ -128,6 +128,7 @@ public class screen_fazerPedido extends javax.swing.JFrame {
         kGradientPanel1.setkStartColor(new java.awt.Color(70, 0, 110));
 
         label_iconBebida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-coquetel-96.png"))); // NOI18N
+        label_iconBebida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         label_nomeRestaurante.setBackground(new java.awt.Color(204, 204, 204));
         label_nomeRestaurante.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
@@ -140,8 +141,10 @@ public class screen_fazerPedido extends javax.swing.JFrame {
         label_comida.setText("Comida");
 
         label_iconBife.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-bife-96.png"))); // NOI18N
+        label_iconBife.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         label_icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-equity-security-96.png"))); // NOI18N
+        label_icon2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_realPedido.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
         label_realPedido.setForeground(new java.awt.Color(204, 204, 204));
@@ -231,6 +234,7 @@ public class screen_fazerPedido extends javax.swing.JFrame {
         label_numPedido1.setText("Itens");
 
         label_iconFecharPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-finalizar-pedido-35.png"))); // NOI18N
+        label_iconFecharPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         label_numPedido2.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_numPedido2.setForeground(new java.awt.Color(102, 102, 102));
