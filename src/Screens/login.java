@@ -10,9 +10,12 @@ package Screens;
  * @author qwerty
  */
 public class login extends javax.swing.JFrame {
-
+    int xMouse;
+    int yMouse;
+    
     /**
      * Creates new form login
+     * @param frame
      */
     public login() {
         initComponents();
@@ -59,6 +62,19 @@ public class login extends javax.swing.JFrame {
         kGradientPanel2.setPreferredSize(new java.awt.Dimension(330, 450));
 
         barra_ferramentas.setBackground(new java.awt.Color(255, 255, 255));
+        barra_ferramentas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                barra_ferramentasMouseDragged(evt);
+            }
+        });
+        barra_ferramentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                barra_ferramentasMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                barra_ferramentasMouseReleased(evt);
+            }
+        });
 
         panel_fechar.setBackground(new java.awt.Color(255, 255, 255));
         panel_fechar.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -291,6 +307,25 @@ public class login extends javax.swing.JFrame {
     private void botao_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_entrarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botao_entrarActionPerformed
+
+    
+    private void barra_ferramentasMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseDragged
+        // TODO add your handling code here:
+        int X = evt.getXOnScreen();
+        int Y = evt.getYOnScreen();
+        this.setLocation(X - xMouse, Y - yMouse);
+
+    }//GEN-LAST:event_barra_ferramentasMouseDragged
+
+    private void barra_ferramentasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_barra_ferramentasMouseReleased
+
+    private void barra_ferramentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMousePressed
+        // TODO add your handling code here:
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_barra_ferramentasMousePressed
 
     /**
      * @param args the command line arguments

@@ -10,6 +10,9 @@ package Screens;
  * @author qwerty
  */
 public class cad_pessoa extends javax.swing.JFrame {
+    int xMouse;
+    int yMouse;
+
 
     /**
      * Creates new form cad_pessoa
@@ -52,6 +55,8 @@ public class cad_pessoa extends javax.swing.JFrame {
         label_Gravar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 0, 0));
         kGradientPanel1.setkStartColor(new java.awt.Color(70, 0, 110));
@@ -65,6 +70,16 @@ public class cad_pessoa extends javax.swing.JFrame {
         label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         barra_ferramentas.setBackground(new java.awt.Color(255, 255, 255));
+        barra_ferramentas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                barra_ferramentasMouseDragged(evt);
+            }
+        });
+        barra_ferramentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                barra_ferramentasMousePressed(evt);
+            }
+        });
 
         panel_fechar.setBackground(new java.awt.Color(255, 255, 255));
         panel_fechar.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -252,14 +267,11 @@ public class cad_pessoa extends javax.swing.JFrame {
                                             .addGap(93, 93, 93))))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                                        .addComponent(label_cpfCliente)
-                                        .addGap(101, 101, 101))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                                        .addComponent(label_senhaCliente)
-                                        .addGap(91, 91, 91)))))))
+                                .addComponent(label_cpfCliente)
+                                .addGap(101, 101, 101))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(label_senhaCliente)
+                                .addGap(91, 91, 91)))))
                 .addGap(44, 44, 44))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -350,6 +362,19 @@ public class cad_pessoa extends javax.swing.JFrame {
     private void textoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textoNomeActionPerformed
+
+    private void barra_ferramentasMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseDragged
+        // TODO add your handling code here:
+        int X = evt.getXOnScreen();
+        int Y = evt.getYOnScreen();
+        this.setLocation(X - xMouse, Y - yMouse);
+    }//GEN-LAST:event_barra_ferramentasMouseDragged
+
+    private void barra_ferramentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMousePressed
+        // TODO add your handling code here:
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_barra_ferramentasMousePressed
 
     /**
      * @param args the command line arguments

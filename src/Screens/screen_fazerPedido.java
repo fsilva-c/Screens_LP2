@@ -10,6 +10,8 @@ package Screens;
  * @author qwerty
  */
 public class screen_fazerPedido extends javax.swing.JFrame {
+    int xMouse;
+    int yMouse;
 
     /**
      * Creates new form screen_fazerPedido
@@ -50,10 +52,19 @@ public class screen_fazerPedido extends javax.swing.JFrame {
         label_numPedido2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         barra_ferramentas.setBackground(new java.awt.Color(255, 255, 255));
+        barra_ferramentas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                barra_ferramentasMouseMoved(evt);
+            }
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                barra_ferramentasMouseDragged(evt);
+            }
+        });
 
         panel_fechar.setBackground(new java.awt.Color(255, 255, 255));
         panel_fechar.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -291,12 +302,26 @@ public class screen_fazerPedido extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void label_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_fecharMouseClicked
-        System.exit(0);
+        screen_fazerPedido.this.dispose();
+        //System.exit(0);
     }//GEN-LAST:event_label_fecharMouseClicked
 
     private void texto_numPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_numPedidoActionPerformed
         // TODO add your handling code here
     }//GEN-LAST:event_texto_numPedidoActionPerformed
+
+    private void barra_ferramentasMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseDragged
+        // TODO add your handling code here:
+        int X = evt.getXOnScreen();
+        int Y = evt.getYOnScreen();
+        this.setLocation(X - xMouse, Y - yMouse);
+    }//GEN-LAST:event_barra_ferramentasMouseDragged
+
+    private void barra_ferramentasMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseMoved
+        // TODO add your handling code here:
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_barra_ferramentasMouseMoved
 
     /**
      * @param args the command line arguments

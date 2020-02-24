@@ -5,11 +5,15 @@
  */
 package Screens;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author qwerty
  */
 public class main_screenCliente extends javax.swing.JFrame {
+    int xMouse;
+    int yMouse;
 
     /**
      * Creates new form main_screenCliente
@@ -50,6 +54,7 @@ public class main_screenCliente extends javax.swing.JFrame {
         label_bonus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         background.setkEndColor(new java.awt.Color(70, 0, 110));
         background.setkStartColor(new java.awt.Color(0, 0, 0));
@@ -57,6 +62,19 @@ public class main_screenCliente extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         panel_barraTarefas.setBackground(new java.awt.Color(255, 255, 255));
+        panel_barraTarefas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                panel_barraTarefasMouseMoved(evt);
+            }
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                panel_barraTarefasMouseDragged(evt);
+            }
+        });
+        panel_barraTarefas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panel_barraTarefasMousePressed(evt);
+            }
+        });
 
         panel_fechar.setBackground(new java.awt.Color(255, 255, 255));
         panel_fechar.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -150,6 +168,11 @@ public class main_screenCliente extends javax.swing.JFrame {
 
         label_iconRealizarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-ingredientes-96.png"))); // NOI18N
         label_iconRealizarPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconRealizarPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_iconRealizarPedidoMouseClicked(evt);
+            }
+        });
 
         label_dadosCadastrais.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-menu-de-usuário-masculino-96.png"))); // NOI18N
         label_dadosCadastrais.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -260,7 +283,7 @@ public class main_screenCliente extends javax.swing.JFrame {
                             .addComponent(label_iconBonus)
                             .addComponent(label_dadosCadastrais, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label_DadosCadastrais)
                             .addComponent(label_bonus)))
                     .addGroup(backgroundLayout.createSequentialGroup()
@@ -293,6 +316,30 @@ public class main_screenCliente extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_label_fecharMouseClicked
 
+    private void label_iconRealizarPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconRealizarPedidoMouseClicked
+        // TODO add your handling code here:
+        JFrame tela_realizarPedido = new screen_fazerPedido();
+        tela_realizarPedido.setVisible(true);
+    }//GEN-LAST:event_label_iconRealizarPedidoMouseClicked
+
+    private void panel_barraTarefasMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_barraTarefasMouseDragged
+        // TODO add your handling code here:
+        int X = evt.getXOnScreen();
+	int Y = evt.getYOnScreen();
+	this.setLocation(X - xMouse, Y - yMouse);
+    }//GEN-LAST:event_panel_barraTarefasMouseDragged
+
+    private void panel_barraTarefasMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_barraTarefasMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_panel_barraTarefasMouseMoved
+
+    private void panel_barraTarefasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_barraTarefasMousePressed
+        // TODO add your handling code here:
+        xMouse = evt.getX();
+	yMouse = evt.getY();
+    }//GEN-LAST:event_panel_barraTarefasMousePressed
+
+   
     /**
      * @param args the command line arguments
      */
