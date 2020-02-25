@@ -355,7 +355,7 @@ public class cad_pessoa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void label_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_fecharMouseClicked
-        System.exit(0);
+        cad_pessoa.this.dispose();
     }//GEN-LAST:event_label_fecharMouseClicked
 
     private void textoEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoEmailActionPerformed

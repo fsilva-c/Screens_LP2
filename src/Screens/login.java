@@ -5,6 +5,8 @@
  */
 package Screens;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author qwerty
@@ -42,7 +44,6 @@ public class login extends javax.swing.JFrame {
         label_CPF = new javax.swing.JLabel();
         label_senha = new javax.swing.JLabel();
         textoSenha1 = new javax.swing.JPasswordField();
-        checkbox_lembrarme = new javax.swing.JCheckBox();
         label_lembrarme = new javax.swing.JLabel();
         label_esqueciSenha = new javax.swing.JLabel();
         botao_entrar = new javax.swing.JButton();
@@ -152,13 +153,16 @@ public class login extends javax.swing.JFrame {
         textoSenha1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         textoSenha1.setPreferredSize(new java.awt.Dimension(0, 15));
 
-        checkbox_lembrarme.setBackground(new java.awt.Color(30, 0, 51));
-        checkbox_lembrarme.setForeground(new java.awt.Color(204, 204, 204));
-
         label_lembrarme.setBackground(new java.awt.Color(204, 204, 204));
         label_lembrarme.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_lembrarme.setForeground(new java.awt.Color(204, 204, 204));
-        label_lembrarme.setText("Lembrar-me");
+        label_lembrarme.setText("Registrar-me");
+        label_lembrarme.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_lembrarme.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_lembrarmeMouseClicked(evt);
+            }
+        });
 
         label_esqueciSenha.setBackground(new java.awt.Color(204, 204, 204));
         label_esqueciSenha.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
@@ -239,18 +243,16 @@ public class login extends javax.swing.JFrame {
                             .addComponent(label_nomeRestaurante)
                             .addGroup(kGradientPanel2Layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
-                                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(kGradientPanel2Layout.createSequentialGroup()
-                                        .addComponent(checkbox_lembrarme)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(label_lembrarme))
-                                    .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(label_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(label_realLogin)))))
+                                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(label_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label_realLogin))))
                         .addGap(55, 55, 55))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
                         .addComponent(label_senhaCliente)
-                        .addGap(137, 137, 137))))
+                        .addGap(137, 137, 137))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
+                        .addComponent(label_lembrarme)
+                        .addGap(115, 115, 115))))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,11 +276,9 @@ public class login extends javax.swing.JFrame {
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(label_senha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textoSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_lembrarme, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(checkbox_lembrarme, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(33, 33, 33)
+                .addGap(28, 28, 28)
+                .addComponent(label_lembrarme)
+                .addGap(42, 42, 42)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_esqueciSenha)
                     .addComponent(botao_entrar))
@@ -300,7 +300,7 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void label_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_fecharMouseClicked
-        System.exit(0);
+        login.this.dispose();
     }//GEN-LAST:event_label_fecharMouseClicked
 
     private void botao_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_entrarActionPerformed
@@ -329,6 +329,12 @@ public class login extends javax.swing.JFrame {
     private void text_cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_cpfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_text_cpfActionPerformed
+
+    private void label_lembrarmeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_lembrarmeMouseClicked
+        // TODO add your handling code here:
+        JFrame tela_CadPessoa = new cad_pessoa();
+        tela_CadPessoa.setVisible(true);
+    }//GEN-LAST:event_label_lembrarmeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -368,7 +374,6 @@ public class login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barra_ferramentas;
     private javax.swing.JButton botao_entrar;
-    private javax.swing.JCheckBox checkbox_lembrarme;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JLabel label_CPF;
     private javax.swing.JLabel label_cpfCliente;
