@@ -10,6 +10,7 @@ package Screens;
  * @author filipe
  */
 public class Bonus extends javax.swing.JFrame {
+    int xMouse, yMouse;
 
     /**
      * Creates new form Bonus
@@ -28,40 +29,152 @@ public class Bonus extends javax.swing.JFrame {
     private void initComponents() {
 
         kGradientPanel1 = new keeptoo.KGradientPanel();
+        label_nomeRestaurante = new javax.swing.JLabel();
+        barra_ferramentas = new javax.swing.JPanel();
+        panel_fechar = new javax.swing.JPanel();
+        label_fechar = new javax.swing.JLabel();
+        panel_minimizar = new javax.swing.JPanel();
+        label_minimizar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 0, 0));
         kGradientPanel1.setkStartColor(new java.awt.Color(70, 0, 110));
+
+        label_nomeRestaurante.setBackground(new java.awt.Color(204, 204, 204));
+        label_nomeRestaurante.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
+        label_nomeRestaurante.setForeground(new java.awt.Color(204, 204, 204));
+        label_nomeRestaurante.setText("Restaurante Lombinho de Porco II");
+        label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        barra_ferramentas.setBackground(new java.awt.Color(255, 255, 255));
+        barra_ferramentas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                barra_ferramentasMouseDragged(evt);
+            }
+        });
+        barra_ferramentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                barra_ferramentasMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                barra_ferramentasMouseReleased(evt);
+            }
+        });
+
+        panel_fechar.setBackground(new java.awt.Color(255, 255, 255));
+        panel_fechar.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        label_fechar.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        label_fechar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_fechar.setText("X");
+        label_fechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_fecharMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel_fecharLayout = new javax.swing.GroupLayout(panel_fechar);
+        panel_fechar.setLayout(panel_fecharLayout);
+        panel_fecharLayout.setHorizontalGroup(
+            panel_fecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_fecharLayout.createSequentialGroup()
+                .addComponent(label_fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        panel_fecharLayout.setVerticalGroup(
+            panel_fecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(label_fechar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        panel_minimizar.setBackground(new java.awt.Color(255, 255, 255));
+
+        label_minimizar.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        label_minimizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_minimizar.setText("-");
+
+        javax.swing.GroupLayout panel_minimizarLayout = new javax.swing.GroupLayout(panel_minimizar);
+        panel_minimizar.setLayout(panel_minimizarLayout);
+        panel_minimizarLayout.setHorizontalGroup(
+            panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+        panel_minimizarLayout.setVerticalGroup(
+            panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
+        barra_ferramentas.setLayout(barra_ferramentasLayout);
+        barra_ferramentasLayout.setHorizontalGroup(
+            barra_ferramentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barra_ferramentasLayout.createSequentialGroup()
+                .addContainerGap(379, Short.MAX_VALUE)
+                .addComponent(panel_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panel_fechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        barra_ferramentasLayout.setVerticalGroup(
+            barra_ferramentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panel_fechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panel_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 282, Short.MAX_VALUE)
+            .addComponent(barra_ferramentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addComponent(label_nomeRestaurante)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 231, Short.MAX_VALUE)
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addComponent(barra_ferramentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label_nomeRestaurante)
+                .addContainerGap(476, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 163, Short.MAX_VALUE))
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 166, Short.MAX_VALUE))
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void label_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_fecharMouseClicked
+        Bonus.this.dispose();
+    }//GEN-LAST:event_label_fecharMouseClicked
+
+    private void barra_ferramentasMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseDragged
+        // TODO add your handling code here:
+        int X = evt.getXOnScreen();
+        int Y = evt.getYOnScreen();
+        this.setLocation(X - xMouse, Y - yMouse);
+    }//GEN-LAST:event_barra_ferramentasMouseDragged
+
+    private void barra_ferramentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMousePressed
+        // TODO add your handling code here:
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_barra_ferramentasMousePressed
+
+    private void barra_ferramentasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_barra_ferramentasMouseReleased
 
     /**
      * @param args the command line arguments
@@ -99,6 +212,12 @@ public class Bonus extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel barra_ferramentas;
     private keeptoo.KGradientPanel kGradientPanel1;
+    private javax.swing.JLabel label_fechar;
+    private javax.swing.JLabel label_minimizar;
+    private javax.swing.JLabel label_nomeRestaurante;
+    private javax.swing.JPanel panel_fechar;
+    private javax.swing.JPanel panel_minimizar;
     // End of variables declaration//GEN-END:variables
 }

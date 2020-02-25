@@ -143,7 +143,7 @@ public class main_screenCliente extends javax.swing.JFrame {
             .addComponent(panel_fechar, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
             .addComponent(panel_minimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_barraTarefasLayout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -179,6 +179,11 @@ public class main_screenCliente extends javax.swing.JFrame {
 
         label_dadosCadastrais.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-menu-de-usuário-masculino-96.png"))); // NOI18N
         label_dadosCadastrais.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_dadosCadastrais.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_dadosCadastraisMouseClicked(evt);
+            }
+        });
 
         label_iconCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-equity-security-96.png"))); // NOI18N
         label_iconCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -202,6 +207,11 @@ public class main_screenCliente extends javax.swing.JFrame {
 
         label_iconSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-sair-96.png"))); // NOI18N
         label_iconSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_iconSairMouseClicked(evt);
+            }
+        });
 
         label_sair.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_sair.setForeground(new java.awt.Color(204, 204, 204));
@@ -221,6 +231,11 @@ public class main_screenCliente extends javax.swing.JFrame {
 
         label_iconBonus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-presente-96.png"))); // NOI18N
         label_iconBonus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconBonus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_iconBonusMouseClicked(evt);
+            }
+        });
 
         label_bonus.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_bonus.setForeground(new java.awt.Color(204, 204, 204));
@@ -328,13 +343,9 @@ public class main_screenCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         //instanciar a tela cad pessoa apenas uma vez
-        if(!checkJFrameAberto){
-            JFrame tela_realizarPedido = new screen_fazerPedido();
-            tela_realizarPedido.setVisible(true);
-            
-            checkJFrameAberto = true;
-        }else
-            checkJFrameAberto = false;
+        JFrame tela_realizarPedido = new screen_fazerPedido();
+        tela_realizarPedido.setVisible(true);
+
     }//GEN-LAST:event_label_iconRealizarPedidoMouseClicked
 
     private void panel_barraTarefasMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_barraTarefasMouseDragged
@@ -356,12 +367,8 @@ public class main_screenCliente extends javax.swing.JFrame {
 
     private void label_iconContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconContaMouseClicked
         // TODO add your handling code here:
-        if(!checkJFrameAberto){
-            JFrame tela_conta = new conta();
-            tela_conta.setVisible(true);
-            
-            checkJFrameAberto = true;
-        }
+        JFrame tela_conta = new conta();
+        tela_conta.setVisible(true);     
     }//GEN-LAST:event_label_iconContaMouseClicked
 
     private void label_iconCardapioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconCardapioMouseClicked
@@ -369,6 +376,23 @@ public class main_screenCliente extends javax.swing.JFrame {
         JFrame tela_EscolhaCardapio = new Escolha_cardapio();
         tela_EscolhaCardapio.setVisible(true);
     }//GEN-LAST:event_label_iconCardapioMouseClicked
+
+    private void label_dadosCadastraisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_dadosCadastraisMouseClicked
+        // TODO add your handling code here:
+        JFrame tela_AlterarRegistro = new Dados_Cadastrais();
+        tela_AlterarRegistro.setVisible(true);
+    }//GEN-LAST:event_label_dadosCadastraisMouseClicked
+
+    private void label_iconBonusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconBonusMouseClicked
+        // TODO add your handling code here:
+        JFrame tela_Bonus = new Bonus();
+        tela_Bonus.setVisible(true);
+    }//GEN-LAST:event_label_iconBonusMouseClicked
+
+    private void label_iconSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconSairMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_label_iconSairMouseClicked
 
    
     /**

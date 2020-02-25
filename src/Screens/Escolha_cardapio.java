@@ -160,6 +160,7 @@ public class Escolha_cardapio extends javax.swing.JFrame {
         label_bebida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_bebida.setText("Bebida");
 
+        label_sair.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-sair-35.png"))); // NOI18N
         label_sair.setText("Sair");
         label_sair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

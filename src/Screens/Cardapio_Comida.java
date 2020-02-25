@@ -39,9 +39,11 @@ public class Cardapio_Comida extends javax.swing.JFrame {
         label_iconBife = new javax.swing.JLabel();
         label_sair = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lista_comida = new javax.swing.JList<>();
+        lista_comida = new javax.swing.JList<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 0, 0));
         kGradientPanel1.setkStartColor(new java.awt.Color(70, 0, 110));
@@ -133,6 +135,7 @@ public class Cardapio_Comida extends javax.swing.JFrame {
         label_iconBife.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-bife-96.png"))); // NOI18N
         label_iconBife.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        label_sair.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-sair-35.png"))); // NOI18N
         label_sair.setText("Sair");
         label_sair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -142,10 +145,10 @@ public class Cardapio_Comida extends javax.swing.JFrame {
             }
         });
 
-        lista_comida.setModel(new javax.swing.AbstractListModel<String>() {
+        lista_comida.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Descrição                                      Ingredientes                                        Valor", "Macarrão com limão               Macarrão, limão, orégano          R$ 16.99", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(lista_comida);
 

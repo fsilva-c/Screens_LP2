@@ -5,6 +5,8 @@
  */
 package Screens;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author qwerty
@@ -129,6 +131,11 @@ public class screen_fazerPedido extends javax.swing.JFrame {
 
         label_iconBebida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-coquetel-96.png"))); // NOI18N
         label_iconBebida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconBebida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_iconBebidaMouseClicked(evt);
+            }
+        });
 
         label_nomeRestaurante.setBackground(new java.awt.Color(204, 204, 204));
         label_nomeRestaurante.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
@@ -142,6 +149,11 @@ public class screen_fazerPedido extends javax.swing.JFrame {
 
         label_iconBife.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-bife-96.png"))); // NOI18N
         label_iconBife.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconBife.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_iconBifeMouseClicked(evt);
+            }
+        });
 
         label_icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-equity-security-96.png"))); // NOI18N
         label_icon2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -327,6 +339,18 @@ public class screen_fazerPedido extends javax.swing.JFrame {
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_barra_ferramentasMouseMoved
+
+    private void label_iconBebidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconBebidaMouseClicked
+        // TODO add your handling code here:
+        JFrame tela_cardapioBebida = new Cardapio_Bebida();
+        tela_cardapioBebida.setVisible(true);
+    }//GEN-LAST:event_label_iconBebidaMouseClicked
+
+    private void label_iconBifeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconBifeMouseClicked
+        // TODO add your handling code here:
+        JFrame tela_cardapioComida = new Cardapio_Comida();
+        tela_cardapioComida.setVisible(true); 
+    }//GEN-LAST:event_label_iconBifeMouseClicked
 
     /**
      * @param args the command line arguments

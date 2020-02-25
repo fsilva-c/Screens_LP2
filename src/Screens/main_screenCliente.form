@@ -209,7 +209,7 @@
                       <Component id="panel_fechar" alignment="0" pref="83" max="32767" attributes="0"/>
                       <Component id="panel_minimizar" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="47" max="32767" attributes="0"/>
+                          <EmptySpace pref="53" max="32767" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -319,7 +319,7 @@
               <Image iconType="3" name="/Screens/icons/icons8-ingredientes-96.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor em Forma de M&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -332,9 +332,12 @@
               <Image iconType="3" name="/Screens/icons/icons8-menu-de-usu&#xe1;rio-masculino-96.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor em Forma de M&#xe3;o"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="label_dadosCadastraisMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="label_iconCardapio">
           <Properties>
@@ -342,7 +345,7 @@
               <Image iconType="3" name="/Screens/icons/icons8-equity-security-96.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor em Forma de M&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -388,9 +391,12 @@
               <Image iconType="3" name="/Screens/icons/icons8-sair-96.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor em Forma de M&#xe3;o"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="label_iconSairMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="label_sair">
           <Properties>
@@ -409,7 +415,7 @@
               <Image iconType="3" name="/Screens/icons/icons8-conta-96.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor em Forma de M&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -433,9 +439,12 @@
               <Image iconType="3" name="/Screens/icons/icons8-presente-96.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor em Forma de M&#xe3;o"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="label_iconBonusMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="label_bonus">
           <Properties>

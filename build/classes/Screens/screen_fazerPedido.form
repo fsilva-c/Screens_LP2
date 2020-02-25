@@ -295,6 +295,9 @@
                   <Color id="Cursor em Forma de M&#xe3;o"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="label_iconBebidaMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="label_nomeRestaurante">
               <Properties>
@@ -333,6 +336,9 @@
                   <Color id="Cursor em Forma de M&#xe3;o"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="label_iconBifeMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="label_icon2">
               <Properties>
