@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 public class main_screenCliente extends javax.swing.JFrame {
     int xMouse;
     int yMouse;
+    
+    private boolean checkJFrameAberto = false;
 
     /**
      * Creates new form main_screenCliente
@@ -315,8 +317,15 @@ public class main_screenCliente extends javax.swing.JFrame {
 
     private void label_iconRealizarPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconRealizarPedidoMouseClicked
         // TODO add your handling code here:
-        JFrame tela_realizarPedido = new screen_fazerPedido();
-        tela_realizarPedido.setVisible(true);
+        
+        //instanciar a tela cad pessoa apenas uma vez
+        if(!checkJFrameAberto){
+            JFrame tela_realizarPedido = new screen_fazerPedido();
+            tela_realizarPedido.setVisible(true);
+            
+            checkJFrameAberto = true;
+        }else
+            checkJFrameAberto = false;
     }//GEN-LAST:event_label_iconRealizarPedidoMouseClicked
 
     private void panel_barraTarefasMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panel_barraTarefasMouseDragged

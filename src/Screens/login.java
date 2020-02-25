@@ -15,6 +15,8 @@ public class login extends javax.swing.JFrame {
     int xMouse;
     int yMouse;
     
+    private boolean checkJFrameAberto = false;
+    
     /**
      * Creates new form login
      * @param frame
@@ -332,8 +334,13 @@ public class login extends javax.swing.JFrame {
 
     private void label_lembrarmeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_lembrarmeMouseClicked
         // TODO add your handling code here:
-        JFrame tela_CadPessoa = new cad_pessoa();
-        tela_CadPessoa.setVisible(true);
+        if(!checkJFrameAberto){
+            JFrame tela_CadPessoa = new cad_pessoa();
+            tela_CadPessoa.setVisible(true);
+        
+        checkJFrameAberto = true;
+        }else
+            checkJFrameAberto = false;
     }//GEN-LAST:event_label_lembrarmeMouseClicked
 
     /**
