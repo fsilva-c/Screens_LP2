@@ -143,7 +143,7 @@ public class main_screenCliente extends javax.swing.JFrame {
             .addComponent(panel_fechar, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
             .addComponent(panel_minimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_barraTarefasLayout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addContainerGap(47, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -204,6 +204,11 @@ public class main_screenCliente extends javax.swing.JFrame {
 
         label_iconConta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-conta-96.png"))); // NOI18N
         label_iconConta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconConta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_iconContaMouseClicked(evt);
+            }
+        });
 
         label_conta.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_conta.setForeground(new java.awt.Color(204, 204, 204));
@@ -243,10 +248,9 @@ public class main_screenCliente extends javax.swing.JFrame {
                                 .addComponent(label_conta)
                                 .addGap(82, 82, 82))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(backgroundLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(label_iconBonus))
+                                    .addComponent(label_iconBonus)
                                     .addComponent(label_iconConta))
                                 .addGap(66, 66, 66)))
                         .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,6 +348,16 @@ public class main_screenCliente extends javax.swing.JFrame {
         xMouse = evt.getX();
 	yMouse = evt.getY();
     }//GEN-LAST:event_panel_barraTarefasMousePressed
+
+    private void label_iconContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconContaMouseClicked
+        // TODO add your handling code here:
+        if(!checkJFrameAberto){
+            JFrame tela_conta = new conta();
+            tela_conta.setVisible(true);
+            
+            checkJFrameAberto = true;
+        }
+    }//GEN-LAST:event_label_iconContaMouseClicked
 
    
     /**

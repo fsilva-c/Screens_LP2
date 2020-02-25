@@ -209,7 +209,7 @@
                       <Component id="panel_fechar" alignment="0" pref="77" max="32767" attributes="0"/>
                       <Component id="panel_minimizar" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="41" max="32767" attributes="0"/>
+                          <EmptySpace pref="47" max="32767" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -409,6 +409,9 @@
               <Color id="Cursor em Forma de M&#xe3;o"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="label_iconContaMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="label_conta">
           <Properties>

@@ -210,6 +210,7 @@ public class screen_fazerPedido extends javax.swing.JFrame {
         label_numPedido.setForeground(new java.awt.Color(102, 102, 102));
         label_numPedido.setText("Nº");
 
+        texto_numPedido.setEditable(false);
         texto_numPedido.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
         texto_numPedido.setForeground(new java.awt.Color(102, 102, 102));
         texto_numPedido.setText("3");
