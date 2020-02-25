@@ -71,7 +71,7 @@ public class cad_pessoa extends javax.swing.JFrame {
         label_nomeRestaurante.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_nomeRestaurante.setForeground(new java.awt.Color(204, 204, 204));
         label_nomeRestaurante.setText("Restaurante Lombinho de Porco II");
-        label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         barra_ferramentas.setBackground(new java.awt.Color(255, 255, 255));
         barra_ferramentas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -189,25 +189,25 @@ public class cad_pessoa extends javax.swing.JFrame {
         label_nomeCliente.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_nomeCliente.setForeground(new java.awt.Color(204, 204, 204));
         label_nomeCliente.setText("Nome");
-        label_nomeCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_nomeCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_senhaCliente.setBackground(new java.awt.Color(204, 204, 204));
         label_senhaCliente.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_senhaCliente.setForeground(new java.awt.Color(204, 204, 204));
         label_senhaCliente.setText("Senha");
-        label_senhaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_senhaCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_cpfCliente.setBackground(new java.awt.Color(204, 204, 204));
         label_cpfCliente.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_cpfCliente.setForeground(new java.awt.Color(204, 204, 204));
         label_cpfCliente.setText("CPF");
-        label_cpfCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_cpfCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_emailCliente.setBackground(new java.awt.Color(204, 204, 204));
         label_emailCliente.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_emailCliente.setForeground(new java.awt.Color(204, 204, 204));
         label_emailCliente.setText("E-mail");
-        label_emailCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_emailCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-salvar-35.png"))); // NOI18N
         label_salvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -221,7 +221,7 @@ public class cad_pessoa extends javax.swing.JFrame {
         label_Gravar.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_Gravar.setForeground(new java.awt.Color(204, 204, 204));
         label_Gravar.setText("Gravar");
-        label_Gravar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_Gravar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         text_cpf.setBorder(null);
         try {
@@ -287,13 +287,13 @@ public class cad_pessoa extends javax.swing.JFrame {
                         .addComponent(label_realLogin)
                         .addGap(83, 83, 83))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(label_nomeCliente)
+                        .addGap(135, 135, 135))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                         .addComponent(label_Gravar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label_salvar)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(label_nomeCliente)
-                        .addGap(135, 135, 135))))
+                        .addGap(105, 105, 105))))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,13 +331,11 @@ public class cad_pessoa extends javax.swing.JFrame {
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(textoEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_Email, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(30, 30, 30)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_salvar)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(label_Gravar)
-                        .addGap(8, 8, 8)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(label_salvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_Gravar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

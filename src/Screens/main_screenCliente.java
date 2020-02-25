@@ -140,7 +140,7 @@ public class main_screenCliente extends javax.swing.JFrame {
         );
         panel_barraTarefasLayout.setVerticalGroup(
             panel_barraTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_fechar, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+            .addComponent(panel_fechar, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
             .addComponent(panel_minimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_barraTarefasLayout.createSequentialGroup()
                 .addContainerGap(47, Short.MAX_VALUE)
@@ -182,6 +182,11 @@ public class main_screenCliente extends javax.swing.JFrame {
 
         label_iconCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-equity-security-96.png"))); // NOI18N
         label_iconCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconCardapio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_iconCardapioMouseClicked(evt);
+            }
+        });
 
         label_DadosCadastrais.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_DadosCadastrais.setForeground(new java.awt.Color(204, 204, 204));
@@ -358,6 +363,12 @@ public class main_screenCliente extends javax.swing.JFrame {
             checkJFrameAberto = true;
         }
     }//GEN-LAST:event_label_iconContaMouseClicked
+
+    private void label_iconCardapioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconCardapioMouseClicked
+        // TODO add your handling code here:
+        JFrame tela_EscolhaCardapio = new Escolha_cardapio();
+        tela_EscolhaCardapio.setVisible(true);
+    }//GEN-LAST:event_label_iconCardapioMouseClicked
 
    
     /**
