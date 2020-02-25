@@ -145,7 +145,7 @@ public class main_screen extends javax.swing.JFrame {
             .addComponent(panel_fechar, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
             .addComponent(panel_minimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_barraTarefasLayout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addContainerGap(47, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -270,12 +270,13 @@ public class main_screen extends javax.swing.JFrame {
                         .addGap(113, 113, 113)
                         .addComponent(label_cozinha1))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_iconCardapio)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(label_DadosCadastrais)))
-                        .addGap(77, 77, 77)
+                                .addComponent(label_iconCardapio)
+                                .addGap(77, 77, 77))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(label_DadosCadastrais)
+                                .addGap(92, 92, 92)))
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
@@ -292,7 +293,7 @@ public class main_screen extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(label_sair1)
                                 .addGap(45, 45, 45)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
             .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(kGradientPanel1Layout.createSequentialGroup()
                     .addGap(229, 229, 229)
@@ -318,14 +319,12 @@ public class main_screen extends javax.swing.JFrame {
                         .addComponent(label_cozinha)
                         .addComponent(label_cozinha1))
                     .addComponent(label_gerItens))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addComponent(label_iconBonus)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label_bonus)
-                            .addComponent(label_DadosCadastrais)))
+                        .addComponent(label_bonus))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(label_iconSair)
@@ -333,7 +332,8 @@ public class main_screen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(label_sair)
-                            .addComponent(label_sair1))))
+                            .addComponent(label_sair1)
+                            .addComponent(label_DadosCadastrais))))
                 .addGap(39, 39, 39))
             .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
@@ -439,8 +439,6 @@ public class main_screen extends javax.swing.JFrame {
     private javax.swing.JLabel label_iconCozinha;
     private javax.swing.JLabel label_iconCozinha1;
     private javax.swing.JLabel label_iconGerItens;
-    private javax.swing.JLabel label_iconRealizarPedido1;
-    private javax.swing.JLabel label_iconRealizarPedido2;
     private javax.swing.JLabel label_iconSair;
     private javax.swing.JLabel label_minimizar;
     private javax.swing.JLabel label_sair;
