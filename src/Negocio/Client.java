@@ -1,5 +1,4 @@
 package Negocio;
-import Banco.CadPessoa_DAO;
 
 public class Client extends Person{
     protected String cpf, email;
@@ -12,11 +11,13 @@ public class Client extends Person{
         this.bonus = bonus;
     }
     
+    /* 
     public int incluir(){
-        CadPessoa_DAO cd;
-        cd = new CadPessoa_DAO();
-        return cd.incluir(this);
+    CadPessoa_DAO cd;
+    cd = new CadPessoa_DAO();
+    return cd.incluir(this);
     }
+    */
 
     public String getCpf() {
         return cpf;
@@ -42,7 +43,9 @@ public class Client extends Person{
         this.bonus = bonus;
     }
     
+   
    public boolean CheckClient(Client client){
-        return (client.getCpf()).equals(cpf);
+        return client.getCpf().equals(this.cpf);
+    
     }
 }

@@ -5,9 +5,11 @@
  */
 package Screens;
 
+import Banco.CadPessoa_DAO;
 import Negocio.Client;
 import Negocio.Date;
 import Negocio.Bonus;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -379,13 +381,15 @@ public class cad_pessoa extends javax.swing.JFrame {
 
     private void label_salvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_salvarMouseClicked
         // TODO add your handling code here:
-        Date d0;
-        d0 = new Date(24, 02, 2020);
-        Bonus b0 = new Bonus(0.0f, d0);
-        Client c1;
-        c1 = new Client(textoNome.getText(), textoSenha1.getText(), text_cpf.getText(), textoEmail.getText(), b0);
-        c1.incluir();
+        Date data;
+        data = new Date(24, 02, 2020);
+        Bonus bonus = new Bonus(0.0f, data);
         
+        Client c1 = new Client(textoNome.getText(), textoSenha1.getText(), text_cpf.getText(), textoEmail.getText(), bonus);
+        
+        CadPessoa_DAO dao = new CadPessoa_DAO();
+        dao.Inserir(c1);
+        JOptionPane.showMessageDialog(null, "Usuário "+textoNome.getText()+" inserido com sucesso! ");
     }//GEN-LAST:event_label_salvarMouseClicked
 
     /**

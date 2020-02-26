@@ -37,27 +37,15 @@ public class Banco {
    public Banco(){
    }
    public Connection conectar(){
-       try{
-        // registro do driver JDBC pelo MySql
-        Class.forName(JDBC_DRIVER).newInstance();
-        // abrindo a conexao
-        con = DriverManager.getConnection(URL,login,senha);
-        return con;
+            try{
+            // registro do driver JDBC pelo MySql
+            //Class.forName(JDBC_DRIVER).newInstance();
+            // abrindo a conexao
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_restaurante",login, senha);
 
-      }
-       catch(SQLException e){
-           System.out.println(e.getMessage());
-       }
-       catch(ClassNotFoundException c){
-           System.out.println(c.getMessage());
-       }
-        catch(InstantiationException i){
-            System.out.println(i.getMessage());
-       }
-        catch(IllegalAccessException il){
-            System.out.println(il.getMessage());
-       }
-       return null;
+        }catch (SQLException e) { 
+            throw new RuntimeException(e);
+        }
    }
 
    public ResultSet Consulta(String sql){
@@ -73,6 +61,7 @@ public class Banco {
            return null;
         }
     }
+   
     public int atualizar(String sql){
         try{
         return stm.executeUpdate(sql);
