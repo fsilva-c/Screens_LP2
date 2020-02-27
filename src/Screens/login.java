@@ -16,10 +16,10 @@ import javax.swing.JOptionPane;
  * @author qwerty
  */
 public class login extends javax.swing.JFrame {
+    JFrame frameFilho;
+    
     int xMouse;
     int yMouse;
-    
-    private boolean checkJFrameAberto = false;
     
     /**
      * Creates new form login
@@ -358,13 +358,11 @@ public class login extends javax.swing.JFrame {
 
     private void label_lembrarmeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_lembrarmeMouseClicked
         // TODO add your handling code here:
-        if(!checkJFrameAberto){
-            JFrame tela_CadPessoa = new cad_pessoa();
-            tela_CadPessoa.setVisible(true);
-        
-        checkJFrameAberto = true;
-        }else
-            checkJFrameAberto = false;
+        if(frameFilho == null){
+            frameFilho = new cad_pessoa();
+            frameFilho.setLocationRelativeTo(null);
+        }
+        frameFilho.setVisible(true);
     }//GEN-LAST:event_label_lembrarmeMouseClicked
 
     /**
@@ -393,7 +391,7 @@ public class login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
