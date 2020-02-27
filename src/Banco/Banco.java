@@ -17,31 +17,16 @@ import java.sql.Statement;
  * 
  */
 public class Banco {
-     // driver JDBC e a URL para o banco
-    static final String JDBC_DRIVER = "com.mysql.jdbc.driver";
-
-    // MySQL
-    //static final String URL = "jdbc:mysql://localhost:3306/SistAcademico";
-
-    // access
-    static final String URL = "jdbc:odbc:db_restaurante";
-
-    // Autenticacao
-    static final String login="root";
-    static final String senha="123456";
-
-
     private Connection con;
     private Statement stm;
 
-   public Banco(){
-   }
-   public Connection conectar(){
-            try{
-            // registro do driver JDBC pelo MySql
-            //Class.forName(JDBC_DRIVER).newInstance();
-            // abrindo a conexao
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_restaurante",login, senha);
+    public Banco(){
+    
+    }
+    
+    public Connection conectar(){
+        try{
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_restaurante","root", "123456");
 
         }catch (SQLException e) { 
             throw new RuntimeException(e);

@@ -388,8 +388,11 @@ public class cad_pessoa extends javax.swing.JFrame {
         Client c1 = new Client(textoNome.getText(), textoSenha1.getText(), text_cpf.getText(), textoEmail.getText(), bonus);
         
         CadPessoa_DAO dao = new CadPessoa_DAO();
-        dao.Inserir(c1);
-        JOptionPane.showMessageDialog(null, "Usuário "+textoNome.getText()+" inserido com sucesso! ");
+        if(dao.Inserir(c1))
+            JOptionPane.showMessageDialog(null, "Usuário " + textoNome.getText() + " inserido com sucesso! ");
+        else
+            JOptionPane.showMessageDialog(null, "Não foi possível completar a operação!");
+            
     }//GEN-LAST:event_label_salvarMouseClicked
 
     /**

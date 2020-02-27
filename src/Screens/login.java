@@ -5,7 +5,11 @@
  */
 package Screens;
 
+import Banco.Login_DAO;
+import Negocio.Client;
+import Negocio.Date;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,7 +49,7 @@ public class login extends javax.swing.JFrame {
         label_realLogin = new javax.swing.JLabel();
         label_CPF = new javax.swing.JLabel();
         label_senha = new javax.swing.JLabel();
-        textoSenha1 = new javax.swing.JPasswordField();
+        texto_senha = new javax.swing.JPasswordField();
         label_lembrarme = new javax.swing.JLabel();
         label_esqueciSenha = new javax.swing.JLabel();
         botao_entrar = new javax.swing.JButton();
@@ -151,9 +155,9 @@ public class login extends javax.swing.JFrame {
         label_senha.setForeground(new java.awt.Color(204, 204, 204));
         label_senha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-senha-25.png"))); // NOI18N
 
-        textoSenha1.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        textoSenha1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        textoSenha1.setPreferredSize(new java.awt.Dimension(0, 15));
+        texto_senha.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        texto_senha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        texto_senha.setPreferredSize(new java.awt.Dimension(0, 15));
 
         label_lembrarme.setBackground(new java.awt.Color(204, 204, 204));
         label_lembrarme.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
@@ -241,7 +245,7 @@ public class login extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel2Layout.createSequentialGroup()
                                     .addComponent(label_senha)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(textoSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(texto_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(label_nomeRestaurante)
                             .addGroup(kGradientPanel2Layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
@@ -277,7 +281,7 @@ public class login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(label_senha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textoSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(texto_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(label_lembrarme)
                 .addGap(42, 42, 42)
@@ -307,6 +311,26 @@ public class login extends javax.swing.JFrame {
 
     private void botao_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_entrarActionPerformed
         // TODO add your handling code here:
+        Login_DAO dao = new Login_DAO();
+        
+        boolean login = dao.login(text_cpf.getText(), texto_senha.getText());
+        
+        if(login)
+            JOptionPane.showMessageDialog(null, "Logado com sucesso!");
+        else
+            JOptionPane.showMessageDialog(null, "Operação inválida!");
+        /*
+        Date data;
+        data = new Date(24, 02, 2020);
+        Negocio.Bonus bonus = new Negocio.Bonus(0.0f, data);
+        Client c1 = new Client("Cliente", texto_senha.getText(), text_cpf.getText(), "Cliente", bonus);
+        Login_DAO dao = new Login_DAO();
+        if(dao.login(c1))
+        JOptionPane.showMessageDialog(null, "Logado com sucesso!");
+        else
+        JOptionPane.showMessageDialog(null, "Operação inválida!");
+         */
+        
     }//GEN-LAST:event_botao_entrarActionPerformed
 
     
@@ -397,6 +421,6 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPanel panel_minimizar;
     private javax.swing.JFormattedTextField text_cpf;
     private javax.swing.JPasswordField textoSenha;
-    private javax.swing.JPasswordField textoSenha1;
+    private javax.swing.JPasswordField texto_senha;
     // End of variables declaration//GEN-END:variables
 }

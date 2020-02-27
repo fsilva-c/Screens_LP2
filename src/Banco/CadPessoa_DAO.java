@@ -22,7 +22,7 @@ public class CadPessoa_DAO {
         this.con = new Banco().conectar();
     }
     
-    public void Inserir(Client c0){
+    public boolean Inserir(Client c0){
         
        String sql = "INSERT INTO bd_restaurante.CLIENT(cpf, nome, email, senha)VALUES(?, ?, ?, MD5(?))"; 
        
@@ -34,8 +34,10 @@ public class CadPessoa_DAO {
             stmt.setString(3, c0.getEmail());
             stmt.setString(4, c0.getPswd());
             
-            stmt.execute(); //executa comando       
+            stmt.executeUpdate(); //executa comando       
             stmt.close();
+            
+            return true;
             
         }catch (SQLException u) {        
             throw new RuntimeException(u);        
