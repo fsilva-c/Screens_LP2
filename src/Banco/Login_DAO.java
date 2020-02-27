@@ -36,6 +36,8 @@ public class Login_DAO {
                 
                 if(rs.next())
                     achou = true;
+                
+                ps.close();
             }
             
         } catch (SQLException e){

@@ -40,14 +40,10 @@ public class conta extends javax.swing.JFrame {
         label_minimizar = new javax.swing.JLabel();
         label_nomeRestaurante = new javax.swing.JLabel();
         label_iconConta = new javax.swing.JLabel();
-        label_qnt = new javax.swing.JLabel();
         label_conta1 = new javax.swing.JLabel();
         icon_pagar = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
-        label_unit = new javax.swing.JLabel();
-        label_descricao2 = new javax.swing.JLabel();
-        label_valor = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -138,15 +134,12 @@ public class conta extends javax.swing.JFrame {
         label_iconConta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-conta-96.png"))); // NOI18N
         label_iconConta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        label_qnt.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_qnt.setForeground(new java.awt.Color(204, 204, 204));
-        label_qnt.setText("Qnt");
-
         label_conta1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_conta1.setForeground(new java.awt.Color(204, 204, 204));
         label_conta1.setText("Conta");
 
         icon_pagar.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        icon_pagar.setForeground(new java.awt.Color(204, 204, 204));
         icon_pagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-solicitar-dinheiro-35.png"))); // NOI18N
         icon_pagar.setText("Pagar");
         icon_pagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -156,27 +149,17 @@ public class conta extends javax.swing.JFrame {
             }
         });
 
-        jList2.setBackground(new java.awt.Color(204, 204, 204));
-        jList2.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
-        jList2.setForeground(new java.awt.Color(51, 51, 51));
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Coca Cola                                                                5         R$3.59          R$17.95", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
-
-        label_unit.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_unit.setForeground(new java.awt.Color(204, 204, 204));
-        label_unit.setText("Unit");
-
-        label_descricao2.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_descricao2.setForeground(new java.awt.Color(204, 204, 204));
-        label_descricao2.setText("Descrição");
-
-        label_valor.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_valor.setForeground(new java.awt.Color(204, 204, 204));
-        label_valor.setText("Valor");
+        jTable1.setBackground(new java.awt.Color(225, 222, 222));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+            },
+            new String [] {
+                "Descrição", "Qntd", "Valor", "Total"
+            }
+        ));
+        jTable1.setPreferredSize(new java.awt.Dimension(477, 537));
+        jTable1.setSelectionBackground(new java.awt.Color(123, 48, 165));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -184,35 +167,26 @@ public class conta extends javax.swing.JFrame {
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(barra_ferramentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(179, 179, 179)
-                .addComponent(label_iconConta)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(211, 211, 211)
-                .addComponent(label_conta1)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(202, 202, 202)
+                        .addComponent(label_conta1))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(icon_pagar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(16, 16, 16))
-                        .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                            .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(label_nomeRestaurante)
-                                .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                    .addComponent(label_descricao2)
-                                    .addGap(169, 169, 169)
-                                    .addComponent(label_qnt)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(label_unit)))
-                            .addGap(45, 45, 45)
-                            .addComponent(label_valor)
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(icon_pagar)
-                        .addGap(193, 193, 193))))
+                        .addComponent(label_iconConta)
+                        .addGap(166, 166, 166))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(label_nomeRestaurante)
+                        .addGap(111, 111, 111))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,28 +198,22 @@ public class conta extends javax.swing.JFrame {
                 .addComponent(label_iconConta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_conta1)
-                .addGap(44, 44, 44)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_descricao2)
-                    .addComponent(label_qnt)
-                    .addComponent(label_valor)
-                    .addComponent(label_unit))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(icon_pagar)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
         );
 
         pack();
@@ -320,18 +288,14 @@ public class conta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barra_ferramentas;
     private javax.swing.JLabel icon_pagar;
-    private javax.swing.JList jList2;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel label_conta1;
-    private javax.swing.JLabel label_descricao2;
     private javax.swing.JLabel label_fechar;
     private javax.swing.JLabel label_iconConta;
     private javax.swing.JLabel label_minimizar;
     private javax.swing.JLabel label_nomeRestaurante;
-    private javax.swing.JLabel label_qnt;
-    private javax.swing.JLabel label_unit;
-    private javax.swing.JLabel label_valor;
     private javax.swing.JPanel panel_fechar;
     private javax.swing.JPanel panel_minimizar;
     // End of variables declaration//GEN-END:variables

@@ -6,8 +6,6 @@
 package Screens;
 
 import Banco.Login_DAO;
-import Negocio.Client;
-import Negocio.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -315,9 +313,13 @@ public class login extends javax.swing.JFrame {
         
         boolean login = dao.login(text_cpf.getText(), texto_senha.getText());
         
-        if(login)
+        if(login){
             JOptionPane.showMessageDialog(null, "Logado com sucesso!");
-        else
+            login.this.dispose();
+            JFrame tela_principal = new main_screenCliente();
+            tela_principal.setVisible(true);
+            tela_principal.setLocationRelativeTo(null);
+        }else
             JOptionPane.showMessageDialog(null, "Operação inválida!");
         /*
         Date data;
