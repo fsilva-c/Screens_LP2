@@ -321,18 +321,6 @@ public class login extends javax.swing.JFrame {
             tela_principal.setLocationRelativeTo(null);
         }else
             JOptionPane.showMessageDialog(null, "Operação inválida!");
-        /*
-        Date data;
-        data = new Date(24, 02, 2020);
-        Negocio.Bonus bonus = new Negocio.Bonus(0.0f, data);
-        Client c1 = new Client("Cliente", texto_senha.getText(), text_cpf.getText(), "Cliente", bonus);
-        Login_DAO dao = new Login_DAO();
-        if(dao.login(c1))
-        JOptionPane.showMessageDialog(null, "Logado com sucesso!");
-        else
-        JOptionPane.showMessageDialog(null, "Operação inválida!");
-         */
-        
     }//GEN-LAST:event_botao_entrarActionPerformed
 
     
