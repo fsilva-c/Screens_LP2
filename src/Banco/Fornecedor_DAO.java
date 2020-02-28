@@ -5,34 +5,33 @@
  */
 package Banco;
 
-import Negocio.Client;
+import Negocio.Provider;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 /**
  *
- * @author qwerty
+ * @author dcet1-lami11-ubuntu
  */
-public class CadPessoa_DAO {
+public class Fornecedor_DAO {
     private Connection con;
     
     //construtor
-    public CadPessoa_DAO(){
+    public Fornecedor_DAO(){
         this.con = new Banco().conectar();
     }
     
-    public boolean Inserir(Client c0){
+    public boolean Inserir(Provider fornecedor0){
         
-       String sql = "INSERT INTO bd_restaurante.CLIENT(cpf, nome, email, senha)VALUES(?, ?, ?, MD5(?))"; 
+       String sql = "INSERT INTO bd_restaurante.FORNECEDOR(cnpj, nome, telefone)VALUES(?, ?, ?)"; 
        
        try {     
             PreparedStatement stmt = con.prepareStatement(sql);
 
-            stmt.setString(1, c0.getCpf());
-            stmt.setString(2, c0.getName());        
-            stmt.setString(3, c0.getEmail());
-            stmt.setString(4, c0.getPswd());
+            stmt.setString(1, fornecedor0.getCnpj());
+            stmt.setString(2, fornecedor0.getNome());        
+            stmt.setString(3, fornecedor0.getTelefone());
             
             stmt.executeUpdate(); //executa comando       
             stmt.close();
@@ -43,4 +42,5 @@ public class CadPessoa_DAO {
             throw new RuntimeException(u);        
         } 
     }
+    
 }
