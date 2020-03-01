@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package screen_restaurant;
+package main;
 
 import Screens.login;
 import javax.swing.JFrame;
@@ -12,7 +12,7 @@ import javax.swing.JFrame;
  *
  * @author qwerty
  */
-public class Screen_Restaurant {
+public class Main {
     static JFrame mainScreen;
     /**
      * @param args the command line arguments
