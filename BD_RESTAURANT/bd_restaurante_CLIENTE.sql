@@ -23,10 +23,10 @@ DROP TABLE IF EXISTS `CLIENTE`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `CLIENTE` (
-  `cpf` int(11) NOT NULL,
-  `nome` varchar(80) NOT NULL,
+  `cpf` varchar(14) NOT NULL,
+  `nome` varchar(60) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `senha` varchar(50) NOT NULL,
+  `senha` varchar(45) NOT NULL,
   PRIMARY KEY (`cpf`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,6 +37,7 @@ CREATE TABLE `CLIENTE` (
 
 LOCK TABLES `CLIENTE` WRITE;
 /*!40000 ALTER TABLE `CLIENTE` DISABLE KEYS */;
+INSERT INTO `CLIENTE` VALUES ('084.830.885-90','Filipe Silva de Jesus','filipe25322@gmail.com','5f4dcc3b5aa765d61d8327deb882cf99'),('084.830.885-92','Filipe Silva de Jesus','filipe25322@gmail.com','5f4dcc3b5aa765d61d8327deb882cf99'),('123.123.123-12','Vitor Pereira','vitororeide2009@gmail.com','3eb535e74a0c3a6591ed6953c8642bfd'),('123.452.345-61','Thalita Reis','thalitareis@gmail.com','08d432f2445f4c4b07dadaa6b1adc3d3'),('171.717.317-37','Lucas da Silva','lucas@paripe','dc53fc4f621c80bdc2fa0329a6123708'),('312.312.312-31','Reinilson Bispo','neghoguitar@gmail.com','95bbfa2d045153cf2d21522b15e5e198'),('434.343.434-34','Lucas da Silva de Jesus','llukita@paripe','97727503e5c289c47a5833409f06b656'),('847.324.394-93','natanael','natanael@fazendacoutos','5f4dcc3b5aa765d61d8327deb882cf99');
 /*!40000 ALTER TABLE `CLIENTE` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-24 10:11:10
+-- Dump completed on 2020-02-29 22:14:55

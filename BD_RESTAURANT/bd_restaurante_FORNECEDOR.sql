@@ -16,29 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `CLIENT`
+-- Table structure for table `FORNECEDOR`
 --
 
-DROP TABLE IF EXISTS `CLIENT`;
+DROP TABLE IF EXISTS `FORNECEDOR`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `CLIENT` (
-  `cpf` varchar(14) NOT NULL,
-  `nome` varchar(60) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `senha` varchar(45) NOT NULL,
-  PRIMARY KEY (`cpf`)
+CREATE TABLE `FORNECEDOR` (
+  `cnpj` varchar(18) NOT NULL,
+  `nome` varchar(65) NOT NULL,
+  `telefone` varchar(14) NOT NULL,
+  PRIMARY KEY (`cnpj`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `CLIENT`
+-- Dumping data for table `FORNECEDOR`
 --
 
-LOCK TABLES `CLIENT` WRITE;
-/*!40000 ALTER TABLE `CLIENT` DISABLE KEYS */;
-INSERT INTO `CLIENT` VALUES ('084.830.885-90','Filipe Silva de Jesus','filipe25322@gmail.com','5f4dcc3b5aa765d61d8327deb882cf99'),('084.830.885-92','Filipe Silva de Jesus','filipe25322@gmail.com','5f4dcc3b5aa765d61d8327deb882cf99'),('123.123.123-12','Vitor Pereira','vitororeide2009@gmail.com','3eb535e74a0c3a6591ed6953c8642bfd'),('123.452.345-61','Thalita Reis','thalitareis@gmail.com','08d432f2445f4c4b07dadaa6b1adc3d3'),('171.717.317-37','Lucas da Silva','lucas@paripe','dc53fc4f621c80bdc2fa0329a6123708'),('312.312.312-31','Reinilson Bispo','neghoguitar@gmail.com','95bbfa2d045153cf2d21522b15e5e198'),('434.343.434-34','Lucas da Silva de Jesus','llukita@paripe','97727503e5c289c47a5833409f06b656'),('847.324.394-93','natanael','natanael@fazendacoutos','5f4dcc3b5aa765d61d8327deb882cf99');
-/*!40000 ALTER TABLE `CLIENT` ENABLE KEYS */;
+LOCK TABLES `FORNECEDOR` WRITE;
+/*!40000 ALTER TABLE `FORNECEDOR` DISABLE KEYS */;
+INSERT INTO `FORNECEDOR` VALUES ('28.857.589/0001-68','COCA COLA','(71) 3303-3933'),('63.719.229/0001-09','ITAIPAVA','(71) 3655-9933'),('97.104.031/0001-24','SCHIN','(71) 3373-3766');
+/*!40000 ALTER TABLE `FORNECEDOR` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-27  5:29:21
+-- Dump completed on 2020-02-29 22:14:55
