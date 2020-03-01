@@ -5,7 +5,7 @@
  */
 package main;
 
-import Screens.login;
+import Screens.Login;
 import javax.swing.JFrame;
 
 /**
@@ -20,7 +20,7 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         if(mainScreen == null){
-            mainScreen = new login();
+            mainScreen = new Login();
             mainScreen.setLocationRelativeTo(null);
         }
         mainScreen.setVisible(true);
