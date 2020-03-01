@@ -337,6 +337,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
         icon_pesquisarFornecedor.setEnabled(true);
         
         jtext_descricao.setEnabled(false);
+        jtext_descricao.setText("");
     }//GEN-LAST:event_button_bebidaActionPerformed
 
     private void button_comidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_comidaActionPerformed
@@ -345,6 +346,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
         icon_pesquisarFornecedor.setEnabled(false);
         
         jtext_descricao.setEnabled(true);
+        texto_cnpj.setText("");
     }//GEN-LAST:event_button_comidaActionPerformed
 
     private void label_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_fecharMouseClicked
