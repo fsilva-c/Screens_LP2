@@ -13,13 +13,13 @@ import javax.swing.JOptionPane;
  *
  * @author dcet1-lami11-ubuntu
  */
-public class Fornecedor extends javax.swing.JFrame {
+public class Cadastro_Fornecedor extends javax.swing.JFrame {
     int xMouse, yMouse;
 
     /**
      * Creates new form Fornecedor
      */
-    public Fornecedor() {
+    public Cadastro_Fornecedor() {
         initComponents();
     }
 
@@ -312,7 +312,7 @@ public class Fornecedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void label_fechar4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_fechar4MouseClicked
-        Fornecedor.this.dispose();
+        Cadastro_Fornecedor.this.dispose();
     }//GEN-LAST:event_label_fechar4MouseClicked
 
     private void barra_ferramentas4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentas4MouseDragged
@@ -361,20 +361,21 @@ public class Fornecedor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Fornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro_Fornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Fornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro_Fornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Fornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro_Fornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Fornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastro_Fornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Fornecedor().setVisible(true);
+                new Cadastro_Fornecedor().setVisible(true);
             }
         });
     }

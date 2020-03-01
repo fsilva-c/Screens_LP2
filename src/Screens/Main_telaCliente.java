@@ -14,9 +14,9 @@ import javax.swing.JFrame;
 public class Main_telaCliente extends javax.swing.JFrame {
     int xMouse;
     int yMouse;
-    
-    private boolean checkJFrameAberto = false;
 
+    JFrame tela_realizarPedido, tela_conta;
+    
     /**
      * Creates new form main_screenCliente
      */
@@ -343,7 +343,9 @@ public class Main_telaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         //instanciar a tela cad pessoa apenas uma vez
-        JFrame tela_realizarPedido = new Realizar_Pedido();
+        if(tela_realizarPedido == null)
+            tela_realizarPedido= new Realizar_Pedido();
+        
         tela_realizarPedido.setVisible(true);
 
     }//GEN-LAST:event_label_iconRealizarPedidoMouseClicked
@@ -367,7 +369,9 @@ public class Main_telaCliente extends javax.swing.JFrame {
 
     private void label_iconContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconContaMouseClicked
         // TODO add your handling code here:
-        JFrame tela_conta = new Conta();
+        if(tela_conta == null)
+            tela_conta = new Conta();
+        
         tela_conta.setVisible(true);     
     }//GEN-LAST:event_label_iconContaMouseClicked
 
