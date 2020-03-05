@@ -38,8 +38,8 @@ public class Cardapio_Comida extends javax.swing.JFrame {
         label_comida = new javax.swing.JLabel();
         label_iconBife = new javax.swing.JLabel();
         label_sair = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lista_comida = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -135,7 +135,8 @@ public class Cardapio_Comida extends javax.swing.JFrame {
         label_iconBife.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-bife-96.png"))); // NOI18N
         label_iconBife.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        label_sair.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
+        label_sair.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_sair.setForeground(new java.awt.Color(222, 222, 222));
         label_sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-sair-35.png"))); // NOI18N
         label_sair.setText("Sair");
         label_sair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -145,12 +146,22 @@ public class Cardapio_Comida extends javax.swing.JFrame {
             }
         });
 
-        lista_comida.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Descrição                                      Ingredientes                                        Valor", "Macarrão com limão               Macarrão, limão, orégano          R$ 16.99", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+            },
+            new String [] {
+                "Descrição", "Ingredientes", "Valor"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
         });
-        jScrollPane1.setViewportView(lista_comida);
+        jScrollPane2.setViewportView(jTable1);
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -159,9 +170,6 @@ public class Cardapio_Comida extends javax.swing.JFrame {
             .addComponent(barra_ferramentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
@@ -175,7 +183,10 @@ public class Cardapio_Comida extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(label_iconBife))
                                     .addComponent(label_nomeRestaurante))))
-                        .addGap(0, 115, Short.MAX_VALUE)))
+                        .addGap(0, 115, Short.MAX_VALUE))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         kGradientPanel1Layout.setVerticalGroup(
@@ -192,8 +203,8 @@ public class Cardapio_Comida extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(label_comida)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(label_sair)
                 .addGap(15, 15, 15))
         );
@@ -275,7 +286,8 @@ public class Cardapio_Comida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barra_ferramentas;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel label_comida;
     private javax.swing.JLabel label_fechar;
@@ -283,7 +295,6 @@ public class Cardapio_Comida extends javax.swing.JFrame {
     private javax.swing.JLabel label_minimizar;
     private javax.swing.JLabel label_nomeRestaurante;
     private javax.swing.JLabel label_sair;
-    private javax.swing.JList<String> lista_comida;
     private javax.swing.JPanel panel_fechar;
     private javax.swing.JPanel panel_minimizar;
     // End of variables declaration//GEN-END:variables
