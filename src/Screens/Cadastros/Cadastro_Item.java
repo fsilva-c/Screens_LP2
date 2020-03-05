@@ -401,7 +401,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
             else
                 JOptionPane.showMessageDialog(null, "Não foi possível completar a operação!");
    
-        }else{
+        }if(tp_item == 2){
             Food food0 = new Food(texto_nome.getText(), valor, texto_descricao.getText());
             
             Item_DAO dao = new Item_DAO();
@@ -412,6 +412,9 @@ public class Cadastro_Item extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Não foi possível completar a operação!");
             
         }
+        
+        else
+            JOptionPane.showMessageDialog(null, "Opcão do tipo de item não foi especificada.");
     }//GEN-LAST:event_jLabel5MouseClicked
 
     
