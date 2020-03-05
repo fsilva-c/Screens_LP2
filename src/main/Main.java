@@ -5,7 +5,7 @@
  */
 package main;
 
-import Screens.Login;
+import Screens.Cadastros.Login;
 import javax.swing.JFrame;
 
 /**

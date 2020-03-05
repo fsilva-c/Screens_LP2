@@ -5,6 +5,7 @@
  */
 package Screens;
 
+import Screens.Cadastros.Cadastro_Item;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
