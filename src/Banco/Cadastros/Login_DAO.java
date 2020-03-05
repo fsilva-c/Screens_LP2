@@ -26,7 +26,7 @@ public class Login_DAO {
     public boolean login(String cpf, String senha){
         
         
-        String sql = "SELECT cpf, senha FROM bd_restaurante.CLIENTE WHERE cpf = ? AND senha = MD5(?)";
+        String sql = "SELECT cpf, senha FROM bd_restaurante.CLIENT WHERE cpf = ? AND senha = MD5(?)";
         
         try{
             try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -39,6 +39,7 @@ public class Login_DAO {
                     achou = true;
                 
                 ps.close();
+                con.close();
             }
             
         } catch (SQLException e){
