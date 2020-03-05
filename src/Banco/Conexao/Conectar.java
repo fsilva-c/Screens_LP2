@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Banco;
+package Banco.Conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,11 +16,11 @@ import java.sql.Statement;
  * @author apmagalhaes
  * 
  */
-public class Banco {
+public class Conectar {
     private Connection con;
     private Statement stm;
 
-    public Banco(){
+    public Conectar(){
     
     }
     

@@ -5,7 +5,7 @@
  */
 package Banco.Cadastros;
 
-import Banco.Banco;
+import Banco.Conexao.Conectar;
 import Negocio.Servicos.Provider;
 
 import java.sql.Connection;
@@ -20,7 +20,7 @@ public class Fornecedor_DAO {
     
     //construtor
     public Fornecedor_DAO(){
-        this.con = new Banco().conectar();
+        this.con = new Conectar().conectar();
     }
     
     public boolean Inserir(Provider fornecedor0){

@@ -5,7 +5,7 @@
  */
 package Banco.Cadastros;
 
-import Banco.Banco;
+import Banco.Conexao.Conectar;
 import Negocio.Pessoas.Client;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +20,7 @@ public class CadPessoa_DAO {
     
     //construtor
     public CadPessoa_DAO(){
-        this.con = new Banco().conectar();
+        this.con = new Conectar().conectar();
     }
     
     public boolean Inserir(Client c0){

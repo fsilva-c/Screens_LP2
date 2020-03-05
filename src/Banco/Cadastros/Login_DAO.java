@@ -5,7 +5,7 @@
  */
 package Banco.Cadastros;
 
-import Banco.Banco;
+import Banco.Conexao.Conectar;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +20,7 @@ public class Login_DAO {
     private boolean achou = false;
     
     public Login_DAO(){
-        this.con = new Banco().conectar();
+        this.con = new Conectar().conectar();
     }
     
     public boolean login(String cpf, String senha){
