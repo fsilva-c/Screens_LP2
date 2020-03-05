@@ -5,6 +5,11 @@
  */
 package Screens.Cadastros;
 
+import Banco.Cadastros.Item_DAO;
+import Negocio.Pratos.Drink;
+import Negocio.Pratos.Food;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author qwerty
@@ -12,6 +17,8 @@ package Screens.Cadastros;
 public class Cadastro_Item extends javax.swing.JFrame {
     int xMouse;
     int yMouse;
+    
+    private short tp_item = -1;
 
     /**
      * Creates new form cadastro_item
@@ -25,7 +32,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
         buttonGroup1.add(button_comida);
         
         texto_cnpj.setEnabled(false);
-        jtext_descricao.setEnabled(false);
+        texto_descricao.setEnabled(false);
         icon_pesquisarFornecedor.setEnabled(false);
     }
 
@@ -49,10 +56,10 @@ public class Cadastro_Item extends javax.swing.JFrame {
         label_nome = new javax.swing.JLabel();
         texto_nome = new javax.swing.JTextField();
         label_preco = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        texto_preco = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtext_descricao = new javax.swing.JTextArea();
+        texto_descricao = new javax.swing.JTextArea();
         label_fornecedor = new javax.swing.JLabel();
         label_desc1 = new javax.swing.JLabel();
         icon_pesquisarFornecedor = new javax.swing.JLabel();
@@ -159,15 +166,21 @@ public class Cadastro_Item extends javax.swing.JFrame {
         label_preco.setForeground(new java.awt.Color(51, 51, 51));
         label_preco.setText("Preço");
 
-        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        texto_preco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-salvar-35.png"))); // NOI18N
+        jLabel5.setText("Salvar");
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
-        jtext_descricao.setColumns(20);
-        jtext_descricao.setRows(5);
-        jtext_descricao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        jScrollPane1.setViewportView(jtext_descricao);
+        texto_descricao.setColumns(20);
+        texto_descricao.setRows(5);
+        texto_descricao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
+        jScrollPane1.setViewportView(texto_descricao);
 
         label_fornecedor.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_fornecedor.setForeground(new java.awt.Color(51, 51, 51));
@@ -278,7 +291,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(text_precoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(texto_nome, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
-                                    .addComponent(jTextField2)))
+                                    .addComponent(texto_preco)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, text_precoLayout.createSequentialGroup()
                                 .addGroup(text_precoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(label_fornecedor)
@@ -287,7 +300,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
                                 .addGroup(text_precoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1)
                                     .addGroup(text_precoLayout.createSequentialGroup()
-                                        .addGap(0, 8, Short.MAX_VALUE)
+                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(icon_pesquisarFornecedor)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(texto_cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -309,7 +322,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
                     .addComponent(label_nome))
                 .addGap(52, 52, 52)
                 .addGroup(text_precoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texto_preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_preco))
                 .addGap(42, 42, 42)
                 .addGroup(text_precoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,8 +349,10 @@ public class Cadastro_Item extends javax.swing.JFrame {
         texto_cnpj.setEnabled(true); 
         icon_pesquisarFornecedor.setEnabled(true);
         
-        jtext_descricao.setEnabled(false);
-        jtext_descricao.setText("");
+        texto_descricao.setEnabled(false);
+        texto_descricao.setText("");
+        
+        tp_item = 1;
     }//GEN-LAST:event_button_bebidaActionPerformed
 
     private void button_comidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_comidaActionPerformed
@@ -345,8 +360,10 @@ public class Cadastro_Item extends javax.swing.JFrame {
         texto_cnpj.setEnabled(false); 
         icon_pesquisarFornecedor.setEnabled(false);
         
-        jtext_descricao.setEnabled(true);
+        texto_descricao.setEnabled(true);
         texto_cnpj.setText("");
+        
+        tp_item = 2;
     }//GEN-LAST:event_button_comidaActionPerformed
 
     private void label_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_fecharMouseClicked
@@ -369,6 +386,33 @@ public class Cadastro_Item extends javax.swing.JFrame {
     private void barra_ferramentasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_barra_ferramentasMouseReleased
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        float valor = Float.parseFloat(texto_preco.getText());
+        
+        if(tp_item == 1){
+            Drink drink0 = new Drink(texto_nome.getText(), valor, texto_cnpj.getText());
+            
+            Item_DAO dao = new Item_DAO();
+            
+            if(dao.Inserir(drink0, tp_item))
+                JOptionPane.showMessageDialog(null, "Item " + texto_nome.getText() + " inserido com sucesso! ");
+            else
+                JOptionPane.showMessageDialog(null, "Não foi possível completar a operação!");
+   
+        }else{
+            Food food0 = new Food(texto_nome.getText(), valor, texto_descricao.getText());
+            
+            Item_DAO dao = new Item_DAO();
+            
+            if(dao.Inserir(food0, tp_item))
+                JOptionPane.showMessageDialog(null, "Item " + texto_nome.getText() + " inserido com sucesso! ");
+            else
+                JOptionPane.showMessageDialog(null, "Não foi possível completar a operação!");
+            
+        }
+    }//GEN-LAST:event_jLabel5MouseClicked
 
     
     /**
@@ -416,8 +460,6 @@ public class Cadastro_Item extends javax.swing.JFrame {
     private javax.swing.JLabel icon_pesquisarFornecedor;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextArea jtext_descricao;
     private javax.swing.JLabel label_cadProduto;
     private javax.swing.JLabel label_desc1;
     private javax.swing.JLabel label_esqueciSenha1;
@@ -432,7 +474,9 @@ public class Cadastro_Item extends javax.swing.JFrame {
     private javax.swing.JPanel panel_minimizar;
     private javax.swing.JPanel text_preco;
     private javax.swing.JFormattedTextField texto_cnpj;
+    private javax.swing.JTextArea texto_descricao;
     private javax.swing.JTextField texto_nome;
+    private javax.swing.JTextField texto_preco;
     // End of variables declaration//GEN-END:variables
     
 }

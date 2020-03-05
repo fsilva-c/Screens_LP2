@@ -3,7 +3,7 @@ package Negocio.Pratos;
 public class Drink extends Menu_Item{
     private String provider;
 
-    public Drink(String fornecedor, String name, float price) {
+    public Drink(String name, float price, String fornecedor) {
         super(name, price);
         this.provider = fornecedor;
     }
