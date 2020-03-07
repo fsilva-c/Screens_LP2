@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Banco.Cadastros;
+package Banco.Pesquisa;
 
 import Banco.Conexao.Conectar;
 import Negocio.Pessoas.Client;
@@ -15,25 +15,22 @@ import java.sql.SQLException;
  *
  * @author qwerty
  */
-public class CadPessoa_DAO {
+public class PesqCliente_DAO {
     private Connection con;
     
     //construtor
-    public CadPessoa_DAO(){
+    public PesqCliente_DAO(){
         this.con = new Conectar().conectar();
     }
     
-    public boolean Inserir(Client c0){
+    public boolean Inserir(String textoBusca){
         
-       String sql = "INSERT INTO sql10326340.CLIENT(cpf, nome, email, senha)VALUES(?, ?, ?, MD5(?))"; 
+       String sql = "SELECT cpf, nome, email FROM sql10326340.CLIENTE WHERE cpf LIKE %?% OR nome LIKE %?%"; 
        
        try {     
             PreparedStatement stmt = con.prepareStatement(sql);
 
-            stmt.setString(1, c0.getCpf());
-            stmt.setString(2, c0.getName());        
-            stmt.setString(3, c0.getEmail());
-            stmt.setString(4, c0.getPswd());
+            stmt.setString(1, textoBusca);      
             
             stmt.executeUpdate(); //executa comando       
             stmt.close();

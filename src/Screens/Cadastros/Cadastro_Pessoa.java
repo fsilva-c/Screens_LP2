@@ -5,7 +5,7 @@
  */
 package Screens.Cadastros;
 
-import Banco.Cadastros.CadPessoa_DAO;
+import Banco.Cadastros.Pessoa_DAO;
 import Negocio.Pessoas.Client;
 import Negocio.Servicos.Date;
 import Negocio.Servicos.Bonus;
@@ -57,7 +57,6 @@ public class Cadastro_Pessoa extends javax.swing.JFrame {
         label_cpfCliente = new javax.swing.JLabel();
         label_emailCliente = new javax.swing.JLabel();
         label_salvar = new javax.swing.JLabel();
-        label_Gravar = new javax.swing.JLabel();
         text_cpf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -211,19 +210,15 @@ public class Cadastro_Pessoa extends javax.swing.JFrame {
         label_emailCliente.setText("E-mail");
         label_emailCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        label_salvar.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-salvar-35.png"))); // NOI18N
-        label_salvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        label_salvar.setText("Gravar");
+        label_salvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         label_salvar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_salvarMouseClicked(evt);
             }
         });
-
-        label_Gravar.setBackground(new java.awt.Color(204, 204, 204));
-        label_Gravar.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_Gravar.setForeground(new java.awt.Color(204, 204, 204));
-        label_Gravar.setText("Gravar");
-        label_Gravar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         text_cpf.setBorder(null);
         try {
@@ -292,8 +287,6 @@ public class Cadastro_Pessoa extends javax.swing.JFrame {
                         .addComponent(label_nomeCliente)
                         .addGap(135, 135, 135))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(label_Gravar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label_salvar)
                         .addGap(105, 105, 105))))
         );
@@ -334,9 +327,7 @@ public class Cadastro_Pessoa extends javax.swing.JFrame {
                     .addComponent(textoEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_Email, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(label_salvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_Gravar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(label_salvar)
                 .addGap(20, 20, 20))
         );
 
@@ -380,14 +371,14 @@ public class Cadastro_Pessoa extends javax.swing.JFrame {
     }//GEN-LAST:event_barra_ferramentasMousePressed
 
     private void label_salvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_salvarMouseClicked
-        // TODO add your handling code here:
-        Date data;
-        data = new Date(24, 02, 2020);
-        Bonus bonus = new Bonus(0.0f, data);
+        // TODO add your handling code here: 
+        Client c1 = new Client();
+        c1.setCpf(text_cpf.getText());
+        c1.setName(textoNome.getText());
+        c1.setEmail(textoEmail.getText());
+        c1.setPswd(textoSenha1.getText());
         
-        Client c1 = new Client(textoNome.getText(), textoSenha1.getText(), text_cpf.getText(), textoEmail.getText(), bonus);
-        
-        CadPessoa_DAO dao = new CadPessoa_DAO();
+        Pessoa_DAO dao = new Pessoa_DAO();
         if(dao.Inserir(c1))
             JOptionPane.showMessageDialog(null, "Usuário " + textoNome.getText() + " inserido com sucesso! ");
         else
@@ -436,7 +427,6 @@ public class Cadastro_Pessoa extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel label_CPF;
     private javax.swing.JLabel label_Email;
-    private javax.swing.JLabel label_Gravar;
     private javax.swing.JLabel label_cpfCliente;
     private javax.swing.JLabel label_emailCliente;
     private javax.swing.JLabel label_fechar;

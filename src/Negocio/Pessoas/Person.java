@@ -5,11 +5,6 @@ public class Person{
     
 	protected String name, login, pswd;
 	
-	public Person(String name,String pswd){
-		this.name = name;
-		this.pswd = pswd;
-	}
-	
 	public String getName(){
 		return name;
 	}
@@ -25,5 +20,13 @@ public class Person{
 	public void setPswd(String pswd) {
 		this.pswd = pswd;
 	}
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
       
 }

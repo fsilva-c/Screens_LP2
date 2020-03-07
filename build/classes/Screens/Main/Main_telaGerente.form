@@ -78,12 +78,12 @@
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                           <Component id="label_DadosCadastrais" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
                           <Component id="label_sair1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="label_dadosCadastrais2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
@@ -97,18 +97,19 @@
                               <Component id="label_iconCardapio" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="label_iconCozinha" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="label_fornecedor" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="label_iconFornecedor" min="-2" max="-2" attributes="0"/>
-                              <Component id="label_iconSair" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
-                                      <Component id="label_cozinha" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="label_fornecedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="label_iconFornecedor" min="-2" max="-2" attributes="0"/>
+                                      <Component id="label_iconSair" min="-2" max="-2" attributes="0"/>
+                                      <Component id="label_iconCozinha1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="label_iconCozinha1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                                  <Component id="label_cozinha" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -168,9 +169,9 @@
                               <Component id="label_dadosCadastrais2" min="-2" pref="84" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="label_bonus" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="label_DadosCadastrais" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="label_bonus" min="-2" max="-2" attributes="0"/>
+                              <Component id="label_DadosCadastrais" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">

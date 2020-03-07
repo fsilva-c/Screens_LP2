@@ -5,6 +5,15 @@
  */
 package Screens.Pesquisa;
 
+import Banco.Cadastros.Pessoa_DAO;
+import Negocio.Pessoas.Client;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author dcet1-lami11-ubuntu
@@ -17,6 +26,7 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
      */
     public Pesquisa_Cliente() {
         initComponents();
+        
     }
 
     /**
@@ -140,7 +150,7 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CPF", "Nome", "Email", "Telefone"
+                "CPF", "Nome", "Email"
             }
         ));
         jScrollPane1.setViewportView(tabela_clientes);
@@ -148,6 +158,11 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
         label_pesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-pesquisar-25.png"))); // NOI18N
         label_pesquisa.setToolTipText("");
         label_pesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_pesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_pesquisaMouseClicked(evt);
+            }
+        });
 
         label_excluir.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-excluir-35.png"))); // NOI18N
@@ -240,6 +255,33 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_barra_ferramentasMouseReleased
 
+    private void label_pesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_pesquisaMouseClicked
+        // TODO add your handling code here:
+        if((texto_pesquisa.getText() != "")){
+            try {
+                CarregarClientes(texto_pesquisa.getText());
+            } catch (SQLException ex) {
+                Logger.getLogger(Pesquisa_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_label_pesquisaMouseClicked
+
+    public void CarregarClientes(String textoBusca) throws SQLException{
+        DefaultTableModel modelo = (DefaultTableModel) tabela_clientes.getModel();
+        modelo.setNumRows(0);
+        
+        Pessoa_DAO dao = new Pessoa_DAO();
+        List<Client> clientes = dao.CarregarDados(textoBusca);
+        
+        for(Client cliente: clientes){
+             modelo.addRow(new Object[]{
+                cliente.getCpf(),
+                cliente.getName(),
+                cliente.getEmail()
+            });
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
