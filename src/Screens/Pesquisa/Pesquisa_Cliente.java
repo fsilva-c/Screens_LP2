@@ -258,29 +258,11 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
     private void label_pesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_pesquisaMouseClicked
         // TODO add your handling code here:
         if((texto_pesquisa.getText() != "")){
-            try {
-                CarregarClientes(texto_pesquisa.getText());
-            } catch (SQLException ex) {
-                Logger.getLogger(Pesquisa_Cliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Pessoa_DAO dao = new Pessoa_DAO();
+            
         }
     }//GEN-LAST:event_label_pesquisaMouseClicked
 
-    public void CarregarClientes(String textoBusca) throws SQLException{
-        DefaultTableModel modelo = (DefaultTableModel) tabela_clientes.getModel();
-        modelo.setNumRows(0);
-        
-        Pessoa_DAO dao = new Pessoa_DAO();
-        List<Client> clientes = dao.CarregarDados(textoBusca);
-        
-        for(Client cliente: clientes){
-             modelo.addRow(new Object[]{
-                cliente.getCpf(),
-                cliente.getName(),
-                cliente.getEmail()
-            });
-        }
-    }
     
     /**
      * @param args the command line arguments
