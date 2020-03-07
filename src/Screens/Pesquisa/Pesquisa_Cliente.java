@@ -27,6 +27,8 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
     public Pesquisa_Cliente() {
         initComponents();
         
+        DefaultTableModel modelo = (DefaultTableModel) tabela_clientes.getModel();
+        tabela_clientes.setRowSorter(new TableRowSorter(modelo));
     }
 
     /**
@@ -260,6 +262,23 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
         if((texto_pesquisa.getText() != "")){
             Pessoa_DAO dao = new Pessoa_DAO();
             
+            try {
+                DefaultTableModel modelo = (DefaultTableModel) tabela_clientes.getModel();
+                modelo.setNumRows(0);
+                
+                for(Client cliente : dao.CarregarDados(texto_pesquisa.getText())){
+                    modelo.addRow(new Object[]{
+                    cliente.getCpf(),
+                    cliente.getName(),
+                    cliente.getEmail()
+                    
+                    });
+                }
+                
+                
+            } catch (SQLException ex) {
+                System.out.println("Erro: " + ex);
+            }
         }
     }//GEN-LAST:event_label_pesquisaMouseClicked
 

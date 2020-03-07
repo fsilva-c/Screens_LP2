@@ -50,36 +50,33 @@ public class Pessoa_DAO {
         } 
     }
     
+    @SuppressWarnings("empty-statement")
     public List<Client> CarregarDados(String textoBusca) throws SQLException{
-        
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        
         List<Client> clientes = new ArrayList<>();
         
+        String sql = "SELECT cpf, nome, email FROM sql10326340.CLIENTE WHERE cpf LIKE ? OR nome LIKE ?";
         
-        String sql = "SELECT cpf, nome, email FROM sql10326340.CLIENTE WHERE cpf LIKE %?% OR nome LIKE %?%";
         try {
-             
-            stmt.setString(1, textoBusca);    //Selecione todas as colunas da tabela produto
             
-            System.out.println(rs.getString(stmt.toString()));
-            
-            rs = stmt.executeQuery(sql); //Metodo responsavel por consultas ao banco
-            
-            while (rs.next()){
-                Client cliente = new Client();
-                cliente.setCpf(rs.getString("cpf"));
-                cliente.setName(rs.getString("nome"));
-                cliente.setEmail(rs.getString("email"));
+            try(PreparedStatement stmt = con.prepareStatement(sql)){
+                stmt.setString(1, "%" + textoBusca + "%");
+                stmt.setString(2, "%" + textoBusca + "%");
                 
-                System.out.println(rs.getString("cpf"));
+                ResultSet rs = stmt.executeQuery(stmt.toString().replaceAll("com.mysql.cj.jdbc.ClientPreparedStatement: ", "")); //Metodo responsavel por consultas ao banco
                 
-                clientes.add(cliente);
+                while (rs.next()){
+                    Client cliente = new Client();
+                    cliente.setCpf(rs.getString("cpf"));
+                    cliente.setName(rs.getString("nome"));
+                    cliente.setEmail(rs.getString("email"));
+                
+                    clientes.add(cliente);
+                }
+            
             }
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            System.out.println("Erro ao consultar registros"+ex);
         }finally{
             con.close();
         }

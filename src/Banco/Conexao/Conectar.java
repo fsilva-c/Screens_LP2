@@ -7,6 +7,7 @@ package Banco.Conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement; 
@@ -17,8 +18,6 @@ import java.sql.Statement;
  * 
  */
 public class Conectar {
-    private Connection con;
-    private Statement stm;
 
     public Conectar(){
     
@@ -34,4 +33,36 @@ public class Conectar {
             throw new RuntimeException(e);
         }
    }
+    
+    public static void closeConexao(Connection con){
+        try {
+            if(con != null){    //Significa que a conexao está aberto
+                con.close();
+            } 
+        }catch (SQLException ex) {
+                throw new RuntimeException(ex);
+        }
+    }
+    
+    public static void closeConexao(Connection con, PreparedStatement stmt){
+        closeConexao(con);
+        try {
+            if(stmt != null){    //Significa que a conexão está aberto
+                stmt.close();
+            } 
+        }catch (SQLException ex) {
+                throw new RuntimeException(ex);
+        }
+    }
+    
+    public static void closeConexao(Connection con, PreparedStatement stmt, ResultSet rs){
+        closeConexao(con, stmt);
+        try {
+            if(rs != null){    //Significa que a conexão está aberto
+                rs.close();
+            } 
+        }catch (SQLException ex) {
+                throw new RuntimeException(ex);
+        }
+    }
 }
