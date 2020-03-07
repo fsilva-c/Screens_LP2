@@ -26,44 +26,12 @@ public class Conectar {
     
     public Connection conectar(){
         try{
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_restaurante","root", "123456");
+            //return DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_restaurante","root", "123456");
+            return DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10326340","sql10326340", "UCNxlVgRFq");
+            
 
         }catch (SQLException e) { 
             throw new RuntimeException(e);
         }
    }
-
-   public ResultSet Consulta(String sql){
-        try{
-         // executa um comando select e recebe o retorno no resultset
-
-        stm = con.createStatement();
-        ResultSet res = stm.executeQuery(sql);
-        return res;
-
-        }
-        catch (SQLException e){
-           return null;
-        }
-    }
-   
-    public int atualizar(String sql){
-        try{
-        return stm.executeUpdate(sql);
-        }
-        catch (SQLException e){
-            return -1;
-        }
-        
-
-    }
-    public void Fechar(){
-        try{
-         // executa um comando select e recebe o retorno no resultset
-        stm.close();
-        con.close();
-        }
-        catch (SQLException e){
-        }
-    }
 }

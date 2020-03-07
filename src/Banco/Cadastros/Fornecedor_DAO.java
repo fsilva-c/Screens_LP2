@@ -25,7 +25,7 @@ public class Fornecedor_DAO {
     
     public boolean Inserir(Provider fornecedor0){
         
-       String sql = "INSERT INTO bd_restaurante.FORNECEDOR(cnpj, nome, telefone)VALUES(?, UPPER(?), ?)"; 
+       String sql = "INSERT INTO sql10326340.FORNECEDOR(cnpj, nome, telefone)VALUES(?, UPPER(?), ?)"; 
        
        try {     
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -37,6 +37,7 @@ public class Fornecedor_DAO {
             stmt.executeUpdate(); //executa comando       
             stmt.close();
             
+            con.close();
             return true;
             
         }catch (SQLException u) {        

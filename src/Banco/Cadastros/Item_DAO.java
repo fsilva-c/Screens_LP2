@@ -27,7 +27,7 @@ public class Item_DAO {
     
     public boolean Inserir(Drink drink0, short tp_item){
         
-       String sql = "INSERT INTO bd_restaurante.ITEM(nome, preco, fornecedor, tp_item)VALUES(?, ?, ?, ?)"; 
+       String sql = "INSERT INTO sql10326340.ITEM(nome, preco, fornecedor, tp_item)VALUES(UPPER(?), ?, ?, ?)"; 
        
        try {     
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -41,7 +41,6 @@ public class Item_DAO {
             stmt.close();
             
             con.close();
-            
             return true;
             
         }catch (SQLException u) {        
@@ -51,7 +50,7 @@ public class Item_DAO {
     
     public boolean Inserir(Food food0, short tp_item){
         
-       String sql = "INSERT INTO bd_restaurante.ITEM(nome, preco, desc, tp_item)VALUES(?, ?, ?, ?)"; 
+       String sql = "INSERT INTO sql10326340.ITEM(nome, preco, descricao, tp_item)VALUES(UPPER(?), ?, ?, ?)"; 
        
        try {     
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -65,7 +64,6 @@ public class Item_DAO {
             stmt.close();
             
             con.close();
-            
             return true;
             
         }catch (SQLException u) {        

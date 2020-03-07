@@ -25,7 +25,7 @@ public class CadPessoa_DAO {
     
     public boolean Inserir(Client c0){
         
-       String sql = "INSERT INTO bd_restaurante.CLIENT(cpf, nome, email, senha)VALUES(?, ?, ?, MD5(?))"; 
+       String sql = "INSERT INTO sql10326340.CLIENT(cpf, nome, email, senha)VALUES(?, ?, ?, MD5(?))"; 
        
        try {     
             PreparedStatement stmt = con.prepareStatement(sql);

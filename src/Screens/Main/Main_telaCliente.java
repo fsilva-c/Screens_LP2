@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Screens;
+package Screens.Main;
 
 import Screens.Conta.Conta;
 import Screens.Bonus.Bonus;
@@ -145,7 +145,7 @@ public class Main_telaCliente extends javax.swing.JFrame {
         );
         panel_barraTarefasLayout.setVerticalGroup(
             panel_barraTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_fechar, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+            .addComponent(panel_fechar, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
             .addComponent(panel_minimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_barraTarefasLayout.createSequentialGroup()
                 .addContainerGap(53, Short.MAX_VALUE)

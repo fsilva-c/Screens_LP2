@@ -7,7 +7,7 @@ package Screens.Cadastros;
 
 import Screens.Cadastros.Cadastro_Pessoa;
 import Banco.Cadastros.Login_DAO;
-import Screens.Main_telaCliente;
+import Screens.Main.Main_telaCliente;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 

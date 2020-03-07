@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Screens;
+package Screens.Main;
 
+import Screens.Cadastros.Cadastro_Fornecedor;
 import Screens.Cadastros.Cadastro_Item;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -404,6 +405,8 @@ public class Main_telaGerente extends javax.swing.JFrame {
 
     private void label_iconFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconFornecedorMouseClicked
         // TODO add your handling code here:
+        JFrame tela_fornecedor = new Cadastro_Fornecedor();
+        tela_fornecedor.setVisible(true);
     }//GEN-LAST:event_label_iconFornecedorMouseClicked
 
     /**
