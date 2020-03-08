@@ -6,10 +6,6 @@ import java.util.Scanner;
 public class Menu {
     private static ArrayList<Menu_Item> items;
     private Scanner scanf = new Scanner(System.in);
-
-    public Menu() {
-        items = new ArrayList<Menu_Item>();
-    }
     
     public static void PrintMenu(){
         PrintFoods();

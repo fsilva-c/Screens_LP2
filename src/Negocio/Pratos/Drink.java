@@ -2,12 +2,7 @@ package Negocio.Pratos;
 
 public class Drink extends Menu_Item{
     private String provider;
-
-    public Drink(String name, float price, String fornecedor) {
-        super(name, price);
-        this.provider = fornecedor;
-    }
-
+    
     public String getProvider() {
         return provider;
     }

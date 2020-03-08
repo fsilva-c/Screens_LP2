@@ -8,10 +8,12 @@ package Banco.Cadastros;
 import Banco.Conexao.Conectar;
 import Negocio.Pratos.Drink;
 import Negocio.Pratos.Food;
-import Negocio.Servicos.Provider;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
  *
@@ -71,4 +73,66 @@ public class Item_DAO {
         } 
     }
     
+    public List<Drink> CarregarDados_Bebida() throws SQLException{
+        List<Drink> bebidas = new ArrayList<>();
+        
+        String sql = "SELECT nome, preco FROM sql10326340.ITEM WHERE tp_item = 1";
+        
+        try {
+            
+            try(PreparedStatement stmt = con.prepareStatement(sql)){
+                
+                ResultSet rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
+                
+                while (rs.next()){
+                    Drink bebida = new Drink();
+                    bebida.setName(rs.getString("nome"));
+                    bebida.setPrice(rs.getFloat("preco"));
+                
+                    bebidas.add(bebida);
+                }
+            
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Erro ao consultar registros"+ex);
+        }finally{
+            con.close();
+        }
+        
+        
+        return bebidas;
+    }
+    
+    public List<Food> CarregarDados_Comida() throws SQLException{
+        List<Food> comidas = new ArrayList<>();
+        
+        String sql = "SELECT nome, descricao, preco FROM sql10326340.ITEM WHERE tp_item = 2";
+        
+        try {
+            
+            try(PreparedStatement stmt = con.prepareStatement(sql)){
+                
+                ResultSet rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
+                
+                while (rs.next()){
+                    Food comida = new Food();
+                    comida.setName(rs.getString("nome"));
+                    comida.setSteps(rs.getString("descricao"));
+                    comida.setPrice(rs.getFloat("preco"));
+                
+                    comidas.add(comida);
+                }
+            
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Erro ao consultar registros"+ex);
+        }finally{
+            con.close();
+        }
+        
+        
+        return comidas;
+    }
 }

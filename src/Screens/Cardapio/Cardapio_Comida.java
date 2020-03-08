@@ -5,6 +5,14 @@
  */
 package Screens.Cardapio;
 
+import Banco.Cadastros.Item_DAO;
+import Negocio.Pratos.Food;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author filipe
@@ -17,6 +25,9 @@ public class Cardapio_Comida extends javax.swing.JFrame {
      */
     public Cardapio_Comida() {
         initComponents();
+        
+        DefaultTableModel modelo = (DefaultTableModel) tabela_comidas.getModel();
+        tabela_comidas.setRowSorter(new TableRowSorter(modelo));
     }
 
     /**
@@ -39,11 +50,16 @@ public class Cardapio_Comida extends javax.swing.JFrame {
         label_iconBife = new javax.swing.JLabel();
         label_sair = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela_comidas = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 0, 0));
         kGradientPanel1.setkStartColor(new java.awt.Color(70, 0, 110));
@@ -146,7 +162,7 @@ public class Cardapio_Comida extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela_comidas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
             },
             new String [] {
@@ -161,7 +177,7 @@ public class Cardapio_Comida extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tabela_comidas);
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -249,6 +265,28 @@ public class Cardapio_Comida extends javax.swing.JFrame {
         Cardapio_Comida.this.dispose();
     }//GEN-LAST:event_label_sairMouseClicked
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) tabela_comidas.getModel();
+        modelo.setNumRows(0);
+        
+        Item_DAO dao = new Item_DAO();
+        
+        try {
+            for(Food comida : dao.CarregarDados_Comida()){
+                modelo.addRow(new Object[]{
+                    comida.getName(),
+                    comida.getSteps(),
+                    comida.getPrice()
+                    
+                });
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Cardapio_Bebida.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -287,7 +325,6 @@ public class Cardapio_Comida extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barra_ferramentas;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel label_comida;
     private javax.swing.JLabel label_fechar;
@@ -297,5 +334,6 @@ public class Cardapio_Comida extends javax.swing.JFrame {
     private javax.swing.JLabel label_sair;
     private javax.swing.JPanel panel_fechar;
     private javax.swing.JPanel panel_minimizar;
+    private javax.swing.JTable tabela_comidas;
     // End of variables declaration//GEN-END:variables
 }

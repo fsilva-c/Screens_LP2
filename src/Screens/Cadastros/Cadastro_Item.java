@@ -392,7 +392,10 @@ public class Cadastro_Item extends javax.swing.JFrame {
         float valor = Float.parseFloat(texto_preco.getText());
         
         if(tp_item == 1){
-            Drink drink0 = new Drink(texto_nome.getText(), valor, texto_cnpj.getText());
+            Drink drink0 = new Drink();
+            drink0.setName(texto_nome.getText());
+            drink0.setPrice(valor);
+            drink0.setProvider(texto_cnpj.getText());
             
             Item_DAO dao = new Item_DAO();
             
@@ -402,7 +405,11 @@ public class Cadastro_Item extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Não foi possível completar a operação!");
    
         }if(tp_item == 2){
-            Food food0 = new Food(texto_nome.getText(), valor, texto_descricao.getText());
+            Food food0 = new Food();
+            food0.setName(texto_nome.getText());
+            food0.setPrice(valor);
+            food0.setSteps(texto_descricao.getText());
+            
             
             Item_DAO dao = new Item_DAO();
             
