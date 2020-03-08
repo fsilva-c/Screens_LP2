@@ -7,6 +7,7 @@ package Screens.Main;
 
 import Screens.Cadastros.Cadastro_Fornecedor;
 import Screens.Cadastros.Cadastro_Item;
+import Screens.Pesquisa.Pesquisa_Cliente;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -18,7 +19,7 @@ public class Main_telaGerente extends javax.swing.JFrame {
     int xMouse;
     int yMouse;
 
-
+    JFrame tela_cadastroItem, tela_fornecedor, tela_ListaClientes;
     /**
      * Creates new form main_screen
      */
@@ -238,6 +239,11 @@ public class Main_telaGerente extends javax.swing.JFrame {
 
         label_dadosCadastrais2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-menu-de-usuário-masculino-96.png"))); // NOI18N
         label_dadosCadastrais2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_dadosCadastrais2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_dadosCadastrais2MouseClicked(evt);
+            }
+        });
 
         label_sair1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_sair1.setForeground(new java.awt.Color(204, 204, 204));
@@ -394,8 +400,11 @@ public class Main_telaGerente extends javax.swing.JFrame {
 
     private void label_iconGerItensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconGerItensMouseClicked
         // TODO add your handling code here:
-        JFrame tela_cadastroItem = new Cadastro_Item();
+        if(tela_cadastroItem == null )
+            tela_cadastroItem = new Cadastro_Item();
+        
         tela_cadastroItem.setVisible(true);
+        tela_cadastroItem.setLocationRelativeTo(null);
     }//GEN-LAST:event_label_iconGerItensMouseClicked
 
     private void label_iconSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconSairMouseClicked
@@ -405,9 +414,21 @@ public class Main_telaGerente extends javax.swing.JFrame {
 
     private void label_iconFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconFornecedorMouseClicked
         // TODO add your handling code here:
-        JFrame tela_fornecedor = new Cadastro_Fornecedor();
+        if(tela_fornecedor == null )
+            tela_fornecedor = new Cadastro_Fornecedor();
+        
         tela_fornecedor.setVisible(true);
+        tela_fornecedor.setLocationRelativeTo(null);
     }//GEN-LAST:event_label_iconFornecedorMouseClicked
+
+    private void label_dadosCadastrais2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_dadosCadastrais2MouseClicked
+        // TODO add your handling code here:
+        if(tela_ListaClientes == null)
+            tela_ListaClientes = new Pesquisa_Cliente();
+       
+        tela_ListaClientes.setVisible(true);
+        tela_ListaClientes.setLocationRelativeTo(null);
+    }//GEN-LAST:event_label_dadosCadastrais2MouseClicked
 
     /**
      * @param args the command line arguments

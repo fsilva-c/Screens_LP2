@@ -166,6 +166,7 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
             }
         });
 
+        label_excluir.setBackground(new java.awt.Color(187, 187, 187));
         label_excluir.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-excluir-35.png"))); // NOI18N
         label_excluir.setText("Excluir");

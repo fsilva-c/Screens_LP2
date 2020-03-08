@@ -399,9 +399,15 @@ public class Cadastro_Item extends javax.swing.JFrame {
             
             Item_DAO dao = new Item_DAO();
             
-            if(dao.Inserir(drink0, tp_item))
+            if(dao.Inserir(drink0, tp_item)){
                 JOptionPane.showMessageDialog(null, "Item " + texto_nome.getText() + " inserido com sucesso! ");
-            else
+                
+                //limpeza dos campos da tela
+                texto_nome.setText("");
+                texto_preco.setText("");
+                texto_cnpj.setText("");
+                
+            }else
                 JOptionPane.showMessageDialog(null, "Não foi possível completar a operação!");
    
         }if(tp_item == 2){
@@ -413,9 +419,14 @@ public class Cadastro_Item extends javax.swing.JFrame {
             
             Item_DAO dao = new Item_DAO();
             
-            if(dao.Inserir(food0, tp_item))
+            if(dao.Inserir(food0, tp_item)){
                 JOptionPane.showMessageDialog(null, "Item " + texto_nome.getText() + " inserido com sucesso! ");
-            else
+            
+                texto_nome.setText("");
+                texto_preco.setText("");
+                texto_descricao.setText("");
+                
+            }else
                 JOptionPane.showMessageDialog(null, "Não foi possível completar a operação!");
             
         }

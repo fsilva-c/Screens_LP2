@@ -209,7 +209,7 @@
                       <Component id="panel_fechar" alignment="0" pref="89" max="32767" attributes="0"/>
                       <Component id="panel_minimizar" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="53" max="32767" attributes="0"/>
+                          <EmptySpace pref="59" max="32767" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>

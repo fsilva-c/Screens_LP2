@@ -20,7 +20,7 @@ public class Main_telaCliente extends javax.swing.JFrame {
     int xMouse;
     int yMouse;
 
-    JFrame tela_realizarPedido, tela_conta;
+    JFrame tela_realizarPedido, tela_conta, tela_EscolhaCardapio, tela_AlterarRegistro, tela_Bonus;
     
     /**
      * Creates new form main_screenCliente
@@ -352,6 +352,7 @@ public class Main_telaCliente extends javax.swing.JFrame {
             tela_realizarPedido= new Realizar_Pedido();
         
         tela_realizarPedido.setVisible(true);
+        tela_realizarPedido.setLocationRelativeTo(null);
 
     }//GEN-LAST:event_label_iconRealizarPedidoMouseClicked
 
@@ -377,25 +378,35 @@ public class Main_telaCliente extends javax.swing.JFrame {
         if(tela_conta == null)
             tela_conta = new Conta();
         
-        tela_conta.setVisible(true);     
+        tela_conta.setVisible(true);
+        tela_conta.setLocationRelativeTo(null);
     }//GEN-LAST:event_label_iconContaMouseClicked
 
     private void label_iconCardapioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconCardapioMouseClicked
         // TODO add your handling code here:
-        JFrame tela_EscolhaCardapio = new Tipo_Cardapio();
+        if(tela_EscolhaCardapio == null)
+            tela_EscolhaCardapio = new Tipo_Cardapio();
+        
         tela_EscolhaCardapio.setVisible(true);
+        tela_EscolhaCardapio.setLocationRelativeTo(null);
     }//GEN-LAST:event_label_iconCardapioMouseClicked
 
     private void label_dadosCadastraisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_dadosCadastraisMouseClicked
         // TODO add your handling code here:
-        JFrame tela_AlterarRegistro = new Dados_Cadastrais();
+        if(tela_AlterarRegistro == null)
+            tela_AlterarRegistro = new Dados_Cadastrais();
+        
         tela_AlterarRegistro.setVisible(true);
+        tela_AlterarRegistro.setLocationRelativeTo(null);
     }//GEN-LAST:event_label_dadosCadastraisMouseClicked
 
     private void label_iconBonusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconBonusMouseClicked
         // TODO add your handling code here:
-        JFrame tela_Bonus = new Bonus();
+        if(tela_Bonus == null )
+            tela_Bonus = new Bonus();
+        
         tela_Bonus.setVisible(true);
+        tela_Bonus.setLocationRelativeTo(null);
     }//GEN-LAST:event_label_iconBonusMouseClicked
 
     private void label_iconSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconSairMouseClicked
