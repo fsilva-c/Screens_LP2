@@ -13,6 +13,7 @@ import Negocio.Servicos.Order_Item;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,13 +35,14 @@ public class Conta extends javax.swing.JFrame {
     
     public Conta(Bill c1) {
         initComponents();
+        this.conta = c1;
         Bill_DAO bill_dao = new Bill_DAO();
-        this.cliente = bill_dao.BuscarClient(c1.getId());
+        this.conta.setClient(bill_dao.BuscarClient(c1.getId()));
         this.conta = bill_dao.CarregarItems(this.conta);
+        this.CarregarPedidos();
         
-        
-        text_total.setText(Float.toString(this.conta.CalcBill()));
-        text_cliente.setText(cliente.getName());
+        //text_total.setText(Float.toString(this.conta.CalcBill()));
+        text_cliente.setText(conta.getClient().getName());
     }
 
     /**
@@ -284,12 +286,13 @@ public class Conta extends javax.swing.JFrame {
                     .addComponent(label_nome)
                     .addComponent(text_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_data)
-                    .addComponent(text_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(label_valor)
-                        .addComponent(text_total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(text_total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(label_data)
+                        .addComponent(text_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
@@ -378,6 +381,16 @@ public class Conta extends javax.swing.JFrame {
             }
         }
         text_total.setText(Float.toString(total));
+    }
+    
+    public void CarregarPedidos(){
+        if(this.conta.getOrders() != null){
+            this.Carregar_tabela();
+        }
+        else{
+            Conta.this.dispose();
+            JOptionPane.showMessageDialog(null, "Nao ha nenhum pedido associado a esta conta, faca seus pedidos");
+        }
     }
     
     /**

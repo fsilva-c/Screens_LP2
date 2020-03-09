@@ -143,7 +143,7 @@ public class Order_DAO {
         List<Order> pedidos = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.PEDIDO WHERE conta_id = ?");  
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.PEDIDO WHERE id_conta = ?");  
             stmt.setInt(1,conta_id);
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             

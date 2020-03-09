@@ -12,7 +12,7 @@ public class Bill{
     private Date date;
     private float value = 0.0f;
     private String payment_method = "None";
-    private List<Order> orders;
+    private List<Order> orders = null;
     private int id;
 
     public Bill(Client client) {
@@ -32,7 +32,7 @@ public class Bill{
     
     public float CalcBill(){
         for(Order order : orders)
-            value += order.CalcValue();
+            value += order.getValue();
         if(CheckBonus()){
             value -= (client.getBonus()).getValue();
         }

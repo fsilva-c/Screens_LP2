@@ -115,7 +115,8 @@ public class Bill_DAO {
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("SELECT cpf FROM sql10326340.CONTA");   //Selecione todas as colunas da tabela produto
+            stmt = con.prepareStatement("SELECT cpf FROM sql10326340.CONTA WHERE id = ?");   //Selecione todas as colunas da tabela produto
+            stmt.setInt(1,id_conta);
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             
             if (rs.next()){
@@ -135,7 +136,9 @@ public class Bill_DAO {
     }
     
     public Bill CarregarItems(Bill conta){
-        this.con = new Conectar().conectar();
+        if(conta.getOrders() == null)
+            return conta;
+        
         Order_DAO order_dao = new Order_DAO();
         List<Order> pedidos = order_dao.Carregar_pConta(conta.getId());
         
