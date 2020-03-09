@@ -7,6 +7,7 @@ package Screens.Cadastros;
 
 import Screens.Cadastros.Cadastro_Pessoa;
 import Banco.Cadastros.Login_DAO;
+import Negocio.Pessoas.Client;
 import Screens.Main.Main_telaCliente;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -313,12 +314,12 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         Login_DAO dao = new Login_DAO();
         
-        boolean login = dao.login(text_cpf.getText(), texto_senha.getText());
+        Client login = dao.login(text_cpf.getText(), texto_senha.getText());
         
-        if(login){
+        if(login != null){
             JOptionPane.showMessageDialog(null, "Logado com sucesso!");
             Login.this.dispose();
-            JFrame tela_principal = new Main_telaCliente(dao.getUsuario());
+            JFrame tela_principal = new Main_telaCliente(login);
             tela_principal.setVisible(true);
             tela_principal.setLocationRelativeTo(null);
         }else

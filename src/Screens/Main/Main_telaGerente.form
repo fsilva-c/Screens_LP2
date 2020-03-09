@@ -493,6 +493,9 @@
               <Color id="Default Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="label_iconCozinha1MouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="label_cozinha1">
           <Properties>

@@ -7,6 +7,7 @@ package Screens.Main;
 
 import Screens.Cadastros.Cadastro_Fornecedor;
 import Screens.Cadastros.Cadastro_Item;
+import Screens.Conta.Cozinha;
 import Screens.Pesquisa.Pesquisa_Cliente;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,7 +20,7 @@ public class Main_telaGerente extends javax.swing.JFrame {
     int xMouse;
     int yMouse;
 
-    JFrame tela_cadastroItem, tela_fornecedor, tela_ListaClientes;
+    JFrame tela_cadastroItem, tela_fornecedor, tela_ListaClientes, cozinha;
     /**
      * Creates new form main_screen
      */
@@ -232,6 +233,11 @@ public class Main_telaGerente extends javax.swing.JFrame {
 
         label_iconCozinha1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-fogão-a-gás-96.png"))); // NOI18N
         label_iconCozinha1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        label_iconCozinha1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_iconCozinha1MouseClicked(evt);
+            }
+        });
 
         label_cozinha1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_cozinha1.setForeground(new java.awt.Color(204, 204, 204));
@@ -429,6 +435,15 @@ public class Main_telaGerente extends javax.swing.JFrame {
         tela_ListaClientes.setVisible(true);
         tela_ListaClientes.setLocationRelativeTo(null);
     }//GEN-LAST:event_label_dadosCadastrais2MouseClicked
+
+    private void label_iconCozinha1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconCozinha1MouseClicked
+        // TODO add your handling code here:
+        if(cozinha == null )
+            cozinha = new Cozinha();
+        
+        cozinha.setVisible(true);
+        cozinha.setLocationRelativeTo(null);
+    }//GEN-LAST:event_label_iconCozinha1MouseClicked
 
     /**
      * @param args the command line arguments

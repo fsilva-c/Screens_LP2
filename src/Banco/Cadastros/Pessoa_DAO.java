@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,6 +48,37 @@ public class Pessoa_DAO {
         }catch (SQLException u) {        
             throw new RuntimeException(u);        
         } 
+    }
+    
+        public Client Buscar_pCpf(String cpf){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Client c1 = new Client();
+        boolean check = false;
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.CLIENTE WHERE cpf = ?");  
+            stmt.setString(1,cpf);
+            rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
+            
+            if(rs.next()){
+                check = true;
+                c1.setCpf(rs.getString("cpf"));
+                c1.setName(rs.getString("nome"));
+            }
+           
+            con.close();
+            stmt.close();
+            rs.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            throw new RuntimeException(ex);
+        }
+        if(check)
+            return c1;
+        else
+            return null;
     }
     
     @SuppressWarnings("empty-statement")

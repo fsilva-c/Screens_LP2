@@ -3,15 +3,16 @@ package Negocio.Servicos;
 
 import Negocio.Pratos.Menu_Item;
 import Negocio.Pessoas.Client;
+import java.util.List;
 
 public class Bill{
     private static int contador;
     private int numero;
     private Client client;
     private Date date;
-    private float value;
+    private float value = 0.0f;
     private String payment_method;
-    private Order order;
+    private List<Order> orders;
 
     public Bill(Client client, Date date) {
         this.client = client;
@@ -24,13 +25,15 @@ public class Bill{
         System.out.println(numero);
         date.PrintDate();
         client.getCpf();
-        order.PrintOrder();
+        for(Order order : orders)
+            order.PrintOrder();
         System.out.println(payment_method);
         System.out.println(value);
     }
     
     public float CalcBill(){
-        value = order.CalcValue();
+        for(Order order : orders)
+            value += order.CalcValue();
         if(CheckBonus()){
             value -= (client.getBonus()).getValue();
         }
@@ -38,7 +41,8 @@ public class Bill{
             value = 0;
         return value;
     }
-             
+    
+    /*  Metodo inserir da classe Order_Item
     public boolean MakeOrder(Menu_Item item, int quantity){
         if(payment_method == null){
             //Menu.PrintMenu(); Responsabilidade da interface grafica
@@ -47,7 +51,7 @@ public class Bill{
         }
         return true;
     }
-    
+    */
        
     public boolean CloseBill(String payment_method){
         System.out.println(CalcBill());
@@ -64,9 +68,9 @@ public class Bill{
     public float CalcBonus(){
         float client_bonus = 0f;
         if(payment_method != null){
-            client_bonus = order.CalcValue()*0.10f;
-            if((client.getBonus()).getValue() > order.CalcValue())
-                client_bonus += ((client.getBonus()).getValue() - order.CalcValue());
+            client_bonus = value*0.10f;
+            if((client.getBonus()).getValue() > value)
+                client_bonus += ((client.getBonus()).getValue() - value);
             Bonus new_bonus = new Bonus(client_bonus, this.getDate());
             client.AttBonus(new_bonus);
             return client_bonus;

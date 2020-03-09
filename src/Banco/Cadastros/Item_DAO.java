@@ -8,6 +8,7 @@ package Banco.Cadastros;
 import Banco.Conexao.Conectar;
 import Negocio.Pratos.Drink;
 import Negocio.Pratos.Food;
+import Negocio.Pratos.Menu_Item;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,5 +137,30 @@ public class Item_DAO {
         
         
         return comidas;
+    }
+    
+    public Menu_Item CarregarDados_Item(int id){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Menu_Item item = new Menu_Item();
+        
+        try {
+            stmt = con.prepareStatement("SELECT nome, preco FROM sql10326340.ITEM WHERE id_item = ?");  
+            stmt.setInt(1,id);
+            rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
+            
+            if(rs.next()){
+                item.setId(id);
+                item.setName(rs.getString("nome"));
+                item.setPrice(rs.getFloat("preco"));
+            }
+            con.close();
+            stmt.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Erro ao consultar registros"+ex);
+            throw new RuntimeException(ex);
+        }
+        return item;
     }
 }

@@ -7,6 +7,7 @@ package Banco.Cadastros;
 
 import Banco.Conexao.Conectar;
 import Negocio.Pessoas.Client;
+import Negocio.Pratos.Menu_Item;
 import Negocio.Servicos.Order;
 import Negocio.Servicos.Order_Item;
 import java.sql.Connection;
@@ -48,6 +49,7 @@ public class Order_DAO {
             con.close();
             stmt.close();
             
+            this.InserirItems(pedido);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao inserir registro"+ex);
             throw new RuntimeException(ex);
@@ -67,9 +69,9 @@ public class Order_DAO {
             
             while (rs.next()){
                 Order pedido = new Order();
-                Client c1 = new Client();
+                Pessoa_DAO pessoa_dao = new Pessoa_DAO();
+                Client c1 = pessoa_dao.Buscar_pCpf(rs.getString("cpf"));
                 pedido.setId(rs.getInt("id"));
-                c1.setCpf(rs.getString("cpf"));
                 pedido.setPedinte(c1);
                 pedido.setValue(rs.getFloat("valor"));
                 pedido.setStatus(rs.getString("status"));
@@ -91,11 +93,9 @@ public class Order_DAO {
         
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("UPDATE sql10326340.PEDIDO SET cpf = ?,valor = ?, status = ? WHERE id = ?");
-            stmt.setString(1,pedido.getPedinte().getCpf());
-            stmt.setFloat(2,pedido.getValue());
-            stmt.setString(3,pedido.getStatus());
-            stmt.setInt(4,pedido.getId());
+            stmt = con.prepareStatement("UPDATE sql10326340.PEDIDO SET status = ? WHERE id = ?");
+            stmt.setString(1,pedido.getStatus());
+            stmt.setInt(2,pedido.getId());
             
             //Execução da SQL
             stmt.executeUpdate();
@@ -123,9 +123,9 @@ public class Order_DAO {
             
             while (rs.next()){
                 Order pedido = new Order();
-                Client c1 = new Client();
+                Pessoa_DAO pessoa_dao = new Pessoa_DAO();
+                Client c1 = pessoa_dao.Buscar_pCpf(rs.getString("cpf"));
                 pedido.setId(rs.getInt("id"));
-                c1.setCpf(rs.getString("cpf"));
                 pedido.setPedinte(c1);
                 pedido.setValue(rs.getFloat("valor"));
                 pedido.setStatus(rs.getString("status"));
@@ -144,16 +144,18 @@ public class Order_DAO {
     //Itens do pedido
     private boolean InserirItems(Order pedido){
         List<Order_Item> items = pedido.ItensPedido();
-        this.con = new Conectar().conectar();
+        
         
         for(Order_Item item: items){
+            this.con = new Conectar().conectar();
             PreparedStatement stmt = null;
             try {
                //Passagem de parametros
-                stmt = con.prepareStatement("INSERT INTO sql10326340.ITEMSPEDIDO(id_pedido,id_item,qntd,valor)VALUES(?,?,?,?)");
+                stmt = con.prepareStatement("INSERT INTO sql10326340.ITEMSPEDIDO(id_pedido,id_item,qntd)VALUES(?,?,?)");
                 stmt.setInt(1,pedido.getId());
-                stmt.setFloat(2,item.getId());
-                stmt.setString(3,pedido.getStatus());
+                stmt.setFloat(2,item.getItem().getId());
+                stmt.setInt(3,item.getQuantity());
+                
             
                 //Execução da SQL
                 stmt.executeUpdate();
@@ -167,5 +169,30 @@ public class Order_DAO {
             }
         }
         return true;
+    }
+    
+    public Order CarregarItems(Order pedido){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.ITEMSPEDIDO WHERE id_pedido LIKE ?");  
+            stmt.setInt(1,pedido.getId());
+            rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
+            
+            while (rs.next()){
+                Item_DAO item_dao = new Item_DAO();
+                Menu_Item item_menu = item_dao.CarregarDados_Item(rs.getInt("id_item"));
+                Order_Item item = new Order_Item(item_menu, rs.getInt("qntd"));
+                pedido.AddItem(item);
+            }
+            con.close();
+            stmt.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            throw new RuntimeException(ex);
+        }
+        return pedido;
     }
 }
