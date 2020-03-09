@@ -5,9 +5,19 @@
  */
 package Screens.Cardapio;
 
+import Banco.Cadastros.Order_DAO;
+import Negocio.Pessoas.Client;
+import Negocio.Servicos.Order;
+import Negocio.Servicos.Order_Item;
 import Screens.Cardapio.Cardapio_Comida;
 import Screens.Cardapio.Cardapio_Bebida;
+import Screens.Pedido.Pedido_Bebida;
+import Screens.Pedido.Pedido_Comida;
+import java.util.ArrayList;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,14 +26,39 @@ import javax.swing.JFrame;
 public class Realizar_Pedido extends javax.swing.JFrame {
     int xMouse;
     int yMouse;
-
+    private Order pedido = new Order();
     /**
      * Creates new form screen_fazerPedido
      */
     public Realizar_Pedido() {
         initComponents();
+        text_num.setText(Integer.toString(pedido.getNumero()));
     }
-
+    
+        public Realizar_Pedido(Client c1) {
+        initComponents();
+        pedido.setPedinte(c1);
+        text_num.setText(Integer.toString(pedido.getNumero()));
+    }
+    
+    public void Add_List(Order_Item prod){
+        pedido.AddItem(prod);
+    }
+    
+    
+    public void Carregar_tabela(){
+        DefaultTableModel modelo = (DefaultTableModel) table_itens.getModel();
+        modelo.setNumRows(0);
+        ArrayList<Order_Item> produtos = pedido.ItensPedido();
+        for(Order_Item item: produtos){
+            modelo.addRow(new Object[]{
+                item.getItem().getName(),
+                item.getQuantity(),
+                item.getItem().getPrice()
+            });
+        }
+        text_total.setText(Float.toString(pedido.CalcValue()));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,27 +68,62 @@ public class Realizar_Pedido extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        label_sair = new javax.swing.JLabel();
+        label_numPedido3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         barra_ferramentas = new javax.swing.JPanel();
         panel_fechar = new javax.swing.JPanel();
         label_fechar = new javax.swing.JLabel();
         panel_minimizar = new javax.swing.JPanel();
         label_minimizar = new javax.swing.JLabel();
+        label_numPedido = new javax.swing.JLabel();
+        text_num = new javax.swing.JLabel();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         label_iconBebida = new javax.swing.JLabel();
         label_nomeRestaurante = new javax.swing.JLabel();
         label_comida = new javax.swing.JLabel();
         label_iconBife = new javax.swing.JLabel();
         label_icon2 = new javax.swing.JLabel();
-        label_realPedido = new javax.swing.JLabel();
+        label_pedidos = new javax.swing.JLabel();
         label_bebida = new javax.swing.JLabel();
-        label_numPedido = new javax.swing.JLabel();
-        texto_numPedido = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        label_cardapios1 = new javax.swing.JLabel();
         label_numPedido1 = new javax.swing.JLabel();
-        label_iconFecharPedido = new javax.swing.JLabel();
-        label_numPedido2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        table_itens = new javax.swing.JTable();
+        excluir = new javax.swing.JLabel();
+        label_Total = new javax.swing.JLabel();
+        text_total = new javax.swing.JTextField();
+        finalizar = new javax.swing.JLabel();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
+        label_sair.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_sair.setForeground(new java.awt.Color(226, 221, 221));
+        label_sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-sair-35.png"))); // NOI18N
+        label_sair.setText("Sair");
+        label_sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        label_sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_sairMouseClicked(evt);
+            }
+        });
+
+        label_numPedido3.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
+        label_numPedido3.setForeground(new java.awt.Color(102, 102, 102));
+        label_numPedido3.setText("Itens Selecionados");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -62,11 +132,11 @@ public class Realizar_Pedido extends javax.swing.JFrame {
 
         barra_ferramentas.setBackground(new java.awt.Color(255, 255, 255));
         barra_ferramentas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                barra_ferramentasMouseMoved(evt);
-            }
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 barra_ferramentasMouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                barra_ferramentasMouseMoved(evt);
             }
         });
 
@@ -109,15 +179,27 @@ public class Realizar_Pedido extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
         );
+
+        label_numPedido.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
+        label_numPedido.setForeground(new java.awt.Color(102, 102, 102));
+        label_numPedido.setText("Nº");
+
+        text_num.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
+        text_num.setForeground(new java.awt.Color(102, 102, 102));
+        text_num.setText("****");
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
         barra_ferramentas.setLayout(barra_ferramentasLayout);
         barra_ferramentasLayout.setHorizontalGroup(
             barra_ferramentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barra_ferramentasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(label_numPedido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(text_num)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panel_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_fechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -126,13 +208,16 @@ public class Realizar_Pedido extends javax.swing.JFrame {
             barra_ferramentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panel_fechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(panel_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barra_ferramentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(label_numPedido)
+                .addComponent(text_num))
         );
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 0, 0));
         kGradientPanel1.setkStartColor(new java.awt.Color(70, 0, 110));
 
         label_iconBebida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-coquetel-96.png"))); // NOI18N
-        label_iconBebida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconBebida.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label_iconBebida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_iconBebidaMouseClicked(evt);
@@ -143,14 +228,14 @@ public class Realizar_Pedido extends javax.swing.JFrame {
         label_nomeRestaurante.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_nomeRestaurante.setForeground(new java.awt.Color(204, 204, 204));
         label_nomeRestaurante.setText("Restaurante Lombinho de Porco II");
-        label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_comida.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
         label_comida.setForeground(new java.awt.Color(204, 204, 204));
-        label_comida.setText("Comida");
+        label_comida.setText("Comidas");
 
         label_iconBife.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-bife-96.png"))); // NOI18N
-        label_iconBife.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconBife.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label_iconBife.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_iconBifeMouseClicked(evt);
@@ -160,100 +245,111 @@ public class Realizar_Pedido extends javax.swing.JFrame {
         label_icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-equity-security-96.png"))); // NOI18N
         label_icon2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        label_realPedido.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
-        label_realPedido.setForeground(new java.awt.Color(204, 204, 204));
-        label_realPedido.setText("Realizar Pedido");
+        label_pedidos.setFont(new java.awt.Font("Ubuntu Light", 1, 20)); // NOI18N
+        label_pedidos.setForeground(new java.awt.Color(204, 204, 204));
+        label_pedidos.setText("Fazer Pedido");
 
         label_bebida.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
         label_bebida.setForeground(new java.awt.Color(204, 204, 204));
-        label_bebida.setText("Bebida");
+        label_bebida.setText("Bebidas");
+
+        label_cardapios1.setFont(new java.awt.Font("Ubuntu Light", 1, 20)); // NOI18N
+        label_cardapios1.setForeground(new java.awt.Color(204, 204, 204));
+        label_cardapios1.setText("Cardapios");
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(label_bebida)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(label_comida)
-                .addGap(49, 49, 49))
-            .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
+                        .addGap(57, 57, 57)
                         .addComponent(label_nomeRestaurante))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(label_icon2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(label_realPedido)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(label_icon2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(label_pedidos)))
+                .addContainerGap(61, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(label_iconBebida, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(label_iconBife, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_cardapios1)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(label_comida))
+                    .addComponent(label_iconBife)
+                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(label_bebida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(label_iconBebida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(118, 118, 118))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(label_nomeRestaurante)
-                .addGap(18, 18, 18)
-                .addComponent(label_icon2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(label_realPedido)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                        .addComponent(label_bebida)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label_iconBebida, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(label_icon2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(label_comida)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label_iconBife, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(44, 44, 44))
+                        .addGap(46, 46, 46)
+                        .addComponent(label_pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label_cardapios1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label_iconBebida, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(label_bebida, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(label_iconBife, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(label_comida, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
-
-        label_numPedido.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
-        label_numPedido.setForeground(new java.awt.Color(102, 102, 102));
-        label_numPedido.setText("Nº");
-
-        texto_numPedido.setEditable(false);
-        texto_numPedido.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
-        texto_numPedido.setForeground(new java.awt.Color(102, 102, 102));
-        texto_numPedido.setText("3");
-        texto_numPedido.setBorder(null);
-        texto_numPedido.setPreferredSize(new java.awt.Dimension(0, 15));
-        texto_numPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                texto_numPedidoActionPerformed(evt);
-            }
-        });
-
-        jList1.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
 
         label_numPedido1.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
         label_numPedido1.setForeground(new java.awt.Color(102, 102, 102));
-        label_numPedido1.setText("Itens");
+        label_numPedido1.setText("Itens Selecionados");
 
-        label_iconFecharPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-finalizar-pedido-35.png"))); // NOI18N
-        label_iconFecharPedido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        table_itens.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+            },
+            new String [] {
+                "Descricao", "Qntd", "Valor"
+            }
+        ));
+        jScrollPane3.setViewportView(table_itens);
 
-        label_numPedido2.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
-        label_numPedido2.setForeground(new java.awt.Color(102, 102, 102));
-        label_numPedido2.setText("Finalizar Pedido");
+        excluir.setFont(new java.awt.Font("Ubuntu Light", 1, 16)); // NOI18N
+        excluir.setForeground(new java.awt.Color(102, 102, 102));
+        excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-excluir-35.png"))); // NOI18N
+        excluir.setText("Excluir");
+        excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        excluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                excluirMouseClicked(evt);
+            }
+        });
+
+        label_Total.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
+        label_Total.setForeground(new java.awt.Color(102, 102, 102));
+        label_Total.setText("Total");
+
+        finalizar.setFont(new java.awt.Font("Ubuntu Light", 1, 16)); // NOI18N
+        finalizar.setForeground(new java.awt.Color(102, 102, 102));
+        finalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-finalizar-pedido-35.png"))); // NOI18N
+        finalizar.setText("Finalizar");
+        finalizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        finalizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                finalizarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -262,24 +358,25 @@ public class Realizar_Pedido extends javax.swing.JFrame {
             .addComponent(barra_ferramentas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(label_numPedido1)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(label_Total)
+                                .addGap(181, 181, 181)
+                                .addComponent(text_total, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)))
+                        .addGap(8, 8, 8))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 119, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(label_numPedido)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(texto_numPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(label_numPedido2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label_iconFecharPedido)))))
-                .addContainerGap())
+                            .addComponent(excluir, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(finalizar, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,21 +386,19 @@ public class Realizar_Pedido extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label_numPedido)
-                            .addComponent(texto_numPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
                         .addComponent(label_numPedido1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1)
-                        .addGap(18, 18, 18)
+                        .addComponent(excluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(label_iconFecharPedido)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(label_numPedido2)
-                                .addGap(21, 21, 21))))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(text_total)
+                                .addGap(1, 1, 1))
+                            .addComponent(label_Total))
+                        .addGap(20, 20, 20)
+                        .addComponent(finalizar))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -314,7 +409,7 @@ public class Realizar_Pedido extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -324,10 +419,6 @@ public class Realizar_Pedido extends javax.swing.JFrame {
         Realizar_Pedido.this.dispose();
         //System.exit(0);
     }//GEN-LAST:event_label_fecharMouseClicked
-
-    private void texto_numPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_numPedidoActionPerformed
-        // TODO add your handling code here
-    }//GEN-LAST:event_texto_numPedidoActionPerformed
 
     private void barra_ferramentasMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseDragged
         // TODO add your handling code here:
@@ -344,15 +435,39 @@ public class Realizar_Pedido extends javax.swing.JFrame {
 
     private void label_iconBebidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconBebidaMouseClicked
         // TODO add your handling code here:
-        JFrame tela_cardapioBebida = new Cardapio_Bebida();
-        tela_cardapioBebida.setVisible(true);
+        Pedido_Bebida pedido_bebida = new Pedido_Bebida(this);
+        pedido_bebida.setVisible(true); 
+ 
     }//GEN-LAST:event_label_iconBebidaMouseClicked
 
     private void label_iconBifeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconBifeMouseClicked
         // TODO add your handling code here:
-        JFrame tela_cardapioComida = new Cardapio_Comida();
-        tela_cardapioComida.setVisible(true); 
+        Pedido_Comida pedido_comida = new Pedido_Comida(this);
+        pedido_comida.setVisible(true); 
     }//GEN-LAST:event_label_iconBifeMouseClicked
+
+    private void label_sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_sairMouseClicked
+
+    }//GEN-LAST:event_label_sairMouseClicked
+
+    private void excluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_excluirMouseClicked
+        if(table_itens.getSelectedRow() != -1){
+            DefaultTableModel modelo = (DefaultTableModel) table_itens.getModel();
+            pedido.RemoveItem(table_itens.getSelectedRow());
+            modelo.removeRow(table_itens.getSelectedRow());
+            text_total.setText(Float.toString(pedido.CalcValue()));
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Selecione um item para exclui-lo");
+        }
+    }//GEN-LAST:event_excluirMouseClicked
+
+    private void finalizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_finalizarMouseClicked
+        Order_DAO pedido_dao = new Order_DAO();
+        if(pedido_dao.Inserir(pedido)){
+            JOptionPane.showMessageDialog(null, "Pedido enviado a cozinha");
+        }
+    }//GEN-LAST:event_finalizarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -392,25 +507,32 @@ public class Realizar_Pedido extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barra_ferramentas;
-    private javax.swing.JList jList1;
+    private javax.swing.JLabel excluir;
+    private javax.swing.JLabel finalizar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private keeptoo.KGradientPanel kGradientPanel1;
+    private javax.swing.JLabel label_Total;
     private javax.swing.JLabel label_bebida;
+    private javax.swing.JLabel label_cardapios1;
     private javax.swing.JLabel label_comida;
     private javax.swing.JLabel label_fechar;
     private javax.swing.JLabel label_icon2;
     private javax.swing.JLabel label_iconBebida;
     private javax.swing.JLabel label_iconBife;
-    private javax.swing.JLabel label_iconFecharPedido;
     private javax.swing.JLabel label_minimizar;
     private javax.swing.JLabel label_nomeRestaurante;
     private javax.swing.JLabel label_numPedido;
     private javax.swing.JLabel label_numPedido1;
-    private javax.swing.JLabel label_numPedido2;
-    private javax.swing.JLabel label_realPedido;
+    private javax.swing.JLabel label_numPedido3;
+    private javax.swing.JLabel label_pedidos;
+    private javax.swing.JLabel label_sair;
     private javax.swing.JPanel panel_fechar;
     private javax.swing.JPanel panel_minimizar;
-    private javax.swing.JTextField texto_numPedido;
+    private javax.swing.JTable table_itens;
+    private javax.swing.JLabel text_num;
+    private javax.swing.JTextField text_total;
     // End of variables declaration//GEN-END:variables
 }

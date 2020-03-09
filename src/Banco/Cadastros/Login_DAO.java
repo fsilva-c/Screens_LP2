@@ -6,6 +6,7 @@
 package Banco.Cadastros;
 
 import Banco.Conexao.Conectar;
+import Negocio.Pessoas.Client;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ import java.sql.SQLException;
 public class Login_DAO {
     private final Connection con;
     private boolean achou = false;
+    private Client usuario;
     
     public Login_DAO(){
         this.con = new Conectar().conectar();
@@ -35,8 +37,10 @@ public class Login_DAO {
                 
                 ResultSet rs = ps.executeQuery(ps.toString().replaceAll("com.mysql.cj.jdbc.ClientPreparedStatement: ", ""));
                 
-                if(rs.next())
+                if(rs.next()){
                     achou = true;
+                    this.usuario.setCpf(rs.getString("cpf"));
+                }
                 
                 ps.close();
                 con.close();
@@ -47,4 +51,10 @@ public class Login_DAO {
         }
         return achou;
     }
+
+    public Client getUsuario() {
+        return usuario;
+    }
+    
 }
+

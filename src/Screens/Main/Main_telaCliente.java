@@ -5,6 +5,7 @@
  */
 package Screens.Main;
 
+import Negocio.Pessoas.Client;
 import Screens.Conta.Conta;
 import Screens.Bonus.Bonus;
 import Screens.Cardapio.Realizar_Pedido;
@@ -19,7 +20,7 @@ import javax.swing.JFrame;
 public class Main_telaCliente extends javax.swing.JFrame {
     int xMouse;
     int yMouse;
-
+    Client usuario;
     JFrame tela_realizarPedido, tela_conta, tela_EscolhaCardapio, tela_AlterarRegistro, tela_Bonus;
     
     /**
@@ -29,6 +30,10 @@ public class Main_telaCliente extends javax.swing.JFrame {
         initComponents();
     }
 
+    public Main_telaCliente(Client c1) {
+        this.usuario = c1;
+        initComponents();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -349,7 +354,7 @@ public class Main_telaCliente extends javax.swing.JFrame {
         
         //instanciar a tela cad pessoa apenas uma vez
         if(tela_realizarPedido == null)
-            tela_realizarPedido= new Realizar_Pedido();
+            tela_realizarPedido= new Realizar_Pedido(this.usuario);
         
         tela_realizarPedido.setVisible(true);
         tela_realizarPedido.setLocationRelativeTo(null);

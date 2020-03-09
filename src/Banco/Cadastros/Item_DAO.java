@@ -76,7 +76,7 @@ public class Item_DAO {
     public List<Drink> CarregarDados_Bebida() throws SQLException{
         List<Drink> bebidas = new ArrayList<>();
         
-        String sql = "SELECT nome, preco FROM sql10326340.ITEM WHERE tp_item = 1";
+        String sql = "SELECT id_item, nome, preco FROM sql10326340.ITEM WHERE tp_item = 1";
         
         try {
             
@@ -86,6 +86,7 @@ public class Item_DAO {
                 
                 while (rs.next()){
                     Drink bebida = new Drink();
+                    bebida.setId(rs.getInt("id_item"));
                     bebida.setName(rs.getString("nome"));
                     bebida.setPrice(rs.getFloat("preco"));
                 
@@ -107,7 +108,7 @@ public class Item_DAO {
     public List<Food> CarregarDados_Comida() throws SQLException{
         List<Food> comidas = new ArrayList<>();
         
-        String sql = "SELECT nome, descricao, preco FROM sql10326340.ITEM WHERE tp_item = 2";
+        String sql = "SELECT id_item, nome, descricao, preco FROM sql10326340.ITEM WHERE tp_item = 2";
         
         try {
             
@@ -117,6 +118,7 @@ public class Item_DAO {
                 
                 while (rs.next()){
                     Food comida = new Food();
+                    comida.setId(rs.getInt("id_item"));
                     comida.setName(rs.getString("nome"));
                     comida.setSteps(rs.getString("descricao"));
                     comida.setPrice(rs.getFloat("preco"));

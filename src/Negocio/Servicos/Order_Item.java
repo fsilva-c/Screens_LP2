@@ -4,6 +4,7 @@ package Negocio.Servicos;
 import Negocio.Pratos.Menu_Item;
 
 public class Order_Item {
+    private int id;
     private Menu_Item item;
     private int quantity;
 
@@ -27,5 +28,14 @@ public class Order_Item {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     
 }

@@ -2,6 +2,7 @@
 package Negocio.Pratos;
 
 public class Menu_Item{
+        protected int id;
 	protected String name;
 	protected float price;
 	
@@ -18,12 +19,22 @@ public class Menu_Item{
 		this.name = name;
 	}
 	
-	public float getPrice(){
+ 
+        public float getPrice(){
 		return price;
 	}
 	
 	public void setPrice(float price){
 		this.price = price;
 	}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 	
+        
 }// END class

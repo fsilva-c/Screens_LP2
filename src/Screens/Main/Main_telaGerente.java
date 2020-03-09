@@ -147,7 +147,7 @@ public class Main_telaGerente extends javax.swing.JFrame {
         );
         panel_barraTarefasLayout.setVerticalGroup(
             panel_barraTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_fechar, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+            .addComponent(panel_fechar, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
             .addComponent(panel_minimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_barraTarefasLayout.createSequentialGroup()
                 .addContainerGap(47, Short.MAX_VALUE)
@@ -179,7 +179,7 @@ public class Main_telaGerente extends javax.swing.JFrame {
         );
 
         label_iconGerItens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-ingredientes-96.png"))); // NOI18N
-        label_iconGerItens.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconGerItens.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label_iconGerItens.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_iconGerItensMouseClicked(evt);
@@ -191,14 +191,14 @@ public class Main_telaGerente extends javax.swing.JFrame {
         label_gerItens.setText("Itens");
 
         label_iconCardapio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-equity-security-96.png"))); // NOI18N
-        label_iconCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconCardapio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_cozinha.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_cozinha.setForeground(new java.awt.Color(204, 204, 204));
         label_cozinha.setText("Cozinha");
 
         label_iconSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-sair-96.png"))); // NOI18N
-        label_iconSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconSair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label_iconSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_iconSairMouseClicked(evt);
@@ -214,31 +214,31 @@ public class Main_telaGerente extends javax.swing.JFrame {
         label_cardapio1.setText("Cardápio");
 
         label_iconBonus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-presente-96.png"))); // NOI18N
-        label_iconBonus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconBonus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_bonus.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_bonus.setForeground(new java.awt.Color(204, 204, 204));
         label_bonus.setText("Bônus");
 
         label_iconCozinha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-caixa-registradora-antiga-96.png"))); // NOI18N
-        label_iconCozinha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconCozinha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_DadosCadastrais.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_DadosCadastrais.setForeground(new java.awt.Color(204, 204, 204));
         label_DadosCadastrais.setText("Clientes");
 
         label_dadosCadastrais1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-empresária-96.png"))); // NOI18N
-        label_dadosCadastrais1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_dadosCadastrais1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_iconCozinha1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-fogão-a-gás-96.png"))); // NOI18N
-        label_iconCozinha1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconCozinha1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_cozinha1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_cozinha1.setForeground(new java.awt.Color(204, 204, 204));
         label_cozinha1.setText("Caixa");
 
         label_dadosCadastrais2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-menu-de-usuário-masculino-96.png"))); // NOI18N
-        label_dadosCadastrais2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_dadosCadastrais2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label_dadosCadastrais2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_dadosCadastrais2MouseClicked(evt);
@@ -250,7 +250,7 @@ public class Main_telaGerente extends javax.swing.JFrame {
         label_sair1.setText("Sair");
 
         label_iconFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-produto-96.png"))); // NOI18N
-        label_iconFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label_iconFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_iconFornecedorMouseClicked(evt);

@@ -318,7 +318,7 @@ public class Login extends javax.swing.JFrame {
         if(login){
             JOptionPane.showMessageDialog(null, "Logado com sucesso!");
             Login.this.dispose();
-            JFrame tela_principal = new Main_telaCliente();
+            JFrame tela_principal = new Main_telaCliente(dao.getUsuario());
             tela_principal.setVisible(true);
             tela_principal.setLocationRelativeTo(null);
         }else
