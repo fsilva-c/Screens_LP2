@@ -179,7 +179,7 @@ public class Realizar_Pedido extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         label_numPedido.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
@@ -217,7 +217,7 @@ public class Realizar_Pedido extends javax.swing.JFrame {
         kGradientPanel1.setkStartColor(new java.awt.Color(70, 0, 110));
 
         label_iconBebida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-coquetel-96.png"))); // NOI18N
-        label_iconBebida.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        label_iconBebida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         label_iconBebida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_iconBebidaMouseClicked(evt);
@@ -235,7 +235,7 @@ public class Realizar_Pedido extends javax.swing.JFrame {
         label_comida.setText("Comidas");
 
         label_iconBife.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-bife-96.png"))); // NOI18N
-        label_iconBife.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        label_iconBife.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         label_iconBife.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_iconBifeMouseClicked(evt);
@@ -329,7 +329,7 @@ public class Realizar_Pedido extends javax.swing.JFrame {
         excluir.setForeground(new java.awt.Color(102, 102, 102));
         excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-excluir-35.png"))); // NOI18N
         excluir.setText("Excluir");
-        excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         excluir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 excluirMouseClicked(evt);
@@ -344,7 +344,7 @@ public class Realizar_Pedido extends javax.swing.JFrame {
         finalizar.setForeground(new java.awt.Color(102, 102, 102));
         finalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-finalizar-pedido-35.png"))); // NOI18N
         finalizar.setText("Finalizar");
-        finalizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        finalizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         finalizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 finalizarMouseClicked(evt);

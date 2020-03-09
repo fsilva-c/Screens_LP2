@@ -431,8 +431,8 @@ public class Cadastro_Item extends javax.swing.JFrame {
             
         }
         
-        else
-            JOptionPane.showMessageDialog(null, "Opcão do tipo de item não foi especificada.");
+        //else
+            //JOptionPane.showMessageDialog(null, "Opcão do tipo de item não foi especificada.");
     }//GEN-LAST:event_jLabel5MouseClicked
 
     

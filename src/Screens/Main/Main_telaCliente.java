@@ -399,7 +399,7 @@ public class Main_telaCliente extends javax.swing.JFrame {
     private void label_dadosCadastraisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_dadosCadastraisMouseClicked
         // TODO add your handling code here:
         if(tela_AlterarRegistro == null)
-            tela_AlterarRegistro = new Dados_Cadastrais();
+            tela_AlterarRegistro = new Dados_Cadastrais(this.usuario);
         
         tela_AlterarRegistro.setVisible(true);
         tela_AlterarRegistro.setLocationRelativeTo(null);
