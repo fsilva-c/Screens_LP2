@@ -35,6 +35,11 @@ public class Bonus extends javax.swing.JFrame {
         label_fechar = new javax.swing.JLabel();
         panel_minimizar = new javax.swing.JPanel();
         label_minimizar = new javax.swing.JLabel();
+        label_iconBonus = new javax.swing.JLabel();
+        label_bonus = new javax.swing.JLabel();
+        label_bonus1 = new javax.swing.JLabel();
+        text_valBonus = new javax.swing.JTextField();
+        label_sair1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -103,7 +108,7 @@ public class Bonus extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
@@ -111,7 +116,7 @@ public class Bonus extends javax.swing.JFrame {
         barra_ferramentasLayout.setHorizontalGroup(
             barra_ferramentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barra_ferramentasLayout.createSequentialGroup()
-                .addContainerGap(379, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panel_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_fechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -122,15 +127,60 @@ public class Bonus extends javax.swing.JFrame {
             .addComponent(panel_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        label_iconBonus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-presente-96.png"))); // NOI18N
+        label_iconBonus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        label_iconBonus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_iconBonusMouseClicked(evt);
+            }
+        });
+
+        label_bonus.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_bonus.setForeground(new java.awt.Color(204, 204, 204));
+        label_bonus.setText("Bônus");
+
+        label_bonus1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_bonus1.setForeground(new java.awt.Color(204, 204, 204));
+        label_bonus1.setText("Você possui um total de:");
+
+        text_valBonus.setEditable(false);
+
+        label_sair1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_sair1.setForeground(new java.awt.Color(222, 222, 222));
+        label_sair1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-sair-35.png"))); // NOI18N
+        label_sair1.setText("Sair");
+        label_sair1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_sair1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_sair1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(barra_ferramentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(label_nomeRestaurante)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_iconBonus)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(label_bonus))))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(label_nomeRestaurante))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(label_sair1)
+                            .addComponent(label_bonus1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_valBonus, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,14 +188,26 @@ public class Bonus extends javax.swing.JFrame {
                 .addComponent(barra_ferramentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_nomeRestaurante)
-                .addContainerGap(476, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(label_bonus))
+                    .addComponent(label_iconBonus))
+                .addGap(37, 37, 37)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_bonus1)
+                    .addComponent(text_valBonus, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(label_sair1)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,6 +237,15 @@ public class Bonus extends javax.swing.JFrame {
     private void barra_ferramentasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_barra_ferramentasMouseReleased
+
+    private void label_iconBonusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconBonusMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_label_iconBonusMouseClicked
+
+    private void label_sair1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_sair1MouseClicked
+        // TODO add your handling code here:
+        Bonus.this.dispose();
+    }//GEN-LAST:event_label_sair1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -214,10 +285,16 @@ public class Bonus extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barra_ferramentas;
     private keeptoo.KGradientPanel kGradientPanel1;
+    private javax.swing.JLabel label_bonus;
+    private javax.swing.JLabel label_bonus1;
     private javax.swing.JLabel label_fechar;
+    private javax.swing.JLabel label_iconBonus;
     private javax.swing.JLabel label_minimizar;
     private javax.swing.JLabel label_nomeRestaurante;
+    private javax.swing.JLabel label_sair;
+    private javax.swing.JLabel label_sair1;
     private javax.swing.JPanel panel_fechar;
     private javax.swing.JPanel panel_minimizar;
+    private javax.swing.JTextField text_valBonus;
     // End of variables declaration//GEN-END:variables
 }
