@@ -6,17 +6,16 @@ import java.util.ArrayList;
 
 public class Order {
     private int id;
-    private static int contador;
+    private static int contador = 1;
     private int numero;
     ArrayList<Order_Item> items;
     private String status;
     private float value;
-    private Client pedinte;
+    private int id_conta;
 
     public Order() {
-        contador++;
-        numero = contador;
         status = "Opened";
+        numero = contador++;
         items = new ArrayList<Order_Item>();
     }
     
@@ -80,13 +79,14 @@ public class Order {
         this.id = id;
     }
 
-    public Client getPedinte() {
-        return pedinte;
+    public int getId_conta() {
+        return id_conta;
     }
 
-    public void setPedinte(Client pedinte) {
-        this.pedinte = pedinte;
+    public void setId_conta(int id_conta) {
+        this.id_conta = id_conta;
     }
+
 
     public float getValue() {
         return value;

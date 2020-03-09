@@ -6,19 +6,18 @@ import Negocio.Pessoas.Client;
 import java.util.List;
 
 public class Bill{
-    private static int contador;
+    private static int contador = 1;
     private int numero;
     private Client client;
     private Date date;
     private float value = 0.0f;
-    private String payment_method;
+    private String payment_method = "None";
     private List<Order> orders;
+    private int id;
 
-    public Bill(Client client, Date date) {
+    public Bill(Client client) {
         this.client = client;
-        this.date = date;
-        contador++;
-        numero = contador;
+        numero = contador++;
     }
 
     public void PrintBill(){
@@ -42,6 +41,9 @@ public class Bill{
         return value;
     }
     
+    public void AddItem(Order pedido){
+        orders.add(pedido);
+    }
     /*  Metodo inserir da classe Order_Item
     public boolean MakeOrder(Menu_Item item, int quantity){
         if(payment_method == null){
@@ -102,6 +104,32 @@ public class Bill{
     public void setPayment_method(String payment_method) {
         this.payment_method = payment_method;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+    
+    
     
     
 }

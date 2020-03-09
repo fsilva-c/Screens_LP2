@@ -5,7 +5,9 @@
  */
 package Screens.Conta;
 
+import Banco.Cadastros.Bill_DAO;
 import Banco.Cadastros.Order_DAO;
+import Negocio.Pessoas.Client;
 import Negocio.Servicos.Order;
 import Negocio.Servicos.Order_Item;
 import java.util.List;
@@ -58,8 +60,6 @@ public class Cozinha extends javax.swing.JFrame {
         icon_cozinha = new javax.swing.JLabel();
         label_cozinha = new javax.swing.JLabel();
         button_fechar = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
         label_orderselected = new javax.swing.JLabel();
         label_cliente = new javax.swing.JLabel();
         label_pedidoid = new javax.swing.JLabel();
@@ -159,7 +159,7 @@ public class Cozinha extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
@@ -224,28 +224,6 @@ public class Cozinha extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 13, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 11, Short.MAX_VALUE)
-        );
-
         label_orderselected.setFont(new java.awt.Font("Ubuntu Light", 1, 18)); // NOI18N
         label_orderselected.setForeground(new java.awt.Color(204, 204, 204));
         label_orderselected.setText("Comanda Selecionada");
@@ -262,11 +240,16 @@ public class Cozinha extends javax.swing.JFrame {
         label_status.setForeground(new java.awt.Color(204, 204, 204));
         label_status.setText("Status :");
 
+        text_id.setEditable(false);
         text_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 text_idActionPerformed(evt);
             }
         });
+
+        text_cliente.setEditable(false);
+
+        text_Status.setEditable(false);
 
         button_abertos1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         button_abertos1.setForeground(new java.awt.Color(102, 51, 255));
@@ -316,7 +299,6 @@ public class Cozinha extends javax.swing.JFrame {
                                 .addComponent(label_pedidoid)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(text_id))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kGradientPanel1Layout.createSequentialGroup()
                                 .addComponent(label_status)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -335,10 +317,8 @@ public class Cozinha extends javax.swing.JFrame {
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                 .addGap(54, 54, 54)
                                 .addComponent(label_orderselected)))
-                        .addGap(0, 35, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 39, Short.MAX_VALUE)))
+                .addGap(25, 25, 25)
                 .addComponent(divisor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -380,9 +360,7 @@ public class Cozinha extends javax.swing.JFrame {
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addComponent(label_cozinha)))
-                        .addGap(95, 95, 95)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(124, 124, 124)
                         .addComponent(label_orderselected)
                         .addGap(37, 37, 37)
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,8 +376,7 @@ public class Cozinha extends javax.swing.JFrame {
                             .addComponent(text_Status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addComponent(button_fechar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(kGradientPanel1Layout.createSequentialGroup()
@@ -452,9 +429,11 @@ public class Cozinha extends javax.swing.JFrame {
         Order_DAO order_dao = new Order_DAO();
         
         for(Order pedido: order_dao.Carregar("Opened")){
+            Bill_DAO bill_dao = new Bill_DAO();
+            Client c1 = bill_dao.BuscarClient(pedido.getId_conta());            
             modelo.addRow(new Object[]{
                 pedido.getId(),
-                pedido.getPedinte().getCpf(),
+                c1.getCpf(),
                 pedido.getValue(),
                 pedido.getStatus(),
             });
@@ -507,9 +486,11 @@ public class Cozinha extends javax.swing.JFrame {
         
         Order_DAO order_dao = new Order_DAO();
         for(Order pedido: order_dao.Carregar()){
+            Bill_DAO bill_dao = new Bill_DAO();
+            Client c1 = bill_dao.BuscarClient(pedido.getId_conta());  
             modelo.addRow(new Object[]{
                 pedido.getId(),
-                pedido.getPedinte().getName(),
+                c1.getName(),
                 pedido.getValue(),
                 pedido.getStatus(),
             });
@@ -576,8 +557,6 @@ public class Cozinha extends javax.swing.JFrame {
     private javax.swing.JPanel divisor2;
     private javax.swing.JLabel icon_cozinha;
     private javax.swing.JButton jButton2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private keeptoo.KGradientPanel kGradientPanel1;

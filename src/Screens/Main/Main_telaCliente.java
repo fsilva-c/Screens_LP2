@@ -5,7 +5,9 @@
  */
 package Screens.Main;
 
+import Banco.Cadastros.Bill_DAO;
 import Negocio.Pessoas.Client;
+import Negocio.Servicos.Bill;
 import Screens.Conta.Conta;
 import Screens.Bonus.Bonus;
 import Screens.Cardapio.Realizar_Pedido;
@@ -21,6 +23,7 @@ public class Main_telaCliente extends javax.swing.JFrame {
     int xMouse;
     int yMouse;
     Client usuario;
+    Bill conta;
     JFrame tela_realizarPedido, tela_conta, tela_EscolhaCardapio, tela_AlterarRegistro, tela_Bonus;
     
     /**
@@ -33,6 +36,9 @@ public class Main_telaCliente extends javax.swing.JFrame {
     public Main_telaCliente(Client c1) {
         this.usuario = c1;
         initComponents();
+        conta = new Bill(this.usuario);
+        Bill_DAO bill_dao = new Bill_DAO();
+        bill_dao.Pre_Inserir(conta);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -353,9 +359,7 @@ public class Main_telaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         //instanciar a tela cad pessoa apenas uma vez
-        if(tela_realizarPedido == null)
-            tela_realizarPedido= new Realizar_Pedido(this.usuario);
-        
+        tela_realizarPedido= new Realizar_Pedido(this.conta);
         tela_realizarPedido.setVisible(true);
         tela_realizarPedido.setLocationRelativeTo(null);
 
@@ -380,9 +384,7 @@ public class Main_telaCliente extends javax.swing.JFrame {
 
     private void label_iconContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconContaMouseClicked
         // TODO add your handling code here:
-        if(tela_conta == null)
-            tela_conta = new Conta();
-        
+        tela_conta = new Conta(this.conta);
         tela_conta.setVisible(true);
         tela_conta.setLocationRelativeTo(null);
     }//GEN-LAST:event_label_iconContaMouseClicked

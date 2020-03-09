@@ -216,6 +216,8 @@ public class Pedido_Bebida extends javax.swing.JFrame {
         label_desc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_desc.setText("Descrição :");
 
+        text_desc.setEditable(false);
+
         label_qntd.setFont(new java.awt.Font("Ubuntu Light", 1, 16)); // NOI18N
         label_qntd.setForeground(new java.awt.Color(204, 204, 204));
         label_qntd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -237,6 +239,8 @@ public class Pedido_Bebida extends javax.swing.JFrame {
                 add_item1MouseClicked(evt);
             }
         });
+
+        text_valor.setEditable(false);
 
         label_valor.setFont(new java.awt.Font("Ubuntu Light", 1, 16)); // NOI18N
         label_valor.setForeground(new java.awt.Color(204, 204, 204));

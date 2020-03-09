@@ -42,4 +42,8 @@ public class Date {
         System.out.println(mes + ':');
         System.out.println(dia + ':');
     }
+    
+    public String getData(){
+        return Integer.toString(this.dia) + '/' + Integer.toString(this.mes) + '/' + Integer.toString(this.ano);
+    }
 }

@@ -204,6 +204,8 @@ public class Pedido_Comida extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabela_comidas);
 
+        text_desc.setEditable(false);
+
         text_qntd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 text_qntdActionPerformed(evt);
@@ -235,6 +237,8 @@ public class Pedido_Comida extends javax.swing.JFrame {
         label_valor.setForeground(new java.awt.Color(204, 204, 204));
         label_valor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_valor.setText("Valor :");
+
+        text_valor.setEditable(false);
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);

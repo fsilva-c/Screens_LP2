@@ -7,6 +7,7 @@ package Screens.Cardapio;
 
 import Banco.Cadastros.Order_DAO;
 import Negocio.Pessoas.Client;
+import Negocio.Servicos.Bill;
 import Negocio.Servicos.Order;
 import Negocio.Servicos.Order_Item;
 import Screens.Cardapio.Cardapio_Comida;
@@ -27,6 +28,7 @@ public class Realizar_Pedido extends javax.swing.JFrame {
     int xMouse;
     int yMouse;
     private Order pedido = new Order();
+    private Bill conta;
     /**
      * Creates new form screen_fazerPedido
      */
@@ -35,10 +37,11 @@ public class Realizar_Pedido extends javax.swing.JFrame {
         text_num.setText(Integer.toString(pedido.getNumero()));
     }
     
-        public Realizar_Pedido(Client c1) {
+    public Realizar_Pedido(Bill c1) {
         initComponents();
-        pedido.setPedinte(c1);
-        text_num.setText(Integer.toString(pedido.getNumero()));
+        this.conta = c1;
+        pedido.setId_conta(conta.getId());
+        text_num.setText(Integer.toString(this.pedido.getNumero()));
     }
     
     public void Add_List(Order_Item prod){
@@ -339,6 +342,8 @@ public class Realizar_Pedido extends javax.swing.JFrame {
         label_Total.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
         label_Total.setForeground(new java.awt.Color(102, 102, 102));
         label_Total.setText("Total");
+
+        text_total.setEditable(false);
 
         finalizar.setFont(new java.awt.Font("Ubuntu Light", 1, 16)); // NOI18N
         finalizar.setForeground(new java.awt.Color(102, 102, 102));
