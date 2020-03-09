@@ -152,7 +152,7 @@ public class Order_DAO {
                //Passagem de parametros
                 stmt = con.prepareStatement("INSERT INTO sql10326340.ITEMSPEDIDO(id_pedido,id_item,qntd,valor)VALUES(?,?,?,?)");
                 stmt.setInt(1,pedido.getId());
-                stmt.setFloat(2,pedido.get());
+                stmt.setFloat(2,item.getId());
                 stmt.setString(3,pedido.getStatus());
             
                 //Execução da SQL
