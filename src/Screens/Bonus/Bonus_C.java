@@ -139,6 +139,8 @@ public class Bonus_C extends javax.swing.JFrame {
         label_Bonus.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
         label_Bonus.setText("Bônus Atual:");
 
+        texto_valorBonus.setEditable(false);
+
         label_sair.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_sair.setForeground(new java.awt.Color(226, 221, 221));
         label_sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-sair-35.png"))); // NOI18N

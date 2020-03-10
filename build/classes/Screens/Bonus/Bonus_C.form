@@ -260,6 +260,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="texto_valorBonus">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="label_sair">
           <Properties>
