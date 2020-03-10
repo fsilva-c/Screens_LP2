@@ -6,15 +6,11 @@
 package Screens.Pedido;
 
 import Screens.Cardapio.*;
-import Banco.Cadastros.Item_DAO;
 import Negocio.Pratos.Drink;
 import Negocio.Pratos.Menu_Item;
 import Negocio.Servicos.Order_Item;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -376,19 +372,15 @@ public class Pedido_Bebida extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabela_bebidas.getModel();
         modelo.setNumRows(0);
         
-        Item_DAO dao = new Item_DAO();
-        
-        try {
-            for(Drink bebida : dao.CarregarDados_Bebida()){
-                bebidas.add(bebida);
-                modelo.addRow(new Object[]{
-                    bebida.getName(),
-                    bebida.getPrice(),
-                    
-                });
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Pedido_Bebida.class.getName()).log(Level.SEVERE, null, ex);
+        Drink drink0 = new Drink();
+ 
+        for(Drink bebida : drink0.CarregarDados()){
+            bebidas.add(bebida);
+            modelo.addRow(new Object[]{
+                bebida.getName(),
+                bebida.getPrice(),
+                
+            });
         }
     }//GEN-LAST:event_formWindowOpened
 

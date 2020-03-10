@@ -364,20 +364,17 @@ public class Pedido_Comida extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabela_comidas.getModel();
         modelo.setNumRows(0);
         
-        Item_DAO dao = new Item_DAO();
+        Food food0 = new Food();
         
-        try {
-            for(Food comida : dao.CarregarDados_Comida()){
-                comidas.add(comida);
-                modelo.addRow(new Object[]{
-                    comida.getName(),
-                    comida.getSteps(),
-                    comida.getPrice()
+        
+        for(Food comida : food0.CarregarDados()){
+            comidas.add(comida);
+            modelo.addRow(new Object[]{
+                comida.getName(),
+                comida.getSteps(),
+                comida.getPrice()
                     
                 });
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Cardapio_Bebida.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_formWindowOpened

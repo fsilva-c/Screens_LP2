@@ -5,7 +5,6 @@
  */
 package Screens.Cadastros;
 
-import Banco.Cadastros.Fornecedor_DAO;
 import Negocio.Servicos.Provider;
 import javax.swing.JOptionPane;
 
@@ -332,8 +331,7 @@ public class Cadastro_Fornecedor extends javax.swing.JFrame {
         // TODO add your handling code here:
         Provider fornecedor0 = new Provider(text_cnpj.getText(), texto_nome.getText(), texto_telefone.getText());
         
-        Fornecedor_DAO dao = new Fornecedor_DAO();
-        if(dao.Inserir(fornecedor0))
+        if(fornecedor0.Inserir())
             JOptionPane.showMessageDialog(null, "Fornecedor " + texto_nome.getText() + " inserido com sucesso! ");
         else
             JOptionPane.showMessageDialog(null, "Não foi possível completar a operação!");

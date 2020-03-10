@@ -5,7 +5,6 @@
  */
 package Screens.Cadastros;
 
-import Banco.Cadastros.Item_DAO;
 import Negocio.Pratos.Drink;
 import Negocio.Pratos.Food;
 import javax.swing.JOptionPane;
@@ -397,9 +396,8 @@ public class Cadastro_Item extends javax.swing.JFrame {
             drink0.setPrice(valor);
             drink0.setProvider(texto_cnpj.getText());
             
-            Item_DAO dao = new Item_DAO();
             
-            if(dao.Inserir(drink0, tp_item)){
+            if(drink0.Inserir()){
                 JOptionPane.showMessageDialog(null, "Item " + texto_nome.getText() + " inserido com sucesso! ");
                 
                 //limpeza dos campos da tela
@@ -416,10 +414,9 @@ public class Cadastro_Item extends javax.swing.JFrame {
             food0.setPrice(valor);
             food0.setSteps(texto_descricao.getText());
             
+          
             
-            Item_DAO dao = new Item_DAO();
-            
-            if(dao.Inserir(food0, tp_item)){
+            if(food0.Inserir()){
                 JOptionPane.showMessageDialog(null, "Item " + texto_nome.getText() + " inserido com sucesso! ");
             
                 texto_nome.setText("");

@@ -1,5 +1,6 @@
 package Negocio.Servicos;
 
+
 public class Bonus {
 //Atributos da classe
     private int id;
@@ -57,7 +58,6 @@ public class Bonus {
         this.id = id;
     }
    
-    
     
     
 }

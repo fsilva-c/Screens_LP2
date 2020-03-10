@@ -119,7 +119,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Restaurante Lombinho de Porco II"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
         </Component>
@@ -233,7 +233,7 @@
               <Image iconType="3" name="/Screens/icons/icons8-presente-96.png"/>
             </Property>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>
@@ -280,7 +280,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Sair"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
           </Properties>
           <Events>

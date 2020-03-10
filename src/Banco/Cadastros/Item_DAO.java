@@ -74,7 +74,7 @@ public class Item_DAO {
         } 
     }
     
-    public List<Drink> CarregarDados_Bebida() throws SQLException{
+    public List<Drink> CarregarDados_Bebida(){
         List<Drink> bebidas = new ArrayList<>();
         
         String sql = "SELECT id_item, nome, preco FROM sql10326340.ITEM WHERE tp_item = 1";
@@ -95,18 +95,17 @@ public class Item_DAO {
                 }
             
             }
-            
+            con.close();
         } catch (SQLException ex) {
             System.out.println("Erro ao consultar registros"+ex);
-        }finally{
-            con.close();
+            throw new RuntimeException(ex);
         }
         
         
         return bebidas;
     }
     
-    public List<Food> CarregarDados_Comida() throws SQLException{
+    public List<Food> CarregarDados_Comida(){
         List<Food> comidas = new ArrayList<>();
         
         String sql = "SELECT id_item, nome, descricao, preco FROM sql10326340.ITEM WHERE tp_item = 2";
@@ -128,12 +127,12 @@ public class Item_DAO {
                 }
             
             }
-            
+            con.close();
         } catch (SQLException ex) {
             System.out.println("Erro ao consultar registros"+ex);
-        }finally{
-            con.close();
+            throw new RuntimeException(ex);
         }
+            
         
         
         return comidas;

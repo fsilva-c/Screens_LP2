@@ -5,6 +5,8 @@
  */
 package Negocio.Servicos;
 
+import Banco.Cadastros.Fornecedor_DAO;
+
 /**
  *
  * @author dcet1-lami11-ubuntu
@@ -40,6 +42,11 @@ public class Provider {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+    
+    public boolean Inserir(){
+        Fornecedor_DAO fornecedor_dao = new Fornecedor_DAO();
+        return fornecedor_dao.Inserir(this);
     }
 
 } //END CLASS

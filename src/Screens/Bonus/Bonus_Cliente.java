@@ -5,10 +5,7 @@
  */
 package Screens.Bonus;
 
-import Banco.Cadastros.Bonus_DAO;
 import Negocio.Pessoas.Client;
-import Negocio.Pessoas.Client;
-import Negocio.Servicos.Bonus;
 /**
  *
  * @author filipe
@@ -25,9 +22,7 @@ public class Bonus_Cliente extends javax.swing.JFrame {
     
     public Bonus_Cliente(Client c1) {
         initComponents();
-        Bonus_DAO bonus_dao = new Bonus_DAO();
-        Bonus bonus = bonus_dao.Buscar_pCpf(c1);
-        text_valBonus.setText(Float.toString(bonus.getValue()));
+        text_valBonus.setText(Float.toString(c1.Buscar_myBonus().getValue()));
     }
 
     /**

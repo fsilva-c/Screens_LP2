@@ -5,13 +5,10 @@
  */
 package Screens.Conta;
 
-import Banco.Cadastros.Bill_DAO;
-import Banco.Cadastros.Order_DAO;
 import Negocio.Pessoas.Client;
 import Negocio.Servicos.Bill;
 import Negocio.Servicos.Order;
 import Negocio.Servicos.Order_Item;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -37,9 +34,8 @@ public class Conta extends javax.swing.JFrame {
     public Conta(Bill c1) {
         initComponents();
         this.conta = c1;
-        Bill_DAO bill_dao = new Bill_DAO();
-        this.conta.setClient(bill_dao.BuscarClient(c1.getId()));
-        this.conta = bill_dao.CarregarItems(this.conta);
+        this.conta.Set_ClienteDB();
+        this.conta.CarregarItems();
         this.CarregarPedidos();
         
         //text_total.setText(Float.toString(this.conta.CalcBill()));
@@ -356,8 +352,7 @@ public class Conta extends javax.swing.JFrame {
         // TODO add your handling code here:
         for(Order pedido: this.conta.getOrders()){
             if(pedido.getStatus().equals("Opened")){
-                Order_DAO order_dao = new Order_DAO();
-                order_dao.Excluir(pedido);
+                pedido.Excluir();
             } 
         }
         JOptionPane.showMessageDialog(null, "Pedidos abertos foram excluidos da conta");

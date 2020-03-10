@@ -5,8 +5,6 @@
  */
 package Screens.Cadastros;
 
-import Screens.Cadastros.Cadastro_Pessoa;
-import Banco.Cadastros.Login_DAO;
 import Negocio.Pessoas.Client;
 import Screens.Main.Main_telaCliente;
 import javax.swing.JFrame;
@@ -312,14 +310,15 @@ public class Login extends javax.swing.JFrame {
 
     private void botao_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_entrarActionPerformed
         // TODO add your handling code here:
-        Login_DAO dao = new Login_DAO();
         
-        Client login = dao.login(text_cpf.getText(), texto_senha.getText());
+        Client c1 = new Client();
+        c1.setCpf(text_cpf.getText());
+        c1.setPswd(texto_senha.getText());
         
-        if(login != null){
+        if(c1.Login() != null){
             JOptionPane.showMessageDialog(null, "Logado com sucesso!");
             Login.this.dispose();
-            JFrame tela_principal = new Main_telaCliente(login);
+            JFrame tela_principal = new Main_telaCliente(c1);
             tela_principal.setVisible(true);
             tela_principal.setLocationRelativeTo(null);
         }else

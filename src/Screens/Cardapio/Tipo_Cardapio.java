@@ -5,8 +5,6 @@
  */
 package Screens.Cardapio;
 
-import Screens.Cardapio.Cardapio_Comida;
-import Screens.Cardapio.Cardapio_Bebida;
 import javax.swing.JFrame;
 
 /**

@@ -1,5 +1,6 @@
 package Negocio.Servicos;
 
+import Banco.Cadastros.Order_DAO;
 import Negocio.Pessoas.Client;
 import Negocio.Pratos.Menu_Item;
 import java.util.ArrayList;
@@ -96,6 +97,14 @@ public class Order {
         this.value = value;
     }
     
- 
+    public boolean Inserir(){
+        Order_DAO order_dao = new Order_DAO();
+        return order_dao.Inserir(this);
+    }
+    
+    public boolean Excluir(){
+        Order_DAO order_dao = new Order_DAO();
+        return order_dao.Excluir(this);
+    }
     
 }

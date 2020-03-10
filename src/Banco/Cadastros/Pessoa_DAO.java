@@ -163,5 +163,35 @@ public class Pessoa_DAO {
         }
         return true;
     }
+    
+    public Client Login(Client c1){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean check = false;
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.CLIENTE WHERE cpf = ? and senha = MD5(?)");  
+            stmt.setString(1,c1.getCpf());
+            stmt.setString(2,c1.getPswd());
+            rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
+            
+            if(rs.next()){
+                check = true;
+                c1.setName(rs.getString("nome"));
+            }
+           
+            con.close();
+            stmt.close();
+            rs.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            throw new RuntimeException(ex);
+        }
+        if(check)
+            return c1;
+        else
+            return null;
+    }
 }
 

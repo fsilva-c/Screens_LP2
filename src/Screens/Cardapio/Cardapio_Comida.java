@@ -5,11 +5,7 @@
  */
 package Screens.Cardapio;
 
-import Banco.Cadastros.Item_DAO;
 import Negocio.Pratos.Food;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -270,19 +266,16 @@ public class Cardapio_Comida extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabela_comidas.getModel();
         modelo.setNumRows(0);
         
-        Item_DAO dao = new Item_DAO();
+        Food comidas = new Food();
         
-        try {
-            for(Food comida : dao.CarregarDados_Comida()){
-                modelo.addRow(new Object[]{
-                    comida.getName(),
-                    comida.getSteps(),
-                    comida.getPrice()
+        
+        for(Food comida : comidas.CarregarDados()){
+            modelo.addRow(new Object[]{
+                comida.getName(),
+                comida.getSteps(),
+                comida.getPrice()
                     
                 });
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Cardapio_Bebida.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_formWindowOpened

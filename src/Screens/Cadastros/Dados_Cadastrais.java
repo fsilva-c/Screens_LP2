@@ -26,14 +26,11 @@ public class Dados_Cadastrais extends javax.swing.JFrame {
     
     public Dados_Cadastrais(Client c0) {
         initComponents();
-        this.usuario = c0;
+        this.usuario = c0.getMe();
         
-        Pessoa_DAO pessoa_dao = new Pessoa_DAO();
-        Client c1 = pessoa_dao.Buscar_pCpf(c0.getCpf());
-        
-        text_cpf.setText(c0.getCpf());
-        textoNome.setText(c1.getName());
-        textoEmail.setText(c1.getEmail());
+        text_cpf.setText(usuario.getCpf());
+        textoNome.setText(usuario.getName());
+        textoEmail.setText(usuario.getEmail());
     }
 
     /**
@@ -380,16 +377,15 @@ public class Dados_Cadastrais extends javax.swing.JFrame {
 
     private void label_salvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_salvarMouseClicked
         // TODO add your handling code here:
-        Pessoa_DAO pessoa_dao = new Pessoa_DAO();
-        Client c1 = new Client();
-        c1.setCpf(this.usuario.getCpf());
-        c1.setEmail(textoEmail.getText());
-        c1.setName(textoNome.getText());
-        pessoa_dao.Atualizar(c1);
+
+        usuario.setEmail(textoEmail.getText());
+        usuario.setName(textoNome.getText());
+        usuario.Atualizar();
+        JOptionPane.showMessageDialog(null, "Dados Atualizados");
         
         if(!(textoSenha1.getText().equals(""))){
             JOptionPane.showMessageDialog(null, "Alterando Senha");
-            pessoa_dao.Alterar_Senha(c1);
+            usuario.Alterar_Senha();
         }
     }//GEN-LAST:event_label_salvarMouseClicked
 

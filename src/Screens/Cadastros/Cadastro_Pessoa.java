@@ -5,8 +5,6 @@
  */
 package Screens.Cadastros;
 
-import Banco.Cadastros.Bonus_DAO;
-import Banco.Cadastros.Pessoa_DAO;
 import Negocio.Pessoas.Client;
 import Negocio.Servicos.Bonus;
 import javax.swing.JOptionPane;
@@ -383,11 +381,8 @@ public class Cadastro_Pessoa extends javax.swing.JFrame {
         bonus.setSituacao(0);
         bonus.setValue(0.0f);
         
-        Pessoa_DAO dao = new Pessoa_DAO();
-        if(dao.Inserir(c1)){
+        if(c1.Inserir()){
             //Inserir campo bonus base
-            Bonus_DAO bonus_dao = new Bonus_DAO();
-            bonus_dao.Inserir(bonus, c1);
             JOptionPane.showMessageDialog(null, "Usuário " + textoNome.getText() + " inserido com sucesso! ");
         }
         else

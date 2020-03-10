@@ -1,6 +1,7 @@
 
 package Negocio.Servicos;
 
+import Banco.Cadastros.Bill_DAO;
 import Negocio.Pratos.Menu_Item;
 import Negocio.Pessoas.Client;
 import java.util.ArrayList;
@@ -135,8 +136,17 @@ public class Bill{
         this.value = value;
     }
     
+    public boolean Set_ClienteDB(){
+        Bill_DAO bill_dao = new Bill_DAO();
+        this.client = bill_dao.BuscarClient(id);
+        return true;
+    }
     
-    
+    public boolean CarregarItems(){
+        Bill_DAO bill_dao = new Bill_DAO();
+        bill_dao.CarregarItems(this);
+        return true;
+    }
     
 }
 

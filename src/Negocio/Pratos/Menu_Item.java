@@ -1,6 +1,8 @@
 
 package Negocio.Pratos;
 
+import Banco.Cadastros.Item_DAO;
+
 public class Menu_Item{
         protected int id;
 	protected String name;
@@ -34,7 +36,11 @@ public class Menu_Item{
 
     public void setId(int id) {
         this.id = id;
+    }   
+    
+    public Menu_Item CarregarDados_Item(int id){
+        Item_DAO item_dao = new Item_DAO();
+        return item_dao.CarregarDados_Item(id);
     }
-	
         
 }// END class
