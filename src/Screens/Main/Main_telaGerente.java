@@ -5,10 +5,12 @@
  */
 package Screens.Main;
 
+import Screens.Pesquisa.Pesquisa_Bonus;
 import Screens.Cadastros.Cadastro_Fornecedor;
 import Screens.Cadastros.Cadastro_Item;
 import Screens.Conta.Cozinha;
 import Screens.Pesquisa.Pesquisa_Cliente;
+import Screens.Pesquisa.Pesquisa_Conta;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -20,7 +22,7 @@ public class Main_telaGerente extends javax.swing.JFrame {
     int xMouse;
     int yMouse;
 
-    JFrame tela_cadastroItem, tela_fornecedor, tela_ListaClientes, cozinha;
+    JFrame tela_cadastroItem, tela_fornecedor, tela_ListaClientes, tela_listaBonus, tela_listaConta, cozinha;
     /**
      * Creates new form main_screen
      */
@@ -216,6 +218,11 @@ public class Main_telaGerente extends javax.swing.JFrame {
 
         label_iconBonus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-presente-96.png"))); // NOI18N
         label_iconBonus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        label_iconBonus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_iconBonusMouseClicked(evt);
+            }
+        });
 
         label_bonus.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_bonus.setForeground(new java.awt.Color(204, 204, 204));
@@ -223,6 +230,11 @@ public class Main_telaGerente extends javax.swing.JFrame {
 
         label_iconCozinha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-caixa-registradora-antiga-96.png"))); // NOI18N
         label_iconCozinha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        label_iconCozinha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_iconCozinhaMouseClicked(evt);
+            }
+        });
 
         label_DadosCadastrais.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_DadosCadastrais.setForeground(new java.awt.Color(204, 204, 204));
@@ -444,6 +456,24 @@ public class Main_telaGerente extends javax.swing.JFrame {
         cozinha.setVisible(true);
         cozinha.setLocationRelativeTo(null);
     }//GEN-LAST:event_label_iconCozinha1MouseClicked
+
+    private void label_iconBonusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconBonusMouseClicked
+        // TODO add your handling code here:
+        if(tela_listaBonus == null )
+            tela_listaBonus = new Pesquisa_Bonus();
+        
+        tela_listaBonus.setVisible(true);
+        tela_listaBonus.setLocationRelativeTo(null);
+    }//GEN-LAST:event_label_iconBonusMouseClicked
+
+    private void label_iconCozinhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconCozinhaMouseClicked
+        // TODO add your handling code here:
+        if(tela_listaConta == null )
+            tela_listaConta = new Pesquisa_Conta();
+        
+        tela_listaConta.setVisible(true);
+        tela_listaConta.setLocationRelativeTo(null);
+    }//GEN-LAST:event_label_iconCozinhaMouseClicked
 
     /**
      * @param args the command line arguments

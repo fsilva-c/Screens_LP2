@@ -362,10 +362,8 @@ public class Conta extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(null, "Pedidos abertos foram excluidos da conta");
         
-         if(tela_FormaPagamento == null)
-            tela_FormaPagamento = new Conta_formaPagamento(this.conta);
-            
-            
+
+        tela_FormaPagamento = new Conta_formaPagamento(this.conta);   
         tela_FormaPagamento.setVisible(true);
         tela_FormaPagamento.setLocationRelativeTo(null);
     }//GEN-LAST:event_label_pagarMouseClicked
@@ -381,7 +379,6 @@ public class Conta extends javax.swing.JFrame {
     private void text_dataFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_text_dataFocusLost
         // TODO add your handling code here:
         conta.setDate(text_data.getText());
-        JOptionPane.showMessageDialog(null, conta.getDate());
  
     }//GEN-LAST:event_text_dataFocusLost
 

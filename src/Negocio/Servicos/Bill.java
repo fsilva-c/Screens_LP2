@@ -70,15 +70,12 @@ public class Bill{
     
     public float CalcBonus(){
         float client_bonus = 0f;
-        if(payment_method != null){
-            client_bonus = value*0.10f;
-            if((client.getBonus()).getValue() > value)
-                client_bonus += ((client.getBonus()).getValue() - value);
-            Bonus new_bonus = new Bonus(client_bonus, this.getDate());
-            client.setBonus(new_bonus);
-            return client_bonus;
-        }
-        System.out.println("A conta ainda nao foi fechada");
+        client_bonus = value*0.10f;
+        if((client.getBonus()).getValue() > value)
+            client_bonus += ((client.getBonus()).getValue() - value);
+        Bonus new_bonus = new Bonus(client_bonus, this.getDate());
+        client.setBonus(new_bonus);
+
         return client_bonus;
     }
     
@@ -128,6 +125,14 @@ public class Bill{
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public float getValue() {
+        return value;
+    }
+
+    public void setValue(float value) {
+        this.value = value;
     }
     
     

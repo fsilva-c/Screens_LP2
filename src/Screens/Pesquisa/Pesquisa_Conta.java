@@ -3,20 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Screens.Bonus;
+package Screens.Pesquisa;
+
+import Banco.Cadastros.Bill_DAO;
+import Screens.Bonus.*;
+import Banco.Cadastros.Bonus_DAO;
+import Screens.Pesquisa.*;
+import Banco.Cadastros.Pessoa_DAO;
+import Negocio.Pessoas.Client;
+import Negocio.Servicos.Bill;
+import Negocio.Servicos.Bonus;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author filipe
+ * @author dcet1-lami11-ubuntu
  */
-public class Bonus extends javax.swing.JFrame {
-    int xMouse, yMouse;
-
+public class Pesquisa_Conta extends javax.swing.JFrame {
+    private int xMouse, yMouse;
+    
     /**
-     * Creates new form Bonus
+     * Creates new form Pesquisa
      */
-    public Bonus() {
+    public Pesquisa_Conta() {
         initComponents();
+        
+        DefaultTableModel modelo = (DefaultTableModel) tabela_contas.getModel();
+        tabela_contas.setRowSorter(new TableRowSorter(modelo));
+        Carregar_tabela();
     }
 
     /**
@@ -29,17 +48,20 @@ public class Bonus extends javax.swing.JFrame {
     private void initComponents() {
 
         kGradientPanel1 = new keeptoo.KGradientPanel();
-        label_nomeRestaurante = new javax.swing.JLabel();
         barra_ferramentas = new javax.swing.JPanel();
         panel_fechar = new javax.swing.JPanel();
         label_fechar = new javax.swing.JLabel();
         panel_minimizar = new javax.swing.JPanel();
         label_minimizar = new javax.swing.JLabel();
-        label_iconBonus = new javax.swing.JLabel();
-        label_bonus = new javax.swing.JLabel();
-        label_bonus1 = new javax.swing.JLabel();
-        text_valBonus = new javax.swing.JTextField();
-        label_sair1 = new javax.swing.JLabel();
+        label_nomeRestaurante = new javax.swing.JLabel();
+        icon_bonus = new javax.swing.JLabel();
+        label_conta = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabela_contas = new javax.swing.JTable();
+        label_pesquisa = new javax.swing.JLabel();
+        label_total = new javax.swing.JLabel();
+        texto_total = new javax.swing.JTextField();
+        texto_pesquisar = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -47,12 +69,6 @@ public class Bonus extends javax.swing.JFrame {
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 0, 0));
         kGradientPanel1.setkStartColor(new java.awt.Color(70, 0, 110));
-
-        label_nomeRestaurante.setBackground(new java.awt.Color(204, 204, 204));
-        label_nomeRestaurante.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
-        label_nomeRestaurante.setForeground(new java.awt.Color(204, 204, 204));
-        label_nomeRestaurante.setText("Restaurante Lombinho de Porco II");
-        label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         barra_ferramentas.setBackground(new java.awt.Color(255, 255, 255));
         barra_ferramentas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -127,34 +143,50 @@ public class Bonus extends javax.swing.JFrame {
             .addComponent(panel_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        label_iconBonus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-presente-96.png"))); // NOI18N
-        label_iconBonus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        label_iconBonus.addMouseListener(new java.awt.event.MouseAdapter() {
+        label_nomeRestaurante.setBackground(new java.awt.Color(204, 204, 204));
+        label_nomeRestaurante.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
+        label_nomeRestaurante.setForeground(new java.awt.Color(204, 204, 204));
+        label_nomeRestaurante.setText("Restaurante Lombinho de Porco II");
+        label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        icon_bonus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-conta-96.png"))); // NOI18N
+
+        label_conta.setFont(new java.awt.Font("Ubuntu Light", 1, 24)); // NOI18N
+        label_conta.setForeground(new java.awt.Color(204, 204, 204));
+        label_conta.setText("Contas");
+
+        tabela_contas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CPF", "Data", "Valor", "Pagamento"
+            }
+        ));
+        jScrollPane1.setViewportView(tabela_contas);
+
+        label_pesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-pesquisar-25.png"))); // NOI18N
+        label_pesquisa.setToolTipText("");
+        label_pesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        label_pesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                label_iconBonusMouseClicked(evt);
+                label_pesquisaMouseClicked(evt);
             }
         });
 
-        label_bonus.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_bonus.setForeground(new java.awt.Color(204, 204, 204));
-        label_bonus.setText("Bônus");
+        label_total.setBackground(new java.awt.Color(187, 187, 187));
+        label_total.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_total.setForeground(new java.awt.Color(204, 204, 204));
+        label_total.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-notas-de-dinheiro-35.png"))); // NOI18N
+        label_total.setText("Total : ");
+        label_total.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        label_bonus1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_bonus1.setForeground(new java.awt.Color(204, 204, 204));
-        label_bonus1.setText("Você possui um total de:");
-
-        text_valBonus.setEditable(false);
-
-        label_sair1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_sair1.setForeground(new java.awt.Color(222, 222, 222));
-        label_sair1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-sair-35.png"))); // NOI18N
-        label_sair1.setText("Sair");
-        label_sair1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        label_sair1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                label_sair1MouseClicked(evt);
-            }
-        });
+        texto_pesquisar.setBorder(null);
+        try {
+            texto_pesquisar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -164,23 +196,30 @@ public class Bonus extends javax.swing.JFrame {
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_iconBonus)
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(label_bonus))))
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                        .addGap(125, 125, 125)
                         .addComponent(label_nomeRestaurante))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label_sair1)
-                            .addComponent(label_bonus1))
+                        .addContainerGap()
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(texto_pesquisar)
+                                .addGap(18, 18, 18)
+                                .addComponent(label_pesquisa)
+                                .addGap(198, 198, 198))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(184, 184, 184)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(icon_bonus, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(label_conta))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(label_total)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(text_valBonus, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addComponent(texto_total, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,18 +228,22 @@ public class Bonus extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_nomeRestaurante)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(icon_bonus, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label_conta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_pesquisa)
+                    .addComponent(texto_pesquisar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_total)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(label_bonus))
-                    .addComponent(label_iconBonus))
-                .addGap(37, 37, 37)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_bonus1)
-                    .addComponent(text_valBonus, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(label_sair1)
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addGap(8, 8, 8)
+                        .addComponent(texto_total, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(8, 8, 8))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,7 +261,7 @@ public class Bonus extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void label_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_fecharMouseClicked
-        Bonus.this.dispose();
+        Pesquisa_Conta.this.dispose();
     }//GEN-LAST:event_label_fecharMouseClicked
 
     private void barra_ferramentasMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseDragged
@@ -238,15 +281,50 @@ public class Bonus extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_barra_ferramentasMouseReleased
 
-    private void label_iconBonusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconBonusMouseClicked
+    private void label_pesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_pesquisaMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_label_iconBonusMouseClicked
-
-    private void label_sair1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_sair1MouseClicked
-        // TODO add your handling code here:
-        Bonus.this.dispose();
-    }//GEN-LAST:event_label_sair1MouseClicked
-
+        Client cliente = new Client();
+        cliente.setCpf(texto_pesquisar.getText());
+        Carregar_pCPF(cliente);
+        texto_pesquisar.setText("");
+    }//GEN-LAST:event_label_pesquisaMouseClicked
+    
+    public void Carregar_pCPF(Client c1){
+        DefaultTableModel modelo = (DefaultTableModel) tabela_contas.getModel();
+        modelo.setNumRows(0);
+        float total = 0.0f;
+        
+        Bill_DAO bill_dao = new Bill_DAO();
+        for(Bill conta: bill_dao.CarregarContas_pCPF(c1)){
+            total += conta.getValue();
+            modelo.addRow(new Object[]{
+                conta.getClient().getCpf(),
+                conta.getDate(),
+                conta.getValue(),
+                conta.getPayment_method()
+            });
+        }
+        texto_total.setText(Float.toString(total));
+    }    
+    
+    public void Carregar_tabela(){
+        DefaultTableModel modelo = (DefaultTableModel) tabela_contas.getModel();
+        modelo.setNumRows(0);
+        float total = 0.0f;
+        
+        Bill_DAO bill_dao = new Bill_DAO();
+        for(Bill conta: bill_dao.CarregarContas()){
+            total += conta.getValue();
+            modelo.addRow(new Object[]{
+                conta.getClient().getCpf(),
+                conta.getDate(),
+                conta.getValue(),
+                conta.getPayment_method()
+            });
+        }
+        texto_total.setText(Float.toString(total));
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -264,37 +342,46 @@ public class Bonus extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Bonus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pesquisa_Conta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Bonus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pesquisa_Conta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Bonus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pesquisa_Conta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Bonus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pesquisa_Conta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Bonus().setVisible(true);
+                new Pesquisa_Conta().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barra_ferramentas;
+    private javax.swing.JLabel icon_bonus;
+    private javax.swing.JScrollPane jScrollPane1;
     private keeptoo.KGradientPanel kGradientPanel1;
-    private javax.swing.JLabel label_bonus;
-    private javax.swing.JLabel label_bonus1;
+    private javax.swing.JLabel label_conta;
     private javax.swing.JLabel label_fechar;
-    private javax.swing.JLabel label_iconBonus;
     private javax.swing.JLabel label_minimizar;
     private javax.swing.JLabel label_nomeRestaurante;
-    private javax.swing.JLabel label_sair;
-    private javax.swing.JLabel label_sair1;
+    private javax.swing.JLabel label_pesquisa;
+    private javax.swing.JLabel label_total;
     private javax.swing.JPanel panel_fechar;
     private javax.swing.JPanel panel_minimizar;
-    private javax.swing.JTextField text_valBonus;
+    private javax.swing.JTable tabela_contas;
+    private javax.swing.JFormattedTextField texto_pesquisar;
+    private javax.swing.JTextField texto_total;
     // End of variables declaration//GEN-END:variables
 }

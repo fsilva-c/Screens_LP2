@@ -9,7 +9,7 @@ import Banco.Cadastros.Bill_DAO;
 import Negocio.Pessoas.Client;
 import Negocio.Servicos.Bill;
 import Screens.Conta.Conta;
-import Screens.Bonus.Bonus;
+import Screens.Bonus.Bonus_Cliente;
 import Screens.Cardapio.Realizar_Pedido;
 import Screens.Cadastros.Dados_Cadastrais;
 import Screens.Cardapio.Tipo_Cardapio;
@@ -410,7 +410,7 @@ public class Main_telaCliente extends javax.swing.JFrame {
     private void label_iconBonusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_iconBonusMouseClicked
         // TODO add your handling code here:
         if(tela_Bonus == null )
-            tela_Bonus = new Bonus();
+            tela_Bonus = new Bonus_Cliente(this.usuario);
         
         tela_Bonus.setVisible(true);
         tela_Bonus.setLocationRelativeTo(null);

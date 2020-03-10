@@ -441,6 +441,9 @@
               <Color id="Default Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="label_iconBonusMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="label_bonus">
           <Properties>
@@ -462,6 +465,9 @@
               <Color id="Default Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="label_iconCozinhaMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="label_DadosCadastrais">
           <Properties>

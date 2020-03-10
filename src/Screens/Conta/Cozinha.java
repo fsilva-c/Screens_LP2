@@ -159,7 +159,7 @@ public class Cozinha extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
@@ -194,7 +194,7 @@ public class Cozinha extends javax.swing.JFrame {
 
         label_items.setFont(new java.awt.Font("Ubuntu Light", 1, 16)); // NOI18N
         label_items.setForeground(new java.awt.Color(204, 204, 204));
-        label_items.setText("Items do Pedidos :");
+        label_items.setText("Items do Pedido :");
 
         javax.swing.GroupLayout divisor1Layout = new javax.swing.GroupLayout(divisor1);
         divisor1.setLayout(divisor1Layout);
@@ -306,16 +306,14 @@ public class Cozinha extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(text_Status))))
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(31, 31, 31)
+                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(label_orderselected)
                                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                        .addGap(31, 31, 31)
                                         .addComponent(icon_cozinha)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(label_cozinha))
-                                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                        .addGap(54, 54, 54)
-                                        .addComponent(label_orderselected)))
-                                .addGap(0, 39, Short.MAX_VALUE)))
+                                        .addComponent(label_cozinha)))
+                                .addGap(0, 48, Short.MAX_VALUE)))
                         .addGap(25, 25, 25))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -362,9 +360,9 @@ public class Cozinha extends javax.swing.JFrame {
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addComponent(label_cozinha)))
-                        .addGap(124, 124, 124)
+                        .addGap(122, 122, 122)
                         .addComponent(label_orderselected)
-                        .addGap(37, 37, 37)
+                        .addGap(39, 39, 39)
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label_pedidoid)
                             .addComponent(text_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))

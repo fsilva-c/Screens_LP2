@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package Screens.Conta;
-
+import Banco.Cadastros.Bill_DAO;
+import Banco.Cadastros.Bonus_DAO;
 import Negocio.Servicos.Bill;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,7 +15,7 @@ import Negocio.Servicos.Bill;
  */
 public class Conta_formaPagamento extends javax.swing.JFrame {
     int xMouse, yMouse;
-    
+    Bill conta;
     
 
     /**
@@ -27,12 +29,20 @@ public class Conta_formaPagamento extends javax.swing.JFrame {
         buttonGroup1.add(botao_debito);
     }
     
-    public Conta_formaPagamento(Bill conta) {
+    public Conta_formaPagamento(Bill c1) {
         initComponents();
-        
+        this.conta = c1;
+        Bonus_DAO bonus_dao = new Bonus_DAO();
+        conta.getClient().setBonus(bonus_dao.Buscar_pCpf(conta.getClient(), conta.getDate()));
+        JOptionPane.showMessageDialog(null, "Bonus resgatado : ");
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup1.add(botao_credito);
         buttonGroup1.add(botao_debito);
+        
+        JOptionPane.showMessageDialog(null, "Bonus resgatado : " + Float.toString(conta.getClient().getBonus().getValue()));
+        text_valor.setText(Float.toString(conta.CalcBill()));
+        bonus_dao.Atualizar_Situacao(conta.getClient().getBonus());
+        text_bonus.setText(Float.toString(conta.CalcBonus()));
     }
 
     /**
@@ -145,9 +155,19 @@ public class Conta_formaPagamento extends javax.swing.JFrame {
 
         botao_debito.setFont(new java.awt.Font("Ubuntu Light", 0, 16)); // NOI18N
         botao_debito.setText("Débito");
+        botao_debito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_debitoActionPerformed(evt);
+            }
+        });
 
         botao_credito.setFont(new java.awt.Font("Ubuntu Light", 0, 16)); // NOI18N
         botao_credito.setText("Crédito");
+        botao_credito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_creditoActionPerformed(evt);
+            }
+        });
 
         label_nomeRestaurante.setBackground(new java.awt.Color(204, 204, 204));
         label_nomeRestaurante.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
@@ -170,6 +190,11 @@ public class Conta_formaPagamento extends javax.swing.JFrame {
         icon_pagar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-solicitar-dinheiro-35.png"))); // NOI18N
         icon_pagar1.setText("Pagar");
         icon_pagar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        icon_pagar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icon_pagar1MouseClicked(evt);
+            }
+        });
 
         label_total.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_total.setForeground(new java.awt.Color(204, 204, 204));
@@ -285,6 +310,25 @@ public class Conta_formaPagamento extends javax.swing.JFrame {
     private void barra_ferramentasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_barra_ferramentasMouseReleased
+
+    private void botao_debitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_debitoActionPerformed
+        // TODO add your handling code here:
+        this.conta.setPayment_method("Debito");
+    }//GEN-LAST:event_botao_debitoActionPerformed
+
+    private void botao_creditoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_creditoActionPerformed
+        // TODO add your handling code here:
+        this.conta.setPayment_method("Credito");
+    }//GEN-LAST:event_botao_creditoActionPerformed
+
+    private void icon_pagar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_pagar1MouseClicked
+        // TODO add your handling code here:
+        Bonus_DAO bonus_dao = new Bonus_DAO();
+        bonus_dao.Inserir(conta.getClient().getBonus(), conta.getClient());
+        Bill_DAO bill_dao = new Bill_DAO();
+        bill_dao.Atualizar(conta);
+        Conta_formaPagamento.this.dispose();
+    }//GEN-LAST:event_icon_pagar1MouseClicked
 
     /**
      * @param args the command line arguments

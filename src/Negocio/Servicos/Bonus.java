@@ -37,7 +37,14 @@ public class Bonus {
     public int getSituacao() {
         return situacao;
     }
-
+    
+    public String getStrSituacao() {
+        if(situacao == 0){
+            return "Unused";
+        }
+        return "Used";
+    }
+    
     public void setSituacao(int situacao) {
         this.situacao = situacao;
     }

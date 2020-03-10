@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -147,5 +148,68 @@ public class Bill_DAO {
         }
             conta.setOrders(pedidos);
         return conta;
+    }
+    
+    public List<Bill> CarregarContas(){
+        this.con = new Conectar().conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Bill> contas = new ArrayList<>();
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.CONTA");   //Selecione todas as colunas da tabela produto
+            rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
+            
+            while (rs.next()){
+                Client c1 = new Client();
+                c1.setCpf(rs.getString("cpf"));
+                Bill conta = new Bill(c1);
+                conta.setDate(rs.getString("data"));
+                conta.setValue(rs.getFloat("valor"));
+                conta.setPayment_method(rs.getString("pagamento"));
+
+                contas.add(conta);
+            }
+            
+            con.close();
+            stmt.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            throw new RuntimeException(ex);
+        }
+ 
+        return contas;
+    }
+    
+    public List<Bill> CarregarContas_pCPF(Client c1){
+        this.con = new Conectar().conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Bill> contas = new ArrayList<>();
+        
+        try {
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.CONTA WHERE cpf = ?");   //Selecione todas as colunas da tabela produto
+            stmt.setString(1,c1.getCpf());
+            rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
+            
+            while (rs.next()){
+                Bill conta = new Bill(c1);
+                conta.setDate(rs.getString("data"));
+                conta.setValue(rs.getFloat("valor"));
+                conta.setPayment_method(rs.getString("pagamento"));
+
+                contas.add(conta);
+            }
+            
+            con.close();
+            stmt.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            throw new RuntimeException(ex);
+        }
+ 
+        return contas;
     }
 }
