@@ -5,6 +5,8 @@
  */
 package Screens.Conta;
 
+import Negocio.Servicos.Bill;
+
 /**
  *
  * @author qwerty
@@ -18,6 +20,14 @@ public class Conta_formaPagamento extends javax.swing.JFrame {
      * Creates new form conta_formaPagamento
      */
     public Conta_formaPagamento() {
+        initComponents();
+        
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup1.add(botao_credito);
+        buttonGroup1.add(botao_debito);
+    }
+    
+    public Conta_formaPagamento(Bill conta) {
         initComponents();
         
         buttonGroup1 = new javax.swing.ButtonGroup();
@@ -48,6 +58,10 @@ public class Conta_formaPagamento extends javax.swing.JFrame {
         label_conta1 = new javax.swing.JLabel();
         text_valor = new javax.swing.JTextField();
         icon_pagar1 = new javax.swing.JLabel();
+        label_total = new javax.swing.JLabel();
+        label_desc = new javax.swing.JLabel();
+        icon_bonus = new javax.swing.JLabel();
+        text_bonus = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -110,7 +124,7 @@ public class Conta_formaPagamento extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
@@ -129,87 +143,112 @@ public class Conta_formaPagamento extends javax.swing.JFrame {
             .addComponent(panel_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        botao_debito.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        botao_debito.setFont(new java.awt.Font("Ubuntu Light", 0, 16)); // NOI18N
         botao_debito.setText("Débito");
 
-        botao_credito.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        botao_credito.setFont(new java.awt.Font("Ubuntu Light", 0, 16)); // NOI18N
         botao_credito.setText("Crédito");
 
         label_nomeRestaurante.setBackground(new java.awt.Color(204, 204, 204));
         label_nomeRestaurante.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_nomeRestaurante.setForeground(new java.awt.Color(204, 204, 204));
         label_nomeRestaurante.setText("Restaurante Lombinho de Porco II");
-        label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         icon_valor.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         icon_valor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-notas-de-dinheiro-35.png"))); // NOI18N
-        icon_valor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        icon_valor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        label_conta1.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
+        label_conta1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_conta1.setForeground(new java.awt.Color(204, 204, 204));
         label_conta1.setText("Forma de Pagamento");
 
         text_valor.setEditable(false);
 
         icon_pagar1.setBackground(new java.awt.Color(204, 204, 204));
-        icon_pagar1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        icon_pagar1.setFont(new java.awt.Font("Ubuntu Light", 0, 16)); // NOI18N
         icon_pagar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-solicitar-dinheiro-35.png"))); // NOI18N
         icon_pagar1.setText("Pagar");
-        icon_pagar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        icon_pagar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        label_total.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_total.setForeground(new java.awt.Color(204, 204, 204));
+        label_total.setText("Total da Conta");
+
+        label_desc.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_desc.setForeground(new java.awt.Color(204, 204, 204));
+        label_desc.setText("Bonus Gerado");
+
+        icon_bonus.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        icon_bonus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-salvar-35.png"))); // NOI18N
+        icon_bonus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        text_bonus.setEditable(false);
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(barra_ferramentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                .addGap(0, 56, Short.MAX_VALUE)
-                .addComponent(label_nomeRestaurante)
-                .addGap(49, 49, 49))
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                            .addContainerGap(88, Short.MAX_VALUE)
-                            .addComponent(icon_valor)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(text_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(51, 51, 51))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kGradientPanel1Layout.createSequentialGroup()
-                            .addGap(43, 43, 43)
-                            .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                    .addComponent(botao_debito)
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                    .addComponent(botao_credito)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(icon_pagar1)))))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(label_conta1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(label_conta1)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(botao_debito)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botao_credito)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(icon_pagar1))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(icon_valor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(text_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(label_total))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(label_desc)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(icon_bonus)
+                                .addGap(1, 1, 1)
+                                .addComponent(text_bonus, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                .addContainerGap(100, Short.MAX_VALUE)
+                .addComponent(label_nomeRestaurante)
+                .addGap(87, 87, 87))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addComponent(barra_ferramentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(label_nomeRestaurante)
-                .addGap(18, 18, 18)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(icon_valor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(text_valor))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_desc, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(label_total))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(text_valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(icon_bonus, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(text_bonus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(icon_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addComponent(label_conta1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(botao_debito)
-                        .addGap(18, 18, 18)
-                        .addComponent(botao_credito))
-                    .addComponent(icon_pagar1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(30, 30, 30))
+                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(botao_debito, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botao_credito, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(icon_pagar1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -288,15 +327,19 @@ public class Conta_formaPagamento extends javax.swing.JFrame {
     private javax.swing.JRadioButton botao_credito;
     private javax.swing.JRadioButton botao_debito;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel icon_bonus;
     private javax.swing.JLabel icon_pagar1;
     private javax.swing.JLabel icon_valor;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel label_conta1;
+    private javax.swing.JLabel label_desc;
     private javax.swing.JLabel label_fechar;
     private javax.swing.JLabel label_minimizar;
     private javax.swing.JLabel label_nomeRestaurante;
+    private javax.swing.JLabel label_total;
     private javax.swing.JPanel panel_fechar;
     private javax.swing.JPanel panel_minimizar;
+    private javax.swing.JTextField text_bonus;
     private javax.swing.JTextField text_valor;
     // End of variables declaration//GEN-END:variables
 }

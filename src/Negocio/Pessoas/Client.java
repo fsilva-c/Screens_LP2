@@ -26,7 +26,7 @@ public class Client extends Person{
         return bonus;
     }
 
-    public void AttBonus(Bonus bonus) {
+    public void setBonus(Bonus bonus) {
         this.bonus = bonus;
     }
     

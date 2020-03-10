@@ -68,10 +68,10 @@ public class Pedido_Bebida extends javax.swing.JFrame {
         label_desc = new javax.swing.JLabel();
         text_desc = new javax.swing.JTextField();
         label_qntd = new javax.swing.JLabel();
-        text_qntd = new javax.swing.JTextField();
         add_item1 = new javax.swing.JLabel();
         text_valor = new javax.swing.JTextField();
         label_valor = new javax.swing.JLabel();
+        spinner_qntd = new javax.swing.JSpinner();
 
         add_item.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         add_item.setForeground(new java.awt.Color(222, 222, 222));
@@ -151,7 +151,7 @@ public class Pedido_Bebida extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
@@ -182,7 +182,7 @@ public class Pedido_Bebida extends javax.swing.JFrame {
         label_sair.setForeground(new java.awt.Color(226, 221, 221));
         label_sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-sair-35.png"))); // NOI18N
         label_sair.setText("Sair");
-        label_sair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label_sair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_sairMouseClicked(evt);
@@ -223,17 +223,11 @@ public class Pedido_Bebida extends javax.swing.JFrame {
         label_qntd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_qntd.setText("Qntd :");
 
-        text_qntd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                text_qntdActionPerformed(evt);
-            }
-        });
-
         add_item1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         add_item1.setForeground(new java.awt.Color(222, 222, 222));
         add_item1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-finalizar-pedido-35.png"))); // NOI18N
         add_item1.setText("Adicionar");
-        add_item1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add_item1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         add_item1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 add_item1MouseClicked(evt);
@@ -246,6 +240,12 @@ public class Pedido_Bebida extends javax.swing.JFrame {
         label_valor.setForeground(new java.awt.Color(204, 204, 204));
         label_valor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_valor.setText("Valor :");
+
+        spinner_qntd.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spinner_qntdStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -283,9 +283,9 @@ public class Pedido_Bebida extends javax.swing.JFrame {
                                     .addComponent(label_desc, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(text_qntd, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label_qntd, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(label_qntd, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                                    .addComponent(spinner_qntd))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(text_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,13 +312,14 @@ public class Pedido_Bebida extends javax.swing.JFrame {
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addComponent(label_qntd)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(text_qntd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addComponent(label_valor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(text_valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(16, 16, 16)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(text_valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spinner_qntd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)))
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_sair)
                     .addComponent(add_item1))
@@ -397,7 +398,7 @@ public class Pedido_Bebida extends javax.swing.JFrame {
         prod.setId(bebidas.get(tabela_bebidas.getSelectedRow()).getId());
         prod.setName(text_desc.getText());
         prod.setPrice(Float.parseFloat(text_valor.getText()));
-        int qntd = (Integer.parseInt(text_qntd.getText()));
+        int qntd = (Integer.parseInt(spinner_qntd.getValue().toString()));
         Order_Item item = new Order_Item(prod, qntd);
         if(tela_report != null){
             tela_report.Add_List(item);
@@ -406,7 +407,7 @@ public class Pedido_Bebida extends javax.swing.JFrame {
         
         text_desc.setText("");
         text_valor.setText("");
-        text_qntd.setText("");
+        spinner_qntd.setValue(0);
     }//GEN-LAST:event_add_item1MouseClicked
 
     private void tabela_bebidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabela_bebidasMouseClicked
@@ -415,14 +416,14 @@ public class Pedido_Bebida extends javax.swing.JFrame {
             text_desc.setText(tabela_bebidas.getValueAt(tabela_bebidas.getSelectedRow(), 0).toString());
             text_valor.setText(tabela_bebidas.getValueAt(tabela_bebidas.getSelectedRow(), 1).toString());
         }
-        text_qntd.setText("1");
+        spinner_qntd.setValue(1);
     }//GEN-LAST:event_tabela_bebidasMouseClicked
 
-    private void text_qntdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_qntdActionPerformed
+    private void spinner_qntdStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spinner_qntdStateChanged
         text_valor.setText(tabela_bebidas.getValueAt(tabela_bebidas.getSelectedRow(), 1).toString());
-        double total = Integer.parseInt(text_qntd.getText()) * Double.parseDouble(text_valor.getText());
+        double total = Double.parseDouble(text_valor.getText()) * Integer.parseInt(spinner_qntd.getValue().toString());
         text_valor.setText(Double.toString(total));
-    }//GEN-LAST:event_text_qntdActionPerformed
+    }//GEN-LAST:event_spinner_qntdStateChanged
 
     /**
      * @param args the command line arguments
@@ -477,9 +478,9 @@ public class Pedido_Bebida extends javax.swing.JFrame {
     private javax.swing.JLabel label_valor;
     private javax.swing.JPanel panel_fechar;
     private javax.swing.JPanel panel_minimizar;
+    private javax.swing.JSpinner spinner_qntd;
     private javax.swing.JTable tabela_bebidas;
     private javax.swing.JTextField text_desc;
-    private javax.swing.JTextField text_qntd;
     private javax.swing.JTextField text_valor;
     // End of variables declaration//GEN-END:variables
 }

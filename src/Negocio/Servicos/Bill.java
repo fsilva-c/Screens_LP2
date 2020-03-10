@@ -3,16 +3,17 @@ package Negocio.Servicos;
 
 import Negocio.Pratos.Menu_Item;
 import Negocio.Pessoas.Client;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bill{
     private static int contador = 1;
     private int numero;
     private Client client;
-    private Date date;
+    private String date;
     private float value = 0.0f;
     private String payment_method = "None";
-    private List<Order> orders = null;
+    private List<Order> orders = new ArrayList<>();
     private int id;
 
     public Bill(Client client) {
@@ -22,7 +23,7 @@ public class Bill{
 
     public void PrintBill(){
         System.out.println(numero);
-        date.PrintDate();
+        System.out.println(date);
         client.getCpf();
         for(Order order : orders)
             order.PrintOrder();
@@ -64,7 +65,7 @@ public class Bill{
     
     private boolean CheckBonus(){
         Bonus bonus = client.getBonus();
-        return !(date.CheckDate(bonus.getDate()));
+        return !(date.equals(bonus.getDate()));
     }
     
     public float CalcBonus(){
@@ -74,7 +75,7 @@ public class Bill{
             if((client.getBonus()).getValue() > value)
                 client_bonus += ((client.getBonus()).getValue() - value);
             Bonus new_bonus = new Bonus(client_bonus, this.getDate());
-            client.AttBonus(new_bonus);
+            client.setBonus(new_bonus);
             return client_bonus;
         }
         System.out.println("A conta ainda nao foi fechada");
@@ -89,11 +90,11 @@ public class Bill{
         this.client = client;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

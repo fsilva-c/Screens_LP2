@@ -35,7 +35,7 @@ public class Bill_DAO {
             //Passagem de parametros
             stmt = con.prepareStatement("INSERT INTO sql10326340.CONTA(cpf,data,valor,pagamento)VALUES(?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1,conta.getClient().getCpf());
-            stmt.setString(2,conta.getDate().getData());
+            stmt.setString(2,conta.getDate());
             stmt.setFloat(3,conta.CalcBill());
             stmt.setString(4,conta.getPayment_method());
             
@@ -136,19 +136,16 @@ public class Bill_DAO {
     }
     
     public Bill CarregarItems(Bill conta){
-        if(conta.getOrders() == null)
-            return conta;
-        
         Order_DAO order_dao = new Order_DAO();
         List<Order> pedidos = order_dao.Carregar_pConta(conta.getId());
+        
+        
         
         for(Order pedido : pedidos){
             Order_DAO order_dao2 = new Order_DAO();
             pedido = order_dao2.CarregarItems(pedido);
-            conta.AddItem(pedido);
-            
         }
-        
+            conta.setOrders(pedidos);
         return conta;
     }
 }

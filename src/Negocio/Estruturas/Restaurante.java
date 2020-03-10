@@ -3,7 +3,6 @@ package Negocio.Estruturas;
 
 import Negocio.Servicos.Bill;
 import Negocio.Pessoas.Client;
-import Negocio.Servicos.Date;
 import java.util.ArrayList;
 
 public class Restaurante {
@@ -17,11 +16,11 @@ public class Restaurante {
         book = new ArrayList<Bill>();
     }
     
-    public void SearchBill(Date date){
+    public void SearchBill(String date){
         Bill bill;
         for (Bill book1 : book) {
             bill = book1;
-            if(date.CheckDate(bill.getDate()))
+            if(date.equals(bill.getDate()))
                 bill.PrintBill();
         }
     }

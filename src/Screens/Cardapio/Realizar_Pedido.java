@@ -471,6 +471,7 @@ public class Realizar_Pedido extends javax.swing.JFrame {
         Order_DAO pedido_dao = new Order_DAO();
         if(pedido_dao.Inserir(pedido)){
             JOptionPane.showMessageDialog(null, "Pedido enviado a cozinha");
+            Realizar_Pedido.this.dispose();
         }
     }//GEN-LAST:event_finalizarMouseClicked
 

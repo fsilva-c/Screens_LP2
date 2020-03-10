@@ -6,6 +6,7 @@
 package Screens.Conta;
 
 import Banco.Cadastros.Bill_DAO;
+import Banco.Cadastros.Order_DAO;
 import Negocio.Pessoas.Client;
 import Negocio.Servicos.Bill;
 import Negocio.Servicos.Order;
@@ -69,9 +70,9 @@ public class Conta extends javax.swing.JFrame {
         label_pagar = new javax.swing.JLabel();
         text_total = new javax.swing.JTextField();
         label_data = new javax.swing.JLabel();
-        text_data = new javax.swing.JTextField();
         label_nome = new javax.swing.JLabel();
         text_cliente = new javax.swing.JTextField();
+        text_data = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -134,7 +135,7 @@ public class Conta extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
@@ -157,10 +158,10 @@ public class Conta extends javax.swing.JFrame {
         label_nomeRestaurante.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_nomeRestaurante.setForeground(new java.awt.Color(204, 204, 204));
         label_nomeRestaurante.setText("Restaurante Lombinho de Porco II");
-        label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_iconConta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-conta-96.png"))); // NOI18N
-        label_iconConta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_iconConta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_conta1.setFont(new java.awt.Font("Ubuntu Light", 0, 24)); // NOI18N
         label_conta1.setForeground(new java.awt.Color(204, 204, 204));
@@ -170,7 +171,7 @@ public class Conta extends javax.swing.JFrame {
         label_valor.setForeground(new java.awt.Color(204, 204, 204));
         label_valor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-notas-de-dinheiro-35.png"))); // NOI18N
         label_valor.setText("Total : ");
-        label_valor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_valor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label_valor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_valorMouseClicked(evt);
@@ -182,7 +183,7 @@ public class Conta extends javax.swing.JFrame {
             new Object [][] {
             },
             new String [] {
-                "Pedido", "Descrição", "Qntd", "Valor", "Total"
+                "Pedido", "Descrição", "Qntd", "Valor", "Total","Status"
             }
         ));
         table_info.setPreferredSize(new java.awt.Dimension(477, 537));
@@ -193,7 +194,7 @@ public class Conta extends javax.swing.JFrame {
         label_pagar.setForeground(new java.awt.Color(204, 204, 204));
         label_pagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-solicitar-dinheiro-35.png"))); // NOI18N
         label_pagar.setText("Pagar");
-        label_pagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_pagar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label_pagar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_pagarMouseClicked(evt);
@@ -206,20 +207,18 @@ public class Conta extends javax.swing.JFrame {
         label_data.setForeground(new java.awt.Color(204, 204, 204));
         label_data.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-login-arredondado-à-direita-30.png"))); // NOI18N
         label_data.setText("Data : ");
-        label_data.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_data.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label_data.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_dataMouseClicked(evt);
             }
         });
 
-        text_data.setEditable(false);
-
         label_nome.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_nome.setForeground(new java.awt.Color(204, 204, 204));
         label_nome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-pesquisar-35.png"))); // NOI18N
         label_nome.setText("Cliente : ");
-        label_nome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_nome.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label_nome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_nomeMouseClicked(evt);
@@ -227,6 +226,22 @@ public class Conta extends javax.swing.JFrame {
         });
 
         text_cliente.setEditable(false);
+
+        try {
+            text_data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        text_data.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                text_dataFocusLost(evt);
+            }
+        });
+        text_data.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_dataActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -236,11 +251,8 @@ public class Conta extends javax.swing.JFrame {
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 103, Short.MAX_VALUE)
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                                 .addComponent(label_iconConta)
@@ -251,25 +263,27 @@ public class Conta extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                                 .addComponent(label_conta1)
                                 .addGap(178, 178, 178))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(label_nome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(text_cliente)
-                        .addContainerGap())
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(label_data)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(text_data, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label_valor)
-                        .addGap(3, 3, 3)
-                        .addComponent(text_total, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                        .addGap(11, 11, 11))))
-            .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                    .addContainerGap(182, Short.MAX_VALUE)
-                    .addComponent(label_pagar)
-                    .addGap(170, 170, 170)))
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(label_nome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(text_cliente))
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(label_data)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(text_data, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(label_valor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(text_total, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label_pagar)
+                .addGap(172, 172, 172))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,26 +295,21 @@ public class Conta extends javax.swing.JFrame {
                 .addComponent(label_iconConta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_conta1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_nome)
                     .addComponent(text_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(label_valor)
-                        .addComponent(text_total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(label_data)
-                        .addComponent(text_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(50, 50, 50)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_valor)
+                    .addComponent(text_total, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_data))
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
-            .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                    .addContainerGap(688, Short.MAX_VALUE)
-                    .addComponent(label_pagar)
-                    .addGap(22, 22, 22)))
+                .addGap(18, 18, 18)
+                .addComponent(label_pagar)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -345,8 +354,16 @@ public class Conta extends javax.swing.JFrame {
 
     private void label_pagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_pagarMouseClicked
         // TODO add your handling code here:
+        for(Order pedido: this.conta.getOrders()){
+            if(pedido.getStatus().equals("Opened")){
+                Order_DAO order_dao = new Order_DAO();
+                order_dao.Excluir(pedido);
+            } 
+        }
+        JOptionPane.showMessageDialog(null, "Pedidos abertos foram excluidos da conta");
+        
          if(tela_FormaPagamento == null)
-            tela_FormaPagamento = new Conta_formaPagamento();
+            tela_FormaPagamento = new Conta_formaPagamento(this.conta);
             
             
         tela_FormaPagamento.setVisible(true);
@@ -360,6 +377,18 @@ public class Conta extends javax.swing.JFrame {
     private void label_nomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_nomeMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_label_nomeMouseClicked
+
+    private void text_dataFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_text_dataFocusLost
+        // TODO add your handling code here:
+        conta.setDate(text_data.getText());
+        JOptionPane.showMessageDialog(null, conta.getDate());
+ 
+    }//GEN-LAST:event_text_dataFocusLost
+
+    private void text_dataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_dataActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_text_dataActionPerformed
 
     public void Carregar_tabela(){
         DefaultTableModel modelo = (DefaultTableModel) table_info.getModel();
@@ -376,7 +405,8 @@ public class Conta extends javax.swing.JFrame {
                     item.getItem().getName(),
                     item.getQuantity(),
                     item.getItem().getPrice(),
-                    (item.getItem().getPrice() * item.getQuantity())
+                    (item.getItem().getPrice() * item.getQuantity()),
+                    pedido.getStatus()
                 });
             }
         }
@@ -384,7 +414,7 @@ public class Conta extends javax.swing.JFrame {
     }
     
     public void CarregarPedidos(){
-        if(this.conta.getOrders() != null){
+        if(!(this.conta.getOrders().isEmpty())){
             this.Carregar_tabela();
         }
         else{
@@ -446,7 +476,7 @@ public class Conta extends javax.swing.JFrame {
     private javax.swing.JPanel panel_minimizar;
     private javax.swing.JTable table_info;
     private javax.swing.JTextField text_cliente;
-    private javax.swing.JTextField text_data;
+    private javax.swing.JFormattedTextField text_data;
     private javax.swing.JTextField text_total;
     // End of variables declaration//GEN-END:variables
 }

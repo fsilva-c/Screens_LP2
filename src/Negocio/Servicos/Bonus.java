@@ -2,13 +2,19 @@ package Negocio.Servicos;
 
 public class Bonus {
 //Atributos da classe
+    private int id;
     private float value;
-    private Date date;
+    private String date;
+    private int situacao;
 
-    public Bonus(float value, Date date) {
+    public Bonus() {
+    }
+
+    public Bonus(float value, String date) {
         this.value = value;
         this.date = date;
     }
+
 
 
 //Métodos da classe
@@ -20,12 +26,28 @@ public class Bonus {
         this.value = value;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(int situacao) {
+        this.situacao = situacao;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
    
     

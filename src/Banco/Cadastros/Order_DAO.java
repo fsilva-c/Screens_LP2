@@ -58,6 +58,50 @@ public class Order_DAO {
         return true;
     }
     
+    public boolean Excluir(Order pedido){
+        this.ExcluirItems(pedido);
+        this.con = new Conectar().conectar();
+        PreparedStatement stmt = null;
+        try {
+            //Passagem de parametros
+            stmt = con.prepareStatement("DELETE FROM sql10326340.PEDIDO WHERE id = ?");
+            stmt.setInt(1,pedido.getId());
+            
+            //Execução da SQL
+            stmt.executeUpdate();
+            
+            con.close();
+            stmt.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir registro"+ex);
+            throw new RuntimeException(ex);
+            //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
+        }
+        return true;
+    }
+    
+    public boolean ExcluirItems(Order pedido){
+
+        PreparedStatement stmt = null;
+        try {
+            //Passagem de parametros
+            stmt = con.prepareStatement("DELETE FROM sql10326340.ITEMSPEDIDO WHERE id_pedido = ?");
+            stmt.setInt(1,pedido.getId());
+
+            //Execução da SQL
+            stmt.executeUpdate();
+            con.close();
+            stmt.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao inserir registro"+ex);
+            throw new RuntimeException(ex);
+            //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
+        }
+        return true;
+    }
+    
     public List<Order> Carregar(){
         PreparedStatement stmt = null;
         ResultSet rs = null;
