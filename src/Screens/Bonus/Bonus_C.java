@@ -239,7 +239,7 @@ public class Bonus_C extends javax.swing.JFrame {
 
     private void label_sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_sairMouseClicked
         // TODO add your handling code here:
-        Cardapio_Bebida.this.dispose();
+        Bonus_C.this.dispose();
     }//GEN-LAST:event_label_sairMouseClicked
 
     /**

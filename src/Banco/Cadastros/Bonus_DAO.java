@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 public class Bonus_DAO {
     private Connection con;
     
-    Bonus_DAO(){
+    public Bonus_DAO(){
 
     }
     
