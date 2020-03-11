@@ -5,12 +5,10 @@
  */
 package Screens.Conta;
 
-import Banco.Cadastros.Bill_DAO;
-import Banco.Cadastros.Order_DAO;
+import Negocio.Estruturas.Kitchen;
 import Negocio.Pessoas.Client;
 import Negocio.Servicos.Order;
 import Negocio.Servicos.Order_Item;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -22,6 +20,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class Cozinha extends javax.swing.JFrame {
     int xMouse, yMouse;
+    Kitchen cozinha = new Kitchen();
 
     /**
      * Creates new form Bonus
@@ -426,11 +425,10 @@ public class Cozinha extends javax.swing.JFrame {
         modelo.setNumRows(0);
         DefaultTableModel modelo1 = (DefaultTableModel) table_items.getModel();
         modelo1.setNumRows(0);
-        Order_DAO order_dao = new Order_DAO();
         
-        for(Order pedido: order_dao.Carregar("Opened")){
-            Bill_DAO bill_dao = new Bill_DAO();
-            Client c1 = bill_dao.BuscarClient(pedido.getId_conta());            
+        
+        for(Order pedido: cozinha.ComandasAbertas("Opened")){
+            Client c1 = cozinha.ClientePedido(pedido.getId_conta());            
             modelo.addRow(new Object[]{
                 pedido.getId(),
                 c1.getName(),
@@ -444,11 +442,10 @@ public class Cozinha extends javax.swing.JFrame {
     private void button_fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_fecharActionPerformed
         // TODO add your handling code here:
         if(text_Status.getText().equals("Opened")){
-            Order_DAO order_dao = new Order_DAO();
             Order pedido = new Order();
             pedido.setId(Integer.parseInt(text_id.getText()));
             pedido.setStatus("Closed");
-            order_dao.Atualizar(pedido);
+            pedido.Atualizar();
             
             //Atualizando campos da tela
             Carregar_Tabela();
@@ -483,11 +480,9 @@ public class Cozinha extends javax.swing.JFrame {
     public void Carregar_Tabela(){
         DefaultTableModel modelo = (DefaultTableModel) table_pedidos.getModel();
         modelo.setNumRows(0);
-        
-        Order_DAO order_dao = new Order_DAO();
-        for(Order pedido: order_dao.Carregar()){
-            Bill_DAO bill_dao = new Bill_DAO();
-            Client c1 = bill_dao.BuscarClient(pedido.getId_conta());  
+
+        for(Order pedido: cozinha.getComandas()){
+            Client c1 = cozinha.ClientePedido(pedido.getId_conta());  
             modelo.addRow(new Object[]{
                 pedido.getId(),
                 c1.getName(),
@@ -501,10 +496,7 @@ public class Cozinha extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) table_items.getModel();
         modelo.setNumRows(0);
         
-        Order_DAO order_dao = new Order_DAO();
-        pedido = order_dao.CarregarItems(pedido);
-        List<Order_Item> items = pedido.ItensPedido();
-        for(Order_Item item: items){
+        for(Order_Item item: cozinha.InfoPedido(pedido).ItensPedido()){
             modelo.addRow(new Object[]{
                 item.getItem().getName(),
                 item.getQuantity(),

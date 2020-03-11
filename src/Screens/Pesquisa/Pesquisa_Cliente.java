@@ -8,9 +8,7 @@ package Screens.Pesquisa;
 import Banco.Cadastros.Pessoa_DAO;
 import Negocio.Pessoas.Client;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -29,6 +27,7 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
         
         DefaultTableModel modelo = (DefaultTableModel) tabela_clientes.getModel();
         tabela_clientes.setRowSorter(new TableRowSorter(modelo));
+        Carregar_tabela();
     }
 
     /**
@@ -51,9 +50,12 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
         label_realLogin = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela_clientes = new javax.swing.JTable();
-        texto_pesquisa = new javax.swing.JTextField();
         label_pesquisa = new javax.swing.JLabel();
         label_excluir = new javax.swing.JLabel();
+        texto_cpf = new javax.swing.JFormattedTextField();
+        label_cpf = new javax.swing.JLabel();
+        label_nome = new javax.swing.JLabel();
+        texto_nome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -116,7 +118,7 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
@@ -139,7 +141,7 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
         label_nomeRestaurante.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_nomeRestaurante.setForeground(new java.awt.Color(204, 204, 204));
         label_nomeRestaurante.setText("Restaurante Lombinho de Porco II");
-        label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_nomeRestaurante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-menu-de-usuário-masculino-96.png"))); // NOI18N
 
@@ -157,9 +159,9 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabela_clientes);
 
-        label_pesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-pesquisar-25.png"))); // NOI18N
+        label_pesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-pesquisar-35.png"))); // NOI18N
         label_pesquisa.setToolTipText("");
-        label_pesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_pesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label_pesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_pesquisaMouseClicked(evt);
@@ -168,9 +170,46 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
 
         label_excluir.setBackground(new java.awt.Color(187, 187, 187));
         label_excluir.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_excluir.setForeground(new java.awt.Color(204, 204, 204));
         label_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-excluir-35.png"))); // NOI18N
         label_excluir.setText("Excluir");
-        label_excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_excluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        label_excluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                label_excluirMouseClicked(evt);
+            }
+        });
+
+        try {
+            texto_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        texto_cpf.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                texto_cpfMouseClicked(evt);
+            }
+        });
+
+        label_cpf.setBackground(new java.awt.Color(187, 187, 187));
+        label_cpf.setFont(new java.awt.Font("Ubuntu Light", 0, 16)); // NOI18N
+        label_cpf.setForeground(new java.awt.Color(204, 204, 204));
+        label_cpf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-login-arredondado-à-direita-25.png"))); // NOI18N
+        label_cpf.setText("CPF : ");
+        label_cpf.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        label_nome.setBackground(new java.awt.Color(187, 187, 187));
+        label_nome.setFont(new java.awt.Font("Ubuntu Light", 0, 16)); // NOI18N
+        label_nome.setForeground(new java.awt.Color(204, 204, 204));
+        label_nome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-select-name-25.png"))); // NOI18N
+        label_nome.setText("Nome : ");
+        label_nome.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        texto_nome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                texto_nomeMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -178,29 +217,46 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(barra_ferramentas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(label_cpf)
+                                .addGap(2, 2, 2))
+                            .addComponent(label_nome, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label_realLogin)
+                                .addGap(194, 194, 194))
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                        .addComponent(texto_nome)
+                                        .addGap(68, 68, 68))
+                                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                        .addComponent(texto_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(label_pesquisa)
+                                .addContainerGap())))))
+            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
                         .addComponent(label_nomeRestaurante))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(label_realLogin))))
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addComponent(texto_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label_pesquisa))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
+                        .addGap(165, 165, 165)
                         .addComponent(label_excluir)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(label_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(167, 167, 167))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,19 +264,26 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
                 .addComponent(barra_ferramentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_nomeRestaurante)
+                .addGap(2, 2, 2)
+                .addComponent(label_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
                 .addComponent(label_realLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(texto_pesquisa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_pesquisa, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(label_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(texto_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(label_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(texto_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(label_pesquisa))
+                .addGap(11, 11, 11)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_excluir)
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -237,9 +300,42 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void label_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_fecharMouseClicked
-        Pesquisa_Cliente.this.dispose();
-    }//GEN-LAST:event_label_fecharMouseClicked
+    private void label_pesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_pesquisaMouseClicked
+        // TODO add your handling code here:
+        if(texto_nome.getText().equals("") && texto_cpf.getText().equals("   .   .   -  ")){
+            Carregar_tabela();
+            return;
+        }
+        
+        Client c1 = new Client();
+        c1.setName(texto_nome.getText());
+        if(texto_cpf.getText().equals("   .   .   -  "))
+            c1.setCpf("");
+        else
+            c1.setCpf(texto_cpf.getText());
+        
+        DefaultTableModel modelo = (DefaultTableModel) tabela_clientes.getModel();
+        modelo.setNumRows(0);
+
+        for(Client cliente : c1.getAllClientes()){
+            modelo.addRow(new Object[]{
+                cliente.getCpf(),
+                cliente.getName(),
+                cliente.getEmail()
+
+            });
+        }
+    }//GEN-LAST:event_label_pesquisaMouseClicked
+
+    private void barra_ferramentasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_barra_ferramentasMouseReleased
+
+    private void barra_ferramentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMousePressed
+        // TODO add your handling code here:
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_barra_ferramentasMousePressed
 
     private void barra_ferramentasMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseDragged
         // TODO add your handling code here:
@@ -248,41 +344,40 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
         this.setLocation(X - xMouse, Y - yMouse);
     }//GEN-LAST:event_barra_ferramentasMouseDragged
 
-    private void barra_ferramentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMousePressed
-        // TODO add your handling code here:
-        xMouse = evt.getX();
-        yMouse = evt.getY();
-    }//GEN-LAST:event_barra_ferramentasMousePressed
+    private void label_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_fecharMouseClicked
+        Pesquisa_Cliente.this.dispose();
+    }//GEN-LAST:event_label_fecharMouseClicked
 
-    private void barra_ferramentasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barra_ferramentasMouseReleased
+    private void texto_nomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_texto_nomeMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_barra_ferramentasMouseReleased
+        texto_cpf.setText(null);
+    }//GEN-LAST:event_texto_nomeMouseClicked
 
-    private void label_pesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_pesquisaMouseClicked
+    private void texto_cpfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_texto_cpfMouseClicked
         // TODO add your handling code here:
-        if((texto_pesquisa.getText() != "")){
-            Pessoa_DAO dao = new Pessoa_DAO();
-            
-            try {
-                DefaultTableModel modelo = (DefaultTableModel) tabela_clientes.getModel();
-                modelo.setNumRows(0);
-                
-                for(Client cliente : dao.CarregarDados(texto_pesquisa.getText())){
-                    modelo.addRow(new Object[]{
-                    cliente.getCpf(),
-                    cliente.getName(),
-                    cliente.getEmail()
-                    
-                    });
-                }
-                
-                
-            } catch (SQLException ex) {
-                System.out.println("Erro: " + ex);
-            }
+        texto_nome.setText("");
+    }//GEN-LAST:event_texto_cpfMouseClicked
+
+    private void label_excluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_excluirMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_label_excluirMouseClicked
+    
+    public void Carregar_tabela(){
+        DefaultTableModel modelo = (DefaultTableModel) tabela_clientes.getModel();
+        modelo.setNumRows(0);
+        
+        Client c1 = new Client();
+        c1.setCpf("%");
+        c1.setName("%");
+        for(Client cliente: c1.getAllClientes()){
+            modelo.addRow(new Object[]{
+                cliente.getCpf(),
+                cliente.getName(),
+                cliente.getEmail()
+
+            });
         }
-    }//GEN-LAST:event_label_pesquisaMouseClicked
-
+    }
     
     /**
      * @param args the command line arguments
@@ -324,16 +419,19 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
     private javax.swing.JPanel barra_ferramentas;
     private javax.swing.JScrollPane jScrollPane1;
     private keeptoo.KGradientPanel kGradientPanel1;
+    private javax.swing.JLabel label_cpf;
     private javax.swing.JLabel label_excluir;
     private javax.swing.JLabel label_fechar;
     private javax.swing.JLabel label_icon;
     private javax.swing.JLabel label_minimizar;
+    private javax.swing.JLabel label_nome;
     private javax.swing.JLabel label_nomeRestaurante;
     private javax.swing.JLabel label_pesquisa;
     private javax.swing.JLabel label_realLogin;
     private javax.swing.JPanel panel_fechar;
     private javax.swing.JPanel panel_minimizar;
     private javax.swing.JTable tabela_clientes;
-    private javax.swing.JTextField texto_pesquisa;
+    private javax.swing.JFormattedTextField texto_cpf;
+    private javax.swing.JTextField texto_nome;
     // End of variables declaration//GEN-END:variables
 }

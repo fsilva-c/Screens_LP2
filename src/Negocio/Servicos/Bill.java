@@ -2,7 +2,6 @@
 package Negocio.Servicos;
 
 import Banco.Cadastros.Bill_DAO;
-import Negocio.Pratos.Menu_Item;
 import Negocio.Pessoas.Client;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +19,8 @@ public class Bill{
     public Bill(Client client) {
         this.client = client;
         numero = contador++;
+        Bill_DAO bill_dao = new Bill_DAO();
+        bill_dao.Pre_Inserir(this);
     }
 
     public void PrintBill(){
@@ -148,5 +149,9 @@ public class Bill{
         return true;
     }
     
+    public boolean Atualizar(){
+        Bill_DAO bill_dao = new Bill_DAO();
+        return bill_dao.Atualizar(this);
+    }
 }
 

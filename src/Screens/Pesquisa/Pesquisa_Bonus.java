@@ -5,15 +5,8 @@
  */
 package Screens.Pesquisa;
 
-import Banco.Cadastros.Bonus_DAO;
-import Screens.Pesquisa.*;
-import Banco.Cadastros.Pessoa_DAO;
 import Negocio.Pessoas.Client;
 import Negocio.Servicos.Bonus;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -291,14 +284,14 @@ public class Pesquisa_Bonus extends javax.swing.JFrame {
         modelo.setNumRows(0);
         float total = 0.0f;
         
-        Bonus_DAO bonus_dao = new Bonus_DAO();
-        for(Bonus bonus: bonus_dao.CarregarBonus_pCPF(c1)){
+        Bonus bonus = new Bonus();
+        for(Bonus b1: bonus.getAllBonus(c1)){
             total += bonus.getValue();
             modelo.addRow(new Object[]{
                 c1.getCpf(),
-                bonus.getValue(),
-                bonus.getDate(),
-                bonus.getStrSituacao()
+                b1.getValue(),
+                b1.getDate(),
+                b1.getStrSituacao()
             });
         }
         texto_total.setText(Float.toString(total));
@@ -309,8 +302,8 @@ public class Pesquisa_Bonus extends javax.swing.JFrame {
         modelo.setNumRows(0);
         float total = 0.0f;
         
-        Bonus_DAO bonus_dao = new Bonus_DAO();
-        for(Client cliente: bonus_dao.CarregarBonus()){
+        Bonus bonus= new Bonus();
+        for(Client cliente: bonus.getAllBonus()){
             total += cliente.getBonus().getValue();
             modelo.addRow(new Object[]{
                 cliente.getCpf(),

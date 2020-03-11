@@ -83,16 +83,24 @@ public class Pessoa_DAO {
     }
     
     @SuppressWarnings("empty-statement")
-    public List<Client> CarregarDados(String textoBusca) throws SQLException{
+    public List<Client> CarregarDados(Client c1){
         List<Client> clientes = new ArrayList<>();
+        String sql;
+        String campo;
         
-        String sql = "SELECT cpf, nome, email FROM sql10326340.CLIENTE WHERE cpf LIKE ? OR nome LIKE ?";
+        if(c1.getCpf().equals("")){
+            sql = "SELECT cpf, nome, email FROM sql10326340.CLIENTE WHERE nome LIKE ?";
+            campo = c1.getName();
+        }
+        else{
+            sql = "SELECT cpf, nome, email FROM sql10326340.CLIENTE WHERE cpf LIKE ?";
+            campo = c1.getCpf();
+        }
         
         try {
             
             try(PreparedStatement stmt = con.prepareStatement(sql)){
-                stmt.setString(1, "%" + textoBusca + "%");
-                stmt.setString(2, "%" + textoBusca + "%");
+                stmt.setString(1, "%" + campo + "%");
                 
                 ResultSet rs = stmt.executeQuery(stmt.toString().replaceAll("com.mysql.cj.jdbc.ClientPreparedStatement: ", "")); //Metodo responsavel por consultas ao banco
                 
@@ -106,11 +114,10 @@ public class Pessoa_DAO {
                 }
             
             }
-            
+            con.close();
         } catch (SQLException ex) {
             System.out.println("Erro ao consultar registros"+ex);
-        }finally{
-            con.close();
+            throw new RuntimeException(ex);   
         }
         
         

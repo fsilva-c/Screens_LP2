@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/dcet1-lami11-ubuntu/Área%20de%20Trabalho/LP2/Sistema-Restaurante-LP2/src/Screens/Main/Main_telaGerente.java</file>
-            <file>file:/home/dcet1-lami11-ubuntu/Área%20de%20Trabalho/LP2/Sistema-Restaurante-LP2/src/Screens/Conta/Cozinha.java</file>
+            <file>file:/C:/Users/Vitor%20M/Desktop/Sistema-Restaurante-LP2/src/Negocio/Servicos/Bonus.java</file>
+            <file>file:/C:/Users/Vitor%20M/Desktop/Sistema-Restaurante-LP2/src/Screens/Pesquisa/Pesquisa_Cliente.java</file>
+            <file>file:/C:/Users/Vitor%20M/Desktop/Sistema-Restaurante-LP2/src/Banco/Cadastros/Bill_DAO.java</file>
+            <file>file:/C:/Users/Vitor%20M/Desktop/Sistema-Restaurante-LP2/src/Screens/Cadastros/Login.java</file>
+            <file>file:/C:/Users/Vitor%20M/Desktop/Sistema-Restaurante-LP2/src/Negocio/Servicos/Bill.java</file>
+            <file>file:/C:/Users/Vitor%20M/Desktop/Sistema-Restaurante-LP2/src/Screens/Pesquisa/Pesquisa_Bonus.java</file>
+            <file>file:/C:/Users/Vitor%20M/Desktop/Sistema-Restaurante-LP2/src/Negocio/Pessoas/Client.java</file>
+            <file>file:/C:/Users/Vitor%20M/Desktop/Sistema-Restaurante-LP2/src/Banco/Cadastros/Pessoa_DAO.java</file>
+            <file>file:/C:/Users/Vitor%20M/Desktop/Sistema-Restaurante-LP2/src/Screens/Conta/Conta_formaPagamento.java</file>
         </group>
     </open-files>
 </project-private>

@@ -6,7 +6,6 @@
 package Banco.Cadastros;
 
 import Banco.Conexao.Conectar;
-import Negocio.Pessoas.Client;
 import Negocio.Pratos.Menu_Item;
 import Negocio.Servicos.Order;
 import Negocio.Servicos.Order_Item;

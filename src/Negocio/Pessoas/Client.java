@@ -3,6 +3,7 @@ package Negocio.Pessoas;
 import Banco.Cadastros.Bonus_DAO;
 import Banco.Cadastros.Pessoa_DAO;
 import Negocio.Servicos.Bonus;
+import java.util.List;
 
 public class Client extends Person{
     protected String cpf, email;
@@ -38,17 +39,29 @@ public class Client extends Person{
     }
    
      public Bonus Buscar_myBonus(){
-       Bonus b1;
        Bonus_DAO bonus_dao = new Bonus_DAO();
-       b1 = bonus_dao.Buscar_pCpf(this);
-       return b1;
+       bonus = bonus_dao.Buscar_pCpf(this);
+       return bonus;
    }
    
     public Bonus Buscar_myBonus(String data){
-       Bonus b1;
        Bonus_DAO bonus_dao = new Bonus_DAO();
-       b1 = bonus_dao.Buscar_pCpf(this, data);
-       return b1;
+       bonus = bonus_dao.Buscar_pCpf(this, data);
+       return bonus;
+   }
+    
+   public boolean AttBonus_Situacao(){
+       if(bonus.getValue() != 0.0f){
+            Bonus_DAO bonus_dao = new Bonus_DAO();
+            bonus_dao.Atualizar_Situacao(bonus);
+            return true;
+       }
+       return false;
+   }
+   
+   public boolean Inserir_Bonus(){
+       Bonus_DAO bonus_dao = new Bonus_DAO();
+       return bonus_dao.Inserir(bonus, this);
    }
     
    public boolean Inserir(){
@@ -74,5 +87,10 @@ public class Client extends Person{
     public Client Login(){
        Pessoa_DAO pessoa_dao = new Pessoa_DAO();
        return pessoa_dao.Login(this); 
+    }
+    
+    public List<Client> getAllClientes(){
+        Pessoa_DAO pessoa_dao = new Pessoa_DAO();
+        return pessoa_dao.CarregarDados(this);
     }
 }

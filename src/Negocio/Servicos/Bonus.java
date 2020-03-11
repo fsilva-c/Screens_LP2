@@ -1,5 +1,9 @@
 package Negocio.Servicos;
 
+import Banco.Cadastros.Bonus_DAO;
+import Negocio.Pessoas.Client;
+import java.util.List;
+
 
 public class Bonus {
 //Atributos da classe
@@ -58,6 +62,14 @@ public class Bonus {
         this.id = id;
     }
    
+    public List<Client> getAllBonus(){
+        Bonus_DAO bonus_dao = new Bonus_DAO();
+        return bonus_dao.CarregarBonus();
+    }
     
+    public List<Bonus> getAllBonus(Client c1){
+        Bonus_DAO bonus_dao = new Bonus_DAO();
+        return bonus_dao.CarregarBonus_pCPF(c1);
+    }
     
 }

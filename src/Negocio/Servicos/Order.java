@@ -1,7 +1,6 @@
 package Negocio.Servicos;
 
 import Banco.Cadastros.Order_DAO;
-import Negocio.Pessoas.Client;
 import Negocio.Pratos.Menu_Item;
 import java.util.ArrayList;
 
@@ -105,6 +104,11 @@ public class Order {
     public boolean Excluir(){
         Order_DAO order_dao = new Order_DAO();
         return order_dao.Excluir(this);
+    }
+    
+    public boolean Atualizar(){
+        Order_DAO order_dao = new Order_DAO();
+        return order_dao.Atualizar(this);
     }
     
 }

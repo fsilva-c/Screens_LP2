@@ -96,7 +96,8 @@ public class Bonus_DAO {
                 bonus.setDate(rs.getString("data"));
                 bonus.setSituacao(rs.getInt("situacao"));
             }else{
-                return null;
+                bonus.setValue(0.0f);
+                return bonus;
             }
             con.close();
             stmt.close();
@@ -126,7 +127,8 @@ public class Bonus_DAO {
                 bonus.setDate(rs.getString("data"));
                 bonus.setSituacao(rs.getInt("situacao"));
             }else{
-                return null;
+                bonus.setValue(0.0f);
+                return bonus;
             }
             con.close();
             stmt.close();

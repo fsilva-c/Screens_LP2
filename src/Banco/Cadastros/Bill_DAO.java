@@ -34,11 +34,12 @@ public class Bill_DAO {
         PreparedStatement stmt = null;
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("INSERT INTO sql10326340.CONTA(cpf,data,valor,pagamento)VALUES(?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            stmt = con.prepareStatement("UPDATE sql10326340.CONTA(cpf,data,valor,pagamento)VALUES(?,?,?,?) WHERE id = ?");
             stmt.setString(1,conta.getClient().getCpf());
             stmt.setString(2,conta.getDate());
             stmt.setFloat(3,conta.CalcBill());
             stmt.setString(4,conta.getPayment_method());
+            stmt.setInt(5,conta.getId());
             
             //Execução da SQL
             stmt.executeUpdate();

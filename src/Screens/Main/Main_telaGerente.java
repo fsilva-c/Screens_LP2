@@ -12,7 +12,6 @@ import Screens.Conta.Cozinha;
 import Screens.Pesquisa.Pesquisa_Cliente;
 import Screens.Pesquisa.Pesquisa_Conta;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  *

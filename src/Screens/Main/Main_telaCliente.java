@@ -5,7 +5,6 @@
  */
 package Screens.Main;
 
-import Banco.Cadastros.Bill_DAO;
 import Negocio.Pessoas.Client;
 import Negocio.Servicos.Bill;
 import Screens.Conta.Conta;
@@ -37,8 +36,6 @@ public class Main_telaCliente extends javax.swing.JFrame {
         this.usuario = c1;
         initComponents();
         conta = new Bill(this.usuario);
-        Bill_DAO bill_dao = new Bill_DAO();
-        bill_dao.Pre_Inserir(conta);
     }
     /**
      * This method is called from within the constructor to initialize the form.

@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package Screens.Conta;
-import Banco.Cadastros.Bill_DAO;
-import Banco.Cadastros.Bonus_DAO;
 import Negocio.Servicos.Bill;
 import javax.swing.JOptionPane;
 
@@ -32,16 +30,16 @@ public class Conta_formaPagamento extends javax.swing.JFrame {
     public Conta_formaPagamento(Bill c1) {
         initComponents();
         this.conta = c1;
-        Bonus_DAO bonus_dao = new Bonus_DAO();
-        conta.getClient().setBonus(bonus_dao.Buscar_pCpf(conta.getClient(), conta.getDate()));
-        JOptionPane.showMessageDialog(null, "Bonus resgatado : ");
+        conta.getClient().Buscar_myBonus(conta.getDate());
+        JOptionPane.showMessageDialog(null, "Bonus resgatado : " + Float.toString(conta.getClient().getBonus().getValue()));
+        
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup1.add(botao_credito);
         buttonGroup1.add(botao_debito);
         
-        JOptionPane.showMessageDialog(null, "Bonus resgatado : " + Float.toString(conta.getClient().getBonus().getValue()));
+        
         text_valor.setText(Float.toString(conta.CalcBill()));
-        bonus_dao.Atualizar_Situacao(conta.getClient().getBonus());
+        conta.getClient().AttBonus_Situacao();
         text_bonus.setText(Float.toString(conta.CalcBonus()));
     }
 
@@ -323,10 +321,8 @@ public class Conta_formaPagamento extends javax.swing.JFrame {
 
     private void icon_pagar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_pagar1MouseClicked
         // TODO add your handling code here:
-        Bonus_DAO bonus_dao = new Bonus_DAO();
-        bonus_dao.Inserir(conta.getClient().getBonus(), conta.getClient());
-        Bill_DAO bill_dao = new Bill_DAO();
-        bill_dao.Atualizar(conta);
+        conta.getClient().Inserir_Bonus();
+        conta.Atualizar();
         Conta_formaPagamento.this.dispose();
     }//GEN-LAST:event_icon_pagar1MouseClicked
 

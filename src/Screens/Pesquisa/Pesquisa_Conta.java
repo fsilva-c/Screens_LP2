@@ -5,18 +5,9 @@
  */
 package Screens.Pesquisa;
 
-import Banco.Cadastros.Bill_DAO;
-import Screens.Bonus.*;
-import Banco.Cadastros.Bonus_DAO;
-import Screens.Pesquisa.*;
-import Banco.Cadastros.Pessoa_DAO;
+import Negocio.Estruturas.Restaurante;
 import Negocio.Pessoas.Client;
 import Negocio.Servicos.Bill;
-import Negocio.Servicos.Bonus;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -26,12 +17,13 @@ import javax.swing.table.TableRowSorter;
  */
 public class Pesquisa_Conta extends javax.swing.JFrame {
     private int xMouse, yMouse;
-    
+    Restaurante restaurante;
     /**
      * Creates new form Pesquisa
      */
     public Pesquisa_Conta() {
         initComponents();
+        restaurante = new Restaurante("Lombinho de Porco II");
         
         DefaultTableModel modelo = (DefaultTableModel) tabela_contas.getModel();
         tabela_contas.setRowSorter(new TableRowSorter(modelo));
@@ -292,11 +284,9 @@ public class Pesquisa_Conta extends javax.swing.JFrame {
     public void Carregar_pCPF(Client c1){
         DefaultTableModel modelo = (DefaultTableModel) tabela_contas.getModel();
         modelo.setNumRows(0);
-        float total = 0.0f;
+
         
-        Bill_DAO bill_dao = new Bill_DAO();
-        for(Bill conta: bill_dao.CarregarContas_pCPF(c1)){
-            total += conta.getValue();
+        for(Bill conta: restaurante.CarregarContas_pCPF(c1)){
             modelo.addRow(new Object[]{
                 conta.getClient().getCpf(),
                 conta.getDate(),
@@ -304,17 +294,14 @@ public class Pesquisa_Conta extends javax.swing.JFrame {
                 conta.getPayment_method()
             });
         }
-        texto_total.setText(Float.toString(total));
+        texto_total.setText(Float.toString(restaurante.CalcIncome()));
     }    
     
     public void Carregar_tabela(){
         DefaultTableModel modelo = (DefaultTableModel) tabela_contas.getModel();
         modelo.setNumRows(0);
-        float total = 0.0f;
         
-        Bill_DAO bill_dao = new Bill_DAO();
-        for(Bill conta: bill_dao.CarregarContas()){
-            total += conta.getValue();
+        for(Bill conta: restaurante.CarregarContas()){
             modelo.addRow(new Object[]{
                 conta.getClient().getCpf(),
                 conta.getDate(),
@@ -322,7 +309,7 @@ public class Pesquisa_Conta extends javax.swing.JFrame {
                 conta.getPayment_method()
             });
         }
-        texto_total.setText(Float.toString(total));
+        texto_total.setText(Float.toString(restaurante.CalcIncome()));
     }
     
     /**
