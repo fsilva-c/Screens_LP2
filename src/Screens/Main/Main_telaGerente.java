@@ -38,6 +38,7 @@ public class Main_telaGerente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         jPanel2 = new javax.swing.JPanel();
         panel_barraTarefas = new javax.swing.JPanel();
@@ -46,6 +47,7 @@ public class Main_telaGerente extends javax.swing.JFrame {
         panel_minimizar = new javax.swing.JPanel();
         label_minimizar = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        label_gerente = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         label_iconGerItens = new javax.swing.JLabel();
         label_gerItens = new javax.swing.JLabel();
@@ -63,6 +65,9 @@ public class Main_telaGerente extends javax.swing.JFrame {
         label_sair1 = new javax.swing.JLabel();
         label_iconFornecedor = new javax.swing.JLabel();
         label_fornecedor = new javax.swing.JLabel();
+
+        jLabel3.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
+        jLabel3.setText("Restaurante Lombinho de Porco II");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -134,12 +139,18 @@ public class Main_telaGerente extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
         jLabel1.setText("Restaurante Lombinho de Porco II");
 
+        label_gerente.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
+        label_gerente.setForeground(new java.awt.Color(102, 102, 102));
+        label_gerente.setText("Painel do Gerente");
+
         javax.swing.GroupLayout panel_barraTarefasLayout = new javax.swing.GroupLayout(panel_barraTarefas);
         panel_barraTarefas.setLayout(panel_barraTarefasLayout);
         panel_barraTarefasLayout.setHorizontalGroup(
             panel_barraTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_barraTarefasLayout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addGroup(panel_barraTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(label_gerente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panel_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -147,11 +158,13 @@ public class Main_telaGerente extends javax.swing.JFrame {
         );
         panel_barraTarefasLayout.setVerticalGroup(
             panel_barraTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_fechar, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+            .addComponent(panel_fechar, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
             .addComponent(panel_minimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_barraTarefasLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label_gerente)
                 .addContainerGap())
         );
 
@@ -313,9 +326,7 @@ public class Main_telaGerente extends javax.swing.JFrame {
                                     .addComponent(label_iconFornecedor)))
                             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                 .addComponent(label_dadosCadastrais2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(label_iconSair)
                                 .addGap(4, 4, 4)))
                         .addGap(55, 55, 55))
@@ -506,6 +517,7 @@ public class Main_telaGerente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel label_DadosCadastrais;
@@ -517,6 +529,7 @@ public class Main_telaGerente extends javax.swing.JFrame {
     private javax.swing.JLabel label_fechar;
     private javax.swing.JLabel label_fornecedor;
     private javax.swing.JLabel label_gerItens;
+    private javax.swing.JLabel label_gerente;
     private javax.swing.JLabel label_iconBonus;
     private javax.swing.JLabel label_iconCardapio;
     private javax.swing.JLabel label_iconCozinha;

@@ -5,7 +5,7 @@
  */
 package Banco.Cadastros;
 
-import Banco.Conexao.Conectar;
+import Banco.Conexao.ConFactory;
 import Negocio.Pessoas.Client;
 import Negocio.Servicos.Bonus;
 import java.sql.Connection;
@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,10 +26,11 @@ public class Bonus_DAO {
 
     }
     
-    
+    //Inserir Bonus de cliente no BD
     public boolean Inserir(Bonus bonus, Client c1){
-        this.con = new Conectar().conectar();        
+        this.con = new ConFactory().conectar();        
         PreparedStatement stmt = null;
+        
         try {
             //Passagem de parametros
             stmt = con.prepareStatement("INSERT INTO sql10326340.bonus(cpf_cliente,valor,data,situacao)VALUES(?,?,?,?)");
@@ -42,19 +42,18 @@ public class Bonus_DAO {
             //Execução da SQL
             stmt.executeUpdate();
             
-            con.close();
-            stmt.close();
-            
         } catch (SQLException ex) {
             System.out.println( "Erro ao Inserir Bonus - Bonus_DAO.Inserir -"+ex);
             throw new RuntimeException(ex);
-            //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt);
+       } 
         return true;
     }
     
+    //Setar bonus como utilizado (Used)
     public boolean Atualizar_Situacao(Bonus bonus){
-        this.con = new Conectar().conectar();
+        this.con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         
         try {
@@ -65,21 +64,22 @@ public class Bonus_DAO {
             
             //Execução da SQL
             stmt.executeUpdate();
- 
-            con.close();
-            stmt.close();
+
             
         } catch (SQLException ex) {
             System.out.println( "Erro ao atualizar identificador de uso - Bonus_DAO.Atualizar_Situacao -"+ex);
             throw new RuntimeException(ex);
-            //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt);
+       } 
         return true;
     }
     
+    //Excluir todos os bonus ligados ao CPF de um determinado cliente
     public boolean Excluir_pCpf(Client c1){
-        this.con = new Conectar().conectar();
+        this.con = new ConFactory().conectar();
         PreparedStatement stmt = null;
+        
         try {
             //Passagem de parametros
             stmt = con.prepareStatement("DELETE FROM sql10326340.bonus WHERE cpf_cliente = ?");
@@ -87,23 +87,23 @@ public class Bonus_DAO {
             
             //Execução da SQL
             stmt.executeUpdate();
-            
-            con.close();
-            stmt.close();
-            
+                        
         } catch (SQLException ex) {
             System.out.println( "Erro ao exluir bonus pelo cpf - Bonus_DAO.Excluir_pCpf -"+ex);
             throw new RuntimeException(ex);
-            //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt);
+       } 
         return true;
     }
-    //Resgatar bonus validos cliente por cpf
+    
+    //Resgatar bonus validos cliente por cpf e data
     public Bonus Buscar_pCpf(Client c1, String date){
-        this.con = new Conectar().conectar();
+        Bonus bonus = new Bonus();
+        
+        this.con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Bonus bonus = new Bonus();
         
         try {
             stmt = con.prepareStatement("SELECT * FROM sql10326340.bonus WHERE (cpf_cliente = ? AND data != ? AND situacao = 0)");  
@@ -118,24 +118,25 @@ public class Bonus_DAO {
                 bonus.setSituacao(rs.getInt("situacao"));
             }else{
                 bonus.setValue(0.0f);
-                return bonus;
             }
-            con.close();
-            stmt.close();
             
         } catch (SQLException ex) {
             System.out.println( "Erro ao buscar bonus por cpf e data - Bonus_DAO.Buscar_pCpf-"+ex);
             throw new RuntimeException(ex);
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt, rs);
+       } 
         return bonus;
         
     }
     
+    //Buscar bonus valido de um determinado Cliente
     public Bonus Buscar_pCpf(Client c1){
-        this.con = new Conectar().conectar();
+        Bonus bonus = new Bonus();
+        this.con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Bonus bonus = new Bonus();
+
         
         try {
             stmt = con.prepareStatement("SELECT * FROM sql10326340.bonus WHERE (cpf_cliente = ?  AND situacao = 0)");  
@@ -151,23 +152,25 @@ public class Bonus_DAO {
                 bonus.setValue(0.0f);
                 return bonus;
             }
-            con.close();
-            stmt.close();
             
         } catch (SQLException ex) {
             System.out.println( "Erro ao buscar bonus por cpf - Bonus_DAO.Buscar_pCpf-"+ex);
             throw new RuntimeException(ex);
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt, rs);
+       } 
         return bonus;
         
     }
     
     //Resgatar todas relacoes bonus - cliente
     public List<Client> CarregarBonus(){
-        this.con = new Conectar().conectar();
+        List<Client> clientes = new ArrayList<>();
+        
+        this.con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Client> clientes = new ArrayList<>();
+
         
         try {
             stmt = con.prepareStatement("SELECT * FROM sql10326340.bonus");   //Selecione todas as colunas da tabela produto
@@ -183,23 +186,25 @@ public class Bonus_DAO {
                 c1.setBonus(b1);
                 clientes.add(c1);
             }
-            
-            con.close();
-            stmt.close();
-            
+             
         } catch (SQLException ex) {
             System.out.println( "Erro ao carregar Bonus - Bonus_DAO.CarregarBonus-"+ex);
             throw new RuntimeException(ex);
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt, rs);
+       } 
  
         return clientes;
     }
     
+    //Carregar todos os bonus ligados a um determinado cliente
     public List<Bonus> CarregarBonus_pCPF(Client c1){
-        this.con = new Conectar().conectar();
+        List<Bonus> bonus = new ArrayList<>();
+        
+        this.con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Bonus> bonus = new ArrayList<>();
+
         
         try {
             stmt = con.prepareStatement("SELECT * FROM sql10326340.bonus WHERE cpf_cliente = ?");   //Selecione todas as colunas da tabela produto
@@ -214,13 +219,12 @@ public class Bonus_DAO {
                 bonus.add(b1);
             }
             
-            con.close();
-            stmt.close();
-            
         } catch (SQLException ex) {
             System.out.println( "Erro ao carregar Bonus por cpf - Bonus_DAO.CarregarBonus_pCPF-"+ex);
             throw new RuntimeException(ex);
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt, rs);
+       } 
  
         return bonus;
     }

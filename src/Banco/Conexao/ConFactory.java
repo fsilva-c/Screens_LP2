@@ -17,9 +17,9 @@ import java.sql.Statement;
  * @author apmagalhaes
  * 
  */
-public class Conectar {
+public class ConFactory {
 
-    public Conectar(){
+    public ConFactory(){
     
     }
     

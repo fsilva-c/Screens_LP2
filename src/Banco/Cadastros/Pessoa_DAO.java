@@ -5,7 +5,7 @@
  */
 package Banco.Cadastros;
 
-import Banco.Conexao.Conectar;
+import Banco.Conexao.ConFactory;
 import Negocio.Pessoas.Client;
 import Negocio.Servicos.Bill;
 import java.util.ArrayList;
@@ -14,7 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,15 +24,16 @@ public class Pessoa_DAO {
     
     //construtor
     public Pessoa_DAO(){
-        this.con = new Conectar().conectar();
     }
     
+    //Inserir novo cliente no BD
     public boolean Inserir(Client c0){
-        
+       con = new ConFactory().conectar();
+       PreparedStatement stmt = null;
        String sql = "INSERT INTO sql10326340.cliente(cpf, nome, email, senha)VALUES(?, ?, ?, MD5(?))"; 
        
        try {     
-            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt = con.prepareStatement(sql);
 
             stmt.setString(1, c0.getCpf());
             stmt.setString(2, c0.getName());        
@@ -43,20 +43,23 @@ public class Pessoa_DAO {
             stmt.executeUpdate(); //executa comando       
             stmt.close();
             
-            con.close();
-            return true;
-            
         }catch (SQLException ex) {
-            System.out.println( "Erro ao Inserir cliente - Pessoa_DAO.Inserir-"+ex);
+            System.out.println( "Erro ao Inserir cliente - Pessoa_DAO.Inserir - "+ex);
             throw new RuntimeException(ex);        
-        } 
+        }finally{
+           ConFactory.closeConexao(con, stmt);
+       }
+        return true;
     }
     
+    //Busacr cliente atraves do CPF
     public Client Buscar_pCpf(String cpf){
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
         Client c1 = new Client();
         boolean check = false;
+        con = new ConFactory().conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
         
         try {
             stmt = con.prepareStatement("SELECT * FROM sql10326340.cliente WHERE cpf = ?");  
@@ -69,21 +72,20 @@ public class Pessoa_DAO {
                 c1.setName(rs.getString("nome"));
                 c1.setEmail(rs.getString("email"));
             }
-           
-            con.close();
-            stmt.close();
-            rs.close();
             
         } catch (SQLException ex) {
-            System.out.println( "Erro ao Buscar cliente por CPF- Pessoa_DAO.Buscar_pCpf -"+ex);
+            System.out.println( "Erro ao Buscar cliente por CPF- Pessoa_DAO.Buscar_pCpf - "+ex);
             throw new RuntimeException(ex);
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt,rs);
+       }
         if(check)
             return c1;
         else
             return null;
     }
     
+    //Carregar dados de determinado cliente
     @SuppressWarnings("empty-statement")
     public List<Client> CarregarDados(Client c1){
         List<Client> clientes = new ArrayList<>();
@@ -99,117 +101,131 @@ public class Pessoa_DAO {
             campo = c1.getCpf();
         }
         
+        con = new ConFactory().conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
         try {
             
-            try(PreparedStatement stmt = con.prepareStatement(sql)){
-                stmt.setString(1, "%" + campo + "%");
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, "%" + campo + "%");
                 
-                ResultSet rs = stmt.executeQuery(stmt.toString().replaceAll("com.mysql.cj.jdbc.ClientPreparedStatement: ", "")); //Metodo responsavel por consultas ao banco
+            rs = stmt.executeQuery(stmt.toString().replaceAll("com.mysql.cj.jdbc.ClientPreparedStatement: ", "")); //Metodo responsavel por consultas ao banco
                 
-                while (rs.next()){
-                    Client cliente = new Client();
-                    cliente.setCpf(rs.getString("cpf"));
-                    cliente.setName(rs.getString("nome"));
-                    cliente.setEmail(rs.getString("email"));
+            while (rs.next()){
+                Client cliente = new Client();
+                cliente.setCpf(rs.getString("cpf"));
+                cliente.setName(rs.getString("nome"));
+                cliente.setEmail(rs.getString("email"));
                 
-                    clientes.add(cliente);
-                }
-            
+                clientes.add(cliente);
             }
-            con.close();
+            
         } catch (SQLException ex) {
-            System.out.println( "Erro ao Carreagr todos os clientes - Pessoa_DAO.CarregarDados-"+ex);
+            System.out.println( "Erro ao Carreagr todos os clientes - Pessoa_DAO.CarregarDados - "+ex);
             throw new RuntimeException(ex);   
-        }
-        
+        }finally{
+           ConFactory.closeConexao(con, stmt, rs);
+       }
         
         return clientes;
     }
     
+    //Atualizar dados do cliente
     public boolean Atualizar(Client c1){
+        con = new ConFactory().conectar();
         PreparedStatement stmt = null;
+        String sql = "UPDATE sql10326340.cliente SET nome = ?,email = ? WHERE cpf = ?";
         
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("UPDATE sql10326340.cliente SET nome = ?,email = ? WHERE cpf = ?");
+            stmt = con.prepareStatement(sql);
             stmt.setString(1,c1.getName());
             stmt.setString(2,c1.getEmail());
             stmt.setString(3, c1.getCpf());
             
             //Execução da SQL
             stmt.executeUpdate();
-            con.close();
-            stmt.close();
             
         } catch (SQLException ex) {
-            System.out.println( "Erro ao Atualizar cliente - Pessoa_DAO.Atualizar-"+ex);
+            System.out.println( "Erro ao Atualizar cliente - Pessoa_DAO.Atualizar - "+ex);
             throw new RuntimeException(ex);
-            //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt);
+       }
         return true;
     }
     
+    //Excluir cliente do BD e todas suas dependencias (contas,bonus)
     public boolean Excluir(Client c1){
+        //Excluir bonus relacionado ao cliente
         Bonus_DAO bonus_dao = new Bonus_DAO();
         bonus_dao.Excluir_pCpf(c1);
+        
+        //Excluir conta relacionado ao cliente
         Bill_DAO bill_dao = new Bill_DAO();
         List<Bill> contas = bill_dao.CarregarContas_pCPF(c1);
         for(Bill conta : contas){
             conta.Excluir();
         }
         
-        this.con = new Conectar().conectar();
+        con = new ConFactory().conectar();
         PreparedStatement stmt = null;
+        String sql = "DELETE FROM sql10326340.cliente WHERE cpf = ?";
+
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("DELETE FROM sql10326340.cliente WHERE cpf = ?");
+            stmt = con.prepareStatement(sql);
             stmt.setString(1,c1.getCpf());
             
             //Execução da SQL
             stmt.executeUpdate();
             
-            con.close();
-            stmt.close();
             
         } catch (SQLException ex) {
-            System.out.println( "Erro ao Excluir cliente - Pessoa_DAO.Excluir-"+ex);
+            System.out.println( "Erro ao Excluir cliente - Pessoa_DAO.Excluir - "+ex);
             throw new RuntimeException(ex);
-            //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt);
+       }
         return true;
     }
     
+    //Alterar senha cliente
     public boolean Alterar_Senha(Client c1){
+        con = new ConFactory().conectar();
         PreparedStatement stmt = null;
-        this.con = new Conectar().conectar();
+        String sql = "UPDATE sql10326340.cliente SET senha = MD5(?) WHERE cpf = ?";
         
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("UPDATE sql10326340.cliente SET senha = MD5(?) WHERE cpf = ?");
+            stmt = con.prepareStatement(sql);
             stmt.setString(1,c1.getPswd());
             stmt.setString(2, c1.getCpf());
             
             //Execução da SQL
             stmt.executeUpdate();
- 
-            con.close();
-            stmt.close();
             
         } catch (SQLException ex) {
-            System.out.println( "Erro ao Alterar senha cliente - Pessoa_DAO.Alterar_Senha-"+ex);
+            System.out.println( "Erro ao Alterar senha cliente - Pessoa_DAO.Alterar_Senha - "+ex);
             throw new RuntimeException(ex);
-            //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
-        }
+
+        }finally{
+           ConFactory.closeConexao(con, stmt);
+       }
         return true;
     }
     
+    //Realizar login do cliente
     public Client Login(Client c1){
+        boolean check = false;
+        con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        boolean check = false;
+        String sql = "SELECT * FROM sql10326340.cliente WHERE cpf = ? and senha = MD5(?)";
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.cliente WHERE cpf = ? and senha = MD5(?)");  
+            stmt = con.prepareStatement(sql);  
             stmt.setString(1,c1.getCpf());
             stmt.setString(2,c1.getPswd());
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
@@ -219,14 +235,14 @@ public class Pessoa_DAO {
                 c1.setName(rs.getString("nome"));
             }
            
-            con.close();
-            stmt.close();
-            rs.close();
             
         } catch (SQLException ex) {
             System.out.println( "Erro ao Logar cliente - Pessoa_DAO.Login -"+ex);
             throw new RuntimeException(ex);
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt, rs);
+       }
+        
         if(check)
             return c1;
         else

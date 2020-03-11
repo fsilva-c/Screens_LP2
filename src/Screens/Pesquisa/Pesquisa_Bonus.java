@@ -25,7 +25,7 @@ public class Pesquisa_Bonus extends javax.swing.JFrame {
         
         DefaultTableModel modelo = (DefaultTableModel) tabela_bonus.getModel();
         tabela_bonus.setRowSorter(new TableRowSorter(modelo));
-        Carregar_tabela();
+        this.Carregar_tabela();
     }
 
     /**
@@ -273,10 +273,14 @@ public class Pesquisa_Bonus extends javax.swing.JFrame {
 
     private void label_pesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_pesquisaMouseClicked
         // TODO add your handling code here:
-        Client cliente = new Client();
-        cliente.setCpf(texto_pesquisar.getText());
-        Carregar_pCPF(cliente);
-        texto_pesquisar.setText("");
+        if (texto_pesquisar.getText().equals("   .   .   -  "))
+            Carregar_tabela();
+        else{
+            Client cliente = new Client();
+            cliente.setCpf(texto_pesquisar.getText());
+            Carregar_pCPF(cliente);
+            texto_pesquisar.setText("");
+        }
     }//GEN-LAST:event_label_pesquisaMouseClicked
     
     public void Carregar_pCPF(Client c1){
@@ -286,7 +290,7 @@ public class Pesquisa_Bonus extends javax.swing.JFrame {
         
         Bonus bonus = new Bonus();
         for(Bonus b1: bonus.getAllBonus(c1)){
-            total += bonus.getValue();
+            total += b1.getValue();
             modelo.addRow(new Object[]{
                 c1.getCpf(),
                 b1.getValue(),

@@ -275,10 +275,14 @@ public class Pesquisa_Conta extends javax.swing.JFrame {
 
     private void label_pesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_pesquisaMouseClicked
         // TODO add your handling code here:
-        Client cliente = new Client();
-        cliente.setCpf(texto_pesquisar.getText());
-        Carregar_pCPF(cliente);
-        texto_pesquisar.setText("");
+        if(texto_pesquisar.getText().equals("   .   .   -  "))
+            Carregar_tabela();
+        else{
+            Client cliente = new Client();
+            cliente.setCpf(texto_pesquisar.getText());
+            Carregar_pCPF(cliente);
+            texto_pesquisar.setText("");
+        }
     }//GEN-LAST:event_label_pesquisaMouseClicked
     
     public void Carregar_pCPF(Client c1){

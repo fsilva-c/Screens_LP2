@@ -324,6 +324,7 @@ public class Conta_formaPagamento extends javax.swing.JFrame {
         conta.getClient().Inserir_Bonus();
         conta.Atualizar();
         Conta_formaPagamento.this.dispose();
+        JOptionPane.showMessageDialog(null, "Obrigado por utilizar nosso sistema. Saia para iniciar uma nova conta");
     }//GEN-LAST:event_icon_pagar1MouseClicked
 
     /**

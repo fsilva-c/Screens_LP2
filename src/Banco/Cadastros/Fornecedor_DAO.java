@@ -5,7 +5,7 @@
  */
 package Banco.Cadastros;
 
-import Banco.Conexao.Conectar;
+import Banco.Conexao.ConFactory;
 import Negocio.Servicos.Provider;
 
 import java.sql.Connection;
@@ -23,15 +23,16 @@ public class Fornecedor_DAO {
     
     //construtor
     public Fornecedor_DAO(){
-        this.con = new Conectar().conectar();
     }
     
+    //Inserir fornecedor no BD
     public boolean Inserir(Provider fornecedor0){
-        
+       con = new ConFactory().conectar();
+       PreparedStatement stmt = null;
        String sql = "INSERT INTO sql10326340.fornecedor(cnpj, nome, telefone)VALUES(?, UPPER(?), ?)"; 
        
        try {     
-            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt = con.prepareStatement(sql);
 
             stmt.setString(1, fornecedor0.getCnpj());
             stmt.setString(2, fornecedor0.getNome());        
@@ -40,20 +41,21 @@ public class Fornecedor_DAO {
             stmt.executeUpdate(); //executa comando       
             stmt.close();
             
-            con.close();
-            return true;
-            
         }catch (SQLException u) {
             System.out.println( "Erro ao inserir fornecedor - Fornecedor_DAO.Inserir-"+u);
             throw new RuntimeException(u);        
-        } 
+        }finally{
+           ConFactory.closeConexao(con, stmt);
+       } 
+        return true;
     }
     
+    //Carregar todos os fornecedores do BD
     public List<Provider> Carregar(){
-        this.con = new Conectar().conectar();
+        List<Provider> fornecedores = new ArrayList<>();
+        this.con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Provider> fornecedores = new ArrayList<>();
         
         try {
             stmt = con.prepareStatement("SELECT * FROM sql10326340.fornecedor");   //Selecione todas as colunas da tabela produto
@@ -68,13 +70,12 @@ public class Fornecedor_DAO {
                 fornecedores.add(f1);
             }
             
-            con.close();
-            stmt.close();
-            
         } catch (SQLException ex) {
             System.out.println( "Erro ao Carregar fornecedores - Fornecedor_DAO.Crregar-"+ex);
             throw new RuntimeException(ex);
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt, rs);
+       } 
  
         return fornecedores;
     }

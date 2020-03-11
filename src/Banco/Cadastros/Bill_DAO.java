@@ -5,7 +5,7 @@
  */
 package Banco.Cadastros;
 
-import Banco.Conexao.Conectar;
+import Banco.Conexao.ConFactory;
 import Negocio.Pessoas.Client;
 import Negocio.Servicos.Bill;
 import Negocio.Servicos.Order;
@@ -15,7 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,9 +27,10 @@ public class Bill_DAO {
     public Bill_DAO(){
     }
     
+    //Atualizar dados da conta - Chamada apos pagamento
     public boolean Atualizar(Bill conta){
         
-        this.con = new Conectar().conectar();
+        this.con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         try {
             //Passagem de parametros
@@ -44,22 +44,23 @@ public class Bill_DAO {
             //Execução da SQL
             stmt.executeUpdate();
             
-            con.close();
-            stmt.close();
             
         } catch (SQLException ex) {
-            System.out.println( "Erro ao qtualizar Conta - Bill_DAO.Atualizar -"+ex);
+            System.out.println( "Erro ao qtualizar Conta - Bill_DAO.Atualizar - "+ex);
             throw new RuntimeException(ex);
             //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt);
+       }
         return true;
     }
     
-        
+    //Iniciar uma conta, para que os itens sejam inseridos conforme acoes do cliente
     public boolean Pre_Inserir(Bill conta){
         
-        this.con = new Conectar().conectar();
+        this.con = new ConFactory().conectar();
         PreparedStatement stmt = null;
+        ResultSet rs = null;
         try {
             //Passagem de parametros
             stmt = con.prepareStatement("INSERT INTO sql10326340.conta(cpf,data,valor,pagamento)VALUES(?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
@@ -71,23 +72,23 @@ public class Bill_DAO {
             //Execução da SQL
             stmt.executeUpdate();
             
-            ResultSet rs = stmt.getGeneratedKeys();
+            rs = stmt.getGeneratedKeys();
             if(rs.next()){
                 conta.setId(rs.getInt(1));
             }
-            con.close();
-            stmt.close();
             
         } catch (SQLException ex) {
-            System.out.println( "Erro ao Inicializar Conta - Bill_DAO.Pre_Inserir -"+ex);
+            System.out.println( "Erro ao Inicializar Conta - Bill_DAO.Pre_Inserir - "+ex);
             throw new RuntimeException(ex);
-            //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt, rs);
+       }
         return true;
     }
     
+    //Atualizar o campo pagamento na tabela BD
     public boolean Atualizar_Pagamento(Bill conta){
-        this.con = new Conectar().conectar();
+        this.con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         
         try {
@@ -98,28 +99,27 @@ public class Bill_DAO {
             
             //Execução da SQL
             stmt.executeUpdate();
- 
-            con.close();
-            stmt.close();
             
         } catch (SQLException ex) {
-            System.out.println( "Erro ao Atualizar Campo Pagamento - Bill_DAO.Ataulizar_Pagamento-"+ex);
+            System.out.println( "Erro ao Atualizar Campo Pagamento - Bill_DAO.Ataulizar_Pagamento - "+ex);
             throw new RuntimeException(ex);
-            //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt);
+       }
         return true;
     }
     
+    //Excluir uma conta e todos as suas referencias no BD
     public boolean Excluir(Bill c1){
-        JOptionPane.showMessageDialog(null, "Excluindo primeiro pedido" + Integer.toString(c1.getId()));
+        
+        //Exclusão dos pedidos relacionados a Conta
         Order_DAO order_dao = new Order_DAO();
         List<Order> pedidos = order_dao.Carregar_pConta(c1.getId());
         for(Order pedido : pedidos){
-            JOptionPane.showMessageDialog(null, "Excluindo primeiro pedido" + Integer.toString(pedido.getId()));
             pedido.Excluir();
         }
-        JOptionPane.showMessageDialog(null, "Pedidos foram excluidos da conta");
-        this.con = new Conectar().conectar();
+
+        this.con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         try {
             //Passagem de parametros
@@ -129,20 +129,21 @@ public class Bill_DAO {
             //Execução da SQL
             stmt.executeUpdate();
             
-            con.close();
-            stmt.close();
-            
         } catch (SQLException ex) {
-            System.out.println( "Erro ao Excluir Conta - Bill_DAO.Excluir -"+ex);
+            System.out.println( "Erro ao Excluir Conta - Bill_DAO.Excluir - "+ex);
             throw new RuntimeException(ex);
             //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt);
+       }
         return true;
     }
     
+    //Buscar Cliente relacionado a conta
     public Client BuscarClient(int id_conta){
-        this.con = new Conectar().conectar();
         Client c1 = new Client();
+               
+        this.con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
@@ -156,23 +157,24 @@ public class Bill_DAO {
                 c1 = pessoa_dao.Buscar_pCpf(rs.getString("cpf"));
             }
             
-            con.close();
-            stmt.close();
             
         } catch (SQLException ex) {
-            System.out.println( "Erro ao Buscar Cliente - Bill_DAO.BuscarClient -"+ex);
+            System.out.println( "Erro ao Buscar Cliente - Bill_DAO.BuscarClient - "+ex);
             throw new RuntimeException(ex);
-        }             
+        }finally{
+           ConFactory.closeConexao(con, stmt, rs);
+       }           
        
         return c1;
     }
     
+    //Carregar os itens referentes aos pedidos ligados a conta
     public Bill CarregarItems(Bill conta){
+        //Carregando pedidos para conta
         Order_DAO order_dao = new Order_DAO();
         List<Order> pedidos = order_dao.Carregar_pConta(conta.getId());
         
-        
-        
+        //Carregando itens de cada pedido carregado
         for(Order pedido : pedidos){
             Order_DAO order_dao2 = new Order_DAO();
             pedido = order_dao2.CarregarItems(pedido);
@@ -181,12 +183,14 @@ public class Bill_DAO {
         return conta;
     }
     
+    //Carregar todas as contas do BD
     public List<Bill> CarregarContas(){
-        this.con = new Conectar().conectar();
+        List<Bill> contas = new ArrayList<>();
+                
+        this.con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Bill> contas = new ArrayList<>();
-        
+
         try {
             stmt = con.prepareStatement("SELECT * FROM sql10326340.conta");   //Selecione todas as colunas da tabela produto
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
@@ -202,27 +206,28 @@ public class Bill_DAO {
                 contas.add(conta);
             }
             
-            con.close();
-            stmt.close();
-            
         } catch (SQLException ex) {
-            System.out.println( "Erro ao Carregar Contas - Bill_DAO.CrregarContas -"+ex);
+            System.out.println( "Erro ao Carregar Contas - Bill_DAO.CrregarContas - "+ex);
             throw new RuntimeException(ex);
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt, rs);
+       } 
  
         return contas;
     }
     
+    //Carregar todas as contas fechadas ou nao de um determinado cliente
     public List<Bill> CarregarContas_pCPF(Client c1){
-        this.con = new Conectar().conectar();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
         List<Bill> contas = new ArrayList<>();
         
+        this.con = new ConFactory().conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.conta WHERE cpf = ?");   //Selecione todas as colunas da tabela produto
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.conta WHERE cpf = ?");
             stmt.setString(1,c1.getCpf());
-            rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
+            rs = stmt.executeQuery();
             
             while (rs.next()){
                 Bill conta = new Bill(c1);
@@ -234,13 +239,13 @@ public class Bill_DAO {
                 contas.add(conta);
             }
             
-            con.close();
-            stmt.close();
             
         } catch (SQLException ex) {
-            System.out.println( "Erro ao Carregar Contas por CPF - Bill_DAO.CarregarContas_pCPF-"+ex);
+            System.out.println( "Erro ao Carregar Contas por CPF - Bill_DAO.CarregarContas_pCPF - "+ex);
             throw new RuntimeException(ex);
-        }
+        }finally{
+           ConFactory.closeConexao(con, stmt, rs);
+       } 
  
         return contas;
     }
