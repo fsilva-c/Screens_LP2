@@ -30,7 +30,7 @@ public class Item_DAO {
     
     public boolean Inserir(Drink drink0, short tp_item){
         
-       String sql = "INSERT INTO sql10326340.ITEM(nome, preco, fornecedor, tp_item)VALUES(UPPER(?), ?, ?, ?)"; 
+       String sql = "INSERT INTO sql10326340.item(nome, preco, fornecedor, tp_item)VALUES(UPPER(?), ?, ?, ?)"; 
        
        try {     
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -46,14 +46,15 @@ public class Item_DAO {
             con.close();
             return true;
             
-        }catch (SQLException u) {        
+        }catch (SQLException u) {
+            System.out.println( "Erro ao Inserir Bebida - Items_DAO.Inserir-"+u);
             throw new RuntimeException(u);        
         } 
     }
     
     public boolean Inserir(Food food0, short tp_item){
         
-       String sql = "INSERT INTO sql10326340.ITEM(nome, preco, descricao, tp_item)VALUES(UPPER(?), ?, ?, ?)"; 
+       String sql = "INSERT INTO sql10326340.item(nome, preco, descricao, tp_item)VALUES(UPPER(?), ?, ?, ?)"; 
        
        try {     
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -69,7 +70,8 @@ public class Item_DAO {
             con.close();
             return true;
             
-        }catch (SQLException u) {        
+        }catch (SQLException u) { 
+            System.out.println( "Erro ao Inserir Comida - Items_DAO.Inserir-"+u);
             throw new RuntimeException(u);        
         } 
     }
@@ -77,7 +79,7 @@ public class Item_DAO {
     public List<Drink> CarregarDados_Bebida(){
         List<Drink> bebidas = new ArrayList<>();
         
-        String sql = "SELECT id_item, nome, preco FROM sql10326340.ITEM WHERE tp_item = 1";
+        String sql = "SELECT id_item, nome, preco FROM sql10326340.item WHERE tp_item = 1";
         
         try {
             
@@ -97,7 +99,7 @@ public class Item_DAO {
             }
             con.close();
         } catch (SQLException ex) {
-            System.out.println("Erro ao consultar registros"+ex);
+            System.out.println( "Erro ao Carregar Items Bebida - Items_DAO.CarregarDados_Bebida-"+ex);
             throw new RuntimeException(ex);
         }
         
@@ -108,7 +110,7 @@ public class Item_DAO {
     public List<Food> CarregarDados_Comida(){
         List<Food> comidas = new ArrayList<>();
         
-        String sql = "SELECT id_item, nome, descricao, preco FROM sql10326340.ITEM WHERE tp_item = 2";
+        String sql = "SELECT id_item, nome, descricao, preco FROM sql10326340.item WHERE tp_item = 2";
         
         try {
             
@@ -129,7 +131,7 @@ public class Item_DAO {
             }
             con.close();
         } catch (SQLException ex) {
-            System.out.println("Erro ao consultar registros"+ex);
+            System.out.println( "Erro ao Carregar Items Comida - Items_DAO.CarregarDados_Comida-"+ex);
             throw new RuntimeException(ex);
         }
             
@@ -144,7 +146,7 @@ public class Item_DAO {
         Menu_Item item = new Menu_Item();
         
         try {
-            stmt = con.prepareStatement("SELECT nome, preco FROM sql10326340.ITEM WHERE id_item = ?");  
+            stmt = con.prepareStatement("SELECT nome, preco FROM sql10326340.item WHERE id_item = ?");  
             stmt.setInt(1,id);
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             
@@ -157,7 +159,7 @@ public class Item_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            System.out.println("Erro ao consultar registros"+ex);
+            System.out.println( "Erro ao Carregar Items - Items_DAO.CarregarDados_Items-"+ex);
             throw new RuntimeException(ex);
         }
         return item;

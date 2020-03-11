@@ -6,6 +6,7 @@
 package main;
 
 import Screens.Cadastros.Login;
+import Screens.Main.Main_telaGerente;
 import javax.swing.JFrame;
 
 /**
@@ -13,7 +14,7 @@ import javax.swing.JFrame;
  * @author qwerty
  */
 public class Main {
-    static JFrame mainScreen;
+    static JFrame mainScreen, restaurantScreen;
     /**
      * @param args the command line arguments
      */
@@ -22,8 +23,11 @@ public class Main {
         if(mainScreen == null){
             mainScreen = new Login();
             mainScreen.setLocationRelativeTo(null);
+            restaurantScreen = new Main_telaGerente();
+            restaurantScreen.setLocationRelativeTo(null);
         }
         mainScreen.setVisible(true);
+        restaurantScreen.setVisible(true);
     }
     
 }

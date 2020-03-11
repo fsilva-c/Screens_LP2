@@ -355,6 +355,8 @@ public class Conta extends javax.swing.JFrame {
                 pedido.Excluir();
             } 
         }
+        conta.CarregarItems();
+        CarregarPedidos();
         JOptionPane.showMessageDialog(null, "Pedidos abertos foram excluidos da conta");
         
 

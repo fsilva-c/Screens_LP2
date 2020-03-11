@@ -34,10 +34,10 @@ public class Bill_DAO {
         PreparedStatement stmt = null;
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("UPDATE sql10326340.CONTA(cpf,data,valor,pagamento)VALUES(?,?,?,?) WHERE id = ?");
+            stmt = con.prepareStatement("UPDATE sql10326340.conta SET cpf = ?, data = ?, valor = ?, pagamento = ? WHERE id = ?");
             stmt.setString(1,conta.getClient().getCpf());
             stmt.setString(2,conta.getDate());
-            stmt.setFloat(3,conta.CalcBill());
+            stmt.setFloat(3,conta.getValue());
             stmt.setString(4,conta.getPayment_method());
             stmt.setInt(5,conta.getId());
             
@@ -48,7 +48,7 @@ public class Bill_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir registro"+ex);
+            System.out.println( "Erro ao qtualizar Conta - Bill_DAO.Atualizar -"+ex);
             throw new RuntimeException(ex);
             //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
         }
@@ -62,7 +62,7 @@ public class Bill_DAO {
         PreparedStatement stmt = null;
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("INSERT INTO sql10326340.CONTA(cpf,data,valor,pagamento)VALUES(?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            stmt = con.prepareStatement("INSERT INTO sql10326340.conta(cpf,data,valor,pagamento)VALUES(?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1,conta.getClient().getCpf());
             stmt.setString(2,"NONE");
             stmt.setFloat(3,0.0f);
@@ -79,7 +79,7 @@ public class Bill_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir registro"+ex);
+            System.out.println( "Erro ao Inicializar Conta - Bill_DAO.Pre_Inserir -"+ex);
             throw new RuntimeException(ex);
             //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
         }
@@ -92,7 +92,7 @@ public class Bill_DAO {
         
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("UPDATE sql10326340.CONTA SET pagamento = ? WHERE id = ?");
+            stmt = con.prepareStatement("UPDATE sql10326340.conta SET pagamento = ? WHERE id = ?");
             stmt.setString(1,conta.getPayment_method());
             stmt.setInt(2,conta.getId());
             
@@ -103,7 +103,37 @@ public class Bill_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar registro"+ex);
+            System.out.println( "Erro ao Atualizar Campo Pagamento - Bill_DAO.Ataulizar_Pagamento-"+ex);
+            throw new RuntimeException(ex);
+            //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
+        }
+        return true;
+    }
+    
+    public boolean Excluir(Bill c1){
+        JOptionPane.showMessageDialog(null, "Excluindo primeiro pedido" + Integer.toString(c1.getId()));
+        Order_DAO order_dao = new Order_DAO();
+        List<Order> pedidos = order_dao.Carregar_pConta(c1.getId());
+        for(Order pedido : pedidos){
+            JOptionPane.showMessageDialog(null, "Excluindo primeiro pedido" + Integer.toString(pedido.getId()));
+            pedido.Excluir();
+        }
+        JOptionPane.showMessageDialog(null, "Pedidos foram excluidos da conta");
+        this.con = new Conectar().conectar();
+        PreparedStatement stmt = null;
+        try {
+            //Passagem de parametros
+            stmt = con.prepareStatement("DELETE FROM sql10326340.conta WHERE cpf = ?");
+            stmt.setString(1,c1.getClient().getCpf());
+            
+            //Execução da SQL
+            stmt.executeUpdate();
+            
+            con.close();
+            stmt.close();
+            
+        } catch (SQLException ex) {
+            System.out.println( "Erro ao Excluir Conta - Bill_DAO.Excluir -"+ex);
             throw new RuntimeException(ex);
             //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
         }
@@ -117,7 +147,7 @@ public class Bill_DAO {
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("SELECT cpf FROM sql10326340.CONTA WHERE id = ?");   //Selecione todas as colunas da tabela produto
+            stmt = con.prepareStatement("SELECT cpf FROM sql10326340.conta WHERE id = ?");   //Selecione todas as colunas da tabela produto
             stmt.setInt(1,id_conta);
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             
@@ -130,7 +160,7 @@ public class Bill_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            System.out.println( "Erro ao Buscar Cliente - Bill_DAO.BuscarClient -"+ex);
             throw new RuntimeException(ex);
         }             
        
@@ -158,7 +188,7 @@ public class Bill_DAO {
         List<Bill> contas = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.CONTA");   //Selecione todas as colunas da tabela produto
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.conta");   //Selecione todas as colunas da tabela produto
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             
             while (rs.next()){
@@ -176,7 +206,7 @@ public class Bill_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            System.out.println( "Erro ao Carregar Contas - Bill_DAO.CrregarContas -"+ex);
             throw new RuntimeException(ex);
         }
  
@@ -190,12 +220,13 @@ public class Bill_DAO {
         List<Bill> contas = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.CONTA WHERE cpf = ?");   //Selecione todas as colunas da tabela produto
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.conta WHERE cpf = ?");   //Selecione todas as colunas da tabela produto
             stmt.setString(1,c1.getCpf());
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             
             while (rs.next()){
                 Bill conta = new Bill(c1);
+                conta.setId(rs.getInt("id"));
                 conta.setDate(rs.getString("data"));
                 conta.setValue(rs.getFloat("valor"));
                 conta.setPayment_method(rs.getString("pagamento"));
@@ -207,7 +238,7 @@ public class Bill_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            System.out.println( "Erro ao Carregar Contas por CPF - Bill_DAO.CarregarContas_pCPF-"+ex);
             throw new RuntimeException(ex);
         }
  

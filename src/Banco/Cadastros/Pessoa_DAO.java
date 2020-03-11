@@ -7,6 +7,7 @@ package Banco.Cadastros;
 
 import Banco.Conexao.Conectar;
 import Negocio.Pessoas.Client;
+import Negocio.Servicos.Bill;
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +30,7 @@ public class Pessoa_DAO {
     
     public boolean Inserir(Client c0){
         
-       String sql = "INSERT INTO sql10326340.CLIENTE(cpf, nome, email, senha)VALUES(?, ?, ?, MD5(?))"; 
+       String sql = "INSERT INTO sql10326340.cliente(cpf, nome, email, senha)VALUES(?, ?, ?, MD5(?))"; 
        
        try {     
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -45,8 +46,9 @@ public class Pessoa_DAO {
             con.close();
             return true;
             
-        }catch (SQLException u) {        
-            throw new RuntimeException(u);        
+        }catch (SQLException ex) {
+            System.out.println( "Erro ao Inserir cliente - Pessoa_DAO.Inserir-"+ex);
+            throw new RuntimeException(ex);        
         } 
     }
     
@@ -57,7 +59,7 @@ public class Pessoa_DAO {
         boolean check = false;
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.CLIENTE WHERE cpf = ?");  
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.cliente WHERE cpf = ?");  
             stmt.setString(1,cpf);
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             
@@ -73,7 +75,7 @@ public class Pessoa_DAO {
             rs.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            System.out.println( "Erro ao Buscar cliente por CPF- Pessoa_DAO.Buscar_pCpf -"+ex);
             throw new RuntimeException(ex);
         }
         if(check)
@@ -89,11 +91,11 @@ public class Pessoa_DAO {
         String campo;
         
         if(c1.getCpf().equals("")){
-            sql = "SELECT cpf, nome, email FROM sql10326340.CLIENTE WHERE nome LIKE ?";
+            sql = "SELECT cpf, nome, email FROM sql10326340.cliente WHERE nome LIKE ?";
             campo = c1.getName();
         }
         else{
-            sql = "SELECT cpf, nome, email FROM sql10326340.CLIENTE WHERE cpf LIKE ?";
+            sql = "SELECT cpf, nome, email FROM sql10326340.cliente WHERE cpf LIKE ?";
             campo = c1.getCpf();
         }
         
@@ -116,7 +118,7 @@ public class Pessoa_DAO {
             }
             con.close();
         } catch (SQLException ex) {
-            System.out.println("Erro ao consultar registros"+ex);
+            System.out.println( "Erro ao Carreagr todos os clientes - Pessoa_DAO.CarregarDados-"+ex);
             throw new RuntimeException(ex);   
         }
         
@@ -129,7 +131,7 @@ public class Pessoa_DAO {
         
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("UPDATE sql10326340.CLIENTE SET nome = ?,email = ? WHERE cpf = ?");
+            stmt = con.prepareStatement("UPDATE sql10326340.cliente SET nome = ?,email = ? WHERE cpf = ?");
             stmt.setString(1,c1.getName());
             stmt.setString(2,c1.getEmail());
             stmt.setString(3, c1.getCpf());
@@ -140,7 +142,37 @@ public class Pessoa_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar registro"+ex);
+            System.out.println( "Erro ao Atualizar cliente - Pessoa_DAO.Atualizar-"+ex);
+            throw new RuntimeException(ex);
+            //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
+        }
+        return true;
+    }
+    
+    public boolean Excluir(Client c1){
+        Bonus_DAO bonus_dao = new Bonus_DAO();
+        bonus_dao.Excluir_pCpf(c1);
+        Bill_DAO bill_dao = new Bill_DAO();
+        List<Bill> contas = bill_dao.CarregarContas_pCPF(c1);
+        for(Bill conta : contas){
+            conta.Excluir();
+        }
+        
+        this.con = new Conectar().conectar();
+        PreparedStatement stmt = null;
+        try {
+            //Passagem de parametros
+            stmt = con.prepareStatement("DELETE FROM sql10326340.cliente WHERE cpf = ?");
+            stmt.setString(1,c1.getCpf());
+            
+            //Execução da SQL
+            stmt.executeUpdate();
+            
+            con.close();
+            stmt.close();
+            
+        } catch (SQLException ex) {
+            System.out.println( "Erro ao Excluir cliente - Pessoa_DAO.Excluir-"+ex);
             throw new RuntimeException(ex);
             //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
         }
@@ -153,7 +185,7 @@ public class Pessoa_DAO {
         
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("UPDATE sql10326340.CLIENTE SET senha = MD5(?) WHERE cpf = ?");
+            stmt = con.prepareStatement("UPDATE sql10326340.cliente SET senha = MD5(?) WHERE cpf = ?");
             stmt.setString(1,c1.getPswd());
             stmt.setString(2, c1.getCpf());
             
@@ -164,7 +196,7 @@ public class Pessoa_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar registro"+ex);
+            System.out.println( "Erro ao Alterar senha cliente - Pessoa_DAO.Alterar_Senha-"+ex);
             throw new RuntimeException(ex);
             //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
         }
@@ -177,7 +209,7 @@ public class Pessoa_DAO {
         boolean check = false;
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.CLIENTE WHERE cpf = ? and senha = MD5(?)");  
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.cliente WHERE cpf = ? and senha = MD5(?)");  
             stmt.setString(1,c1.getCpf());
             stmt.setString(2,c1.getPswd());
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
@@ -192,7 +224,7 @@ public class Pessoa_DAO {
             rs.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            System.out.println( "Erro ao Logar cliente - Pessoa_DAO.Login -"+ex);
             throw new RuntimeException(ex);
         }
         if(check)

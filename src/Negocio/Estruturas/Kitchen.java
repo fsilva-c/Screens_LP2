@@ -14,27 +14,7 @@ public class Kitchen {
     public Kitchen() {
         Order_DAO order_dao = new Order_DAO();
         comandas = order_dao.Carregar();
-    }
-    
-    public void PrintClosedOrders(){
-        Order order;
-        for (Order comanda : comandas) {
-            order = comanda;
-            if((order.getStatus()).equals("Closed")){
-                order.PrintOrder();
-            }
-        } 
-    }
-    
-        public void PrintOpenedOrders(){
-        Order order;
-        for (Order comanda : comandas) {
-            order = comanda;
-            if((order.getStatus()).equals("Opened")){
-                order.PrintOrder();
-            }
-        } 
-    }
+    }  
         
     public boolean CloseComandas(){
             Order order;

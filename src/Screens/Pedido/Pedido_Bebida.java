@@ -389,7 +389,7 @@ public class Pedido_Bebida extends javax.swing.JFrame {
         Menu_Item prod = new Menu_Item();
         prod.setId(bebidas.get(tabela_bebidas.getSelectedRow()).getId());
         prod.setName(text_desc.getText());
-        prod.setPrice(Float.parseFloat(text_valor.getText()));
+        prod.setPrice(bebidas.get(tabela_bebidas.getSelectedRow()).getPrice());
         int qntd = (Integer.parseInt(spinner_qntd.getValue().toString()));
         Order_Item item = new Order_Item(prod, qntd);
         if(tela_report != null){

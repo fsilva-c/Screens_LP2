@@ -19,7 +19,7 @@ public class Login extends javax.swing.JFrame {
     
     int xMouse;
     int yMouse;
-    
+    Client usuario = new Client();
     /**
      * Creates new form login
      * @param frame
@@ -311,18 +311,18 @@ public class Login extends javax.swing.JFrame {
     private void botao_entrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_entrarActionPerformed
         // TODO add your handling code here:
         
-        Client c1 = new Client();
-        c1.setCpf(text_cpf.getText());
-        c1.setPswd(texto_senha.getText());
+
+        usuario.setCpf(text_cpf.getText());
+        usuario.setPswd(texto_senha.getText());
         
-        if(c1.Login() != null){
+        if(usuario.Login() != null){
             JOptionPane.showMessageDialog(null, "Logado com sucesso!");
             Login.this.dispose();
-            JFrame tela_principal = new Main_telaCliente(c1);
+            JFrame tela_principal = new Main_telaCliente(usuario);
             tela_principal.setVisible(true);
             tela_principal.setLocationRelativeTo(null);
         }else
-            JOptionPane.showMessageDialog(null, "Operação inválida!");
+            JOptionPane.showMessageDialog(null, "Email ou Senha Incorretos - Tente novamente ou Registre-se");
     }//GEN-LAST:event_botao_entrarActionPerformed
 
     
@@ -351,12 +351,17 @@ public class Login extends javax.swing.JFrame {
     private void label_lembrarmeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_lembrarmeMouseClicked
         // TODO add your handling code here:
         if(frameFilho == null){
-            frameFilho = new Cadastro_Pessoa();
+            frameFilho = new Cadastro_Pessoa(this);
             frameFilho.setLocationRelativeTo(null);
         }
         frameFilho.setVisible(true);
     }//GEN-LAST:event_label_lembrarmeMouseClicked
-
+    
+    public void SetCampos(Client c1){
+        text_cpf.setText(c1.getCpf());
+        texto_senha.setText(c1.getPswd());
+    }
+    
     /**
      * @param args the command line arguments
      */

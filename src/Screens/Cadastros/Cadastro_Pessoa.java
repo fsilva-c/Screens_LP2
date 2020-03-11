@@ -16,12 +16,18 @@ import javax.swing.JOptionPane;
 public class Cadastro_Pessoa extends javax.swing.JFrame {
     int xMouse;
     int yMouse;
-
+    private Client usuario = new Client();
+    private Login tela_report = null;
 
     /**
      * Creates new form cad_pessoa
      */
     public Cadastro_Pessoa() {
+        initComponents();
+    }
+    
+    public Cadastro_Pessoa(Login l1) {
+        this.tela_report = l1;
         initComponents();
     }
 
@@ -370,20 +376,18 @@ public class Cadastro_Pessoa extends javax.swing.JFrame {
 
     private void label_salvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_salvarMouseClicked
         // TODO add your handling code here: 
-        Client c1 = new Client();
-        c1.setCpf(text_cpf.getText());
-        c1.setName(textoNome.getText());
-        c1.setEmail(textoEmail.getText());
-        c1.setPswd(textoSenha1.getText());
+        usuario.setCpf(text_cpf.getText());
+        usuario.setName(textoNome.getText());
+        usuario.setEmail(textoEmail.getText());
+        usuario.setPswd(textoSenha1.getText());
         
-        Bonus bonus = new Bonus();
-        bonus.setDate("00/00/0000");
-        bonus.setSituacao(0);
-        bonus.setValue(0.0f);
         
-        if(c1.Inserir()){
+        if(usuario.Inserir()){
             //Inserir campo bonus base
-            JOptionPane.showMessageDialog(null, "Usuário " + textoNome.getText() + " inserido com sucesso! ");
+            JOptionPane.showMessageDialog(null, "Usuário " + textoNome.getText() + " cadastrado com sucesso! ");
+            tela_report.SetCampos(usuario);
+            Cadastro_Pessoa.this.dispose();
+
         }
         else
             JOptionPane.showMessageDialog(null, "Não foi possível completar a operação!");

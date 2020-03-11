@@ -78,6 +78,11 @@ public class Client extends Person{
        Pessoa_DAO pessoa_dao = new Pessoa_DAO();
        return pessoa_dao.Atualizar(this);
    }
+   
+   public boolean Excluir(){
+       Pessoa_DAO pessoa_dao = new Pessoa_DAO();
+       return pessoa_dao.Excluir(this);
+   }
   
     public boolean Alterar_Senha(){
        Pessoa_DAO pessoa_dao = new Pessoa_DAO();

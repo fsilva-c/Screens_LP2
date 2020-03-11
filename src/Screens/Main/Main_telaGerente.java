@@ -52,13 +52,11 @@ public class Main_telaGerente extends javax.swing.JFrame {
         label_iconCardapio = new javax.swing.JLabel();
         label_cozinha = new javax.swing.JLabel();
         label_iconSair = new javax.swing.JLabel();
-        label_sair = new javax.swing.JLabel();
         label_cardapio1 = new javax.swing.JLabel();
         label_iconBonus = new javax.swing.JLabel();
         label_bonus = new javax.swing.JLabel();
         label_iconCozinha = new javax.swing.JLabel();
         label_DadosCadastrais = new javax.swing.JLabel();
-        label_dadosCadastrais1 = new javax.swing.JLabel();
         label_iconCozinha1 = new javax.swing.JLabel();
         label_cozinha1 = new javax.swing.JLabel();
         label_dadosCadastrais2 = new javax.swing.JLabel();
@@ -124,7 +122,7 @@ public class Main_telaGerente extends javax.swing.JFrame {
         panel_minimizar.setLayout(panel_minimizarLayout);
         panel_minimizarLayout.setHorizontalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,10 +147,10 @@ public class Main_telaGerente extends javax.swing.JFrame {
         );
         panel_barraTarefasLayout.setVerticalGroup(
             panel_barraTarefasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_fechar, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+            .addComponent(panel_fechar, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
             .addComponent(panel_minimizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_barraTarefasLayout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -177,7 +175,7 @@ public class Main_telaGerente extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         label_iconGerItens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-ingredientes-96.png"))); // NOI18N
@@ -207,10 +205,6 @@ public class Main_telaGerente extends javax.swing.JFrame {
             }
         });
 
-        label_sair.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_sair.setForeground(new java.awt.Color(204, 204, 204));
-        label_sair.setText("Gerente");
-
         label_cardapio1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_cardapio1.setForeground(new java.awt.Color(204, 204, 204));
         label_cardapio1.setText("Cardápio");
@@ -238,9 +232,6 @@ public class Main_telaGerente extends javax.swing.JFrame {
         label_DadosCadastrais.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         label_DadosCadastrais.setForeground(new java.awt.Color(204, 204, 204));
         label_DadosCadastrais.setText("Clientes");
-
-        label_dadosCadastrais1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-empresária-96.png"))); // NOI18N
-        label_dadosCadastrais1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_iconCozinha1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-fogão-a-gás-96.png"))); // NOI18N
         label_iconCozinha1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -283,55 +274,57 @@ public class Main_telaGerente extends javax.swing.JFrame {
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                            .addComponent(label_gerItens)
-                            .addGap(87, 87, 87))
-                        .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                            .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(label_iconBonus)
-                                .addComponent(label_iconGerItens)
-                                .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                    .addGap(12, 12, 12)
-                                    .addComponent(label_sair))
-                                .addComponent(label_dadosCadastrais1))
-                            .addGap(55, 55, 55)))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(label_bonus)
-                        .addGap(78, 78, 78)))
+                        .addGap(46, 46, 46)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(label_gerItens)
+                                .addGap(32, 32, 32))
+                            .addComponent(label_iconBonus)
+                            .addComponent(label_iconGerItens)))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(label_bonus)))
+                .addGap(57, 57, 57)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(label_cardapio1))
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(label_cozinha1))
+                    .addComponent(label_iconCardapio)
+                    .addComponent(label_iconCozinha))
+                .addGap(53, 53, 53)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(label_iconCozinha1)
+                                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                        .addGap(19, 19, 19)
+                                        .addComponent(label_cozinha)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(label_fornecedor)
+                                    .addComponent(label_iconFornecedor)))
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(label_dadosCadastrais2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(label_iconSair)
+                                .addGap(4, 4, 4)))
+                        .addGap(55, 55, 55))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(label_DadosCadastrais)
-                        .addGap(95, 95, 95)
-                        .addComponent(label_sair1))
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_dadosCadastrais2)
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(label_cardapio1))
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(label_cozinha1))
-                            .addComponent(label_iconCardapio)
-                            .addComponent(label_iconCozinha))
-                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label_fornecedor)
-                                    .addComponent(label_iconFornecedor)
-                                    .addComponent(label_iconSair)
-                                    .addComponent(label_iconCozinha1)))
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(label_cozinha)))))
-                .addContainerGap(63, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label_sair1)
+                        .addGap(102, 102, 102))))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,40 +340,40 @@ public class Main_telaGerente extends javax.swing.JFrame {
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label_cardapio1)
                             .addComponent(label_gerItens)))
-                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(label_iconCozinha1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(label_cozinha)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                            .addComponent(label_dadosCadastrais1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_iconFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(label_sair))
+                            .addComponent(label_fornecedor))
                         .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                            .addComponent(label_iconCozinha, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(label_cozinha1)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(label_iconFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label_fornecedor)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(label_iconCozinha1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(6, 6, 6)
+                            .addComponent(label_cozinha))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label_iconBonus)
-                            .addComponent(label_dadosCadastrais2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(label_iconCozinha, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(label_iconBonus)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_bonus)
-                            .addComponent(label_DadosCadastrais)))
+                            .addComponent(label_cozinha1)
+                            .addComponent(label_bonus))
+                        .addGap(165, 165, 165))
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                        .addComponent(label_iconSair)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label_sair1)))
-                .addGap(33, 33, 33))
+                        .addGap(12, 12, 12)
+                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_iconSair)
+                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(label_dadosCadastrais2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(label_DadosCadastrais)
+                                    .addComponent(label_sair1))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -391,7 +384,7 @@ public class Main_telaGerente extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -520,7 +513,6 @@ public class Main_telaGerente extends javax.swing.JFrame {
     private javax.swing.JLabel label_cardapio1;
     private javax.swing.JLabel label_cozinha;
     private javax.swing.JLabel label_cozinha1;
-    private javax.swing.JLabel label_dadosCadastrais1;
     private javax.swing.JLabel label_dadosCadastrais2;
     private javax.swing.JLabel label_fechar;
     private javax.swing.JLabel label_fornecedor;
@@ -533,7 +525,6 @@ public class Main_telaGerente extends javax.swing.JFrame {
     private javax.swing.JLabel label_iconGerItens;
     private javax.swing.JLabel label_iconSair;
     private javax.swing.JLabel label_minimizar;
-    private javax.swing.JLabel label_sair;
     private javax.swing.JLabel label_sair1;
     private javax.swing.JPanel panel_barraTarefas;
     private javax.swing.JPanel panel_fechar;

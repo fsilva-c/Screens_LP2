@@ -1,21 +1,16 @@
 package Negocio.Servicos;
 
 import Banco.Cadastros.Order_DAO;
-import Negocio.Pratos.Menu_Item;
 import java.util.ArrayList;
 
 public class Order {
     private int id;
-    private static int contador = 1;
-    private int numero;
     ArrayList<Order_Item> items;
-    private String status;
+    private String status = "Opened";
     private float value;
     private int id_conta;
 
     public Order() {
-        status = "Opened";
-        numero = contador++;
         items = new ArrayList<Order_Item>();
     }
     
@@ -36,31 +31,13 @@ public class Order {
     }
     
     public float CalcValue(){
-        Menu_Item item;
+        Order_Item item;
         value = 0.0f;
         for(int index = 0; index < items.size(); index++){
-            item = (items.get(index)).getItem();
+            item = (items.get(index));
             value += item.getPrice();
         }
         return value;
-    }
-
-    public void PrintOrder(){
-        System.out.println(numero);
-        
-        Menu_Item item;
-        for(int index = 0; index < items.size(); index++){
-            item = (items.get(index)).getItem();
-            item.PrintItem();
-        }
-    }
-    
-    public int getNumero(){
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
     }
 
     public String getStatus() {

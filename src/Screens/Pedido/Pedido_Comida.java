@@ -384,7 +384,7 @@ public class Pedido_Comida extends javax.swing.JFrame {
         Menu_Item prod = new Menu_Item();
         prod.setId(comidas.get(tabela_comidas.getSelectedRow()).getId());
         prod.setName(text_desc.getText());
-        prod.setPrice(Float.parseFloat(text_valor.getText()));
+        prod.setPrice(comidas.get(tabela_comidas.getSelectedRow()).getPrice());
         int qntd = (Integer.parseInt(spinner_qntd.getValue().toString()));
         Order_Item item = new Order_Item(prod, qntd);
         if(tela_report != null){

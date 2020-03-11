@@ -7,6 +7,9 @@ package Screens.Cadastros;
 
 import Negocio.Pratos.Drink;
 import Negocio.Pratos.Food;
+import Negocio.Servicos.Provider;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +19,7 @@ import javax.swing.JOptionPane;
 public class Cadastro_Item extends javax.swing.JFrame {
     int xMouse;
     int yMouse;
+    Provider fornecedor= new Provider();
     
     private short tp_item = -1;
 
@@ -30,7 +34,8 @@ public class Cadastro_Item extends javax.swing.JFrame {
         buttonGroup1.add(button_bebida);
         buttonGroup1.add(button_comida);
         
-        texto_cnpj.setEnabled(false);
+        icon_pesquisarFornecedor.setEnabled(false);
+        lista_fornecedores.setVisible(false);
         texto_descricao.setEnabled(false);
         icon_pesquisarFornecedor.setEnabled(false);
     }
@@ -62,12 +67,13 @@ public class Cadastro_Item extends javax.swing.JFrame {
         label_fornecedor = new javax.swing.JLabel();
         label_desc1 = new javax.swing.JLabel();
         icon_pesquisarFornecedor = new javax.swing.JLabel();
-        texto_cnpj = new javax.swing.JFormattedTextField();
         barra_ferramentas = new javax.swing.JPanel();
         panel_fechar = new javax.swing.JPanel();
         label_fechar = new javax.swing.JLabel();
         panel_minimizar = new javax.swing.JPanel();
         label_minimizar = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lista_fornecedores = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -106,7 +112,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
         label_esqueciSenha1.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_esqueciSenha1.setForeground(new java.awt.Color(153, 153, 153));
         label_esqueciSenha1.setText("Restaurante Lombinho de Porco II");
-        label_esqueciSenha1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        label_esqueciSenha1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_cadProduto.setBackground(new java.awt.Color(204, 204, 204));
         label_cadProduto.setFont(new java.awt.Font("Ubuntu Light", 0, 20)); // NOI18N
@@ -120,16 +126,16 @@ public class Cadastro_Item extends javax.swing.JFrame {
             .addGroup(panel_iconLayout.createSequentialGroup()
                 .addGroup(panel_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_iconLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(29, Short.MAX_VALUE)
                         .addComponent(label_esqueciSenha1))
                     .addGroup(panel_iconLayout.createSequentialGroup()
                         .addGroup(panel_iconLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panel_iconLayout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(label_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panel_iconLayout.createSequentialGroup()
                                 .addGap(15, 15, 15)
-                                .addComponent(label_cadProduto)))
+                                .addComponent(label_cadProduto))
+                            .addGroup(panel_iconLayout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(label_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(panel_iconLayout.createSequentialGroup()
@@ -146,7 +152,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
                 .addComponent(label_esqueciSenha1)
                 .addGap(18, 18, 18)
                 .addComponent(label_icon, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_cadProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(button_bebida)
@@ -169,7 +175,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-salvar-35.png"))); // NOI18N
         jLabel5.setText("Salvar");
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
@@ -190,14 +196,12 @@ public class Cadastro_Item extends javax.swing.JFrame {
         label_desc1.setText("Descrição");
 
         icon_pesquisarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-pesquisar-25.png"))); // NOI18N
-        icon_pesquisarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        texto_cnpj.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
-        try {
-            texto_cnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        icon_pesquisarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        icon_pesquisarFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                icon_pesquisarFornecedorMouseClicked(evt);
+            }
+        });
 
         barra_ferramentas.setBackground(new java.awt.Color(255, 255, 255));
         barra_ferramentas.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -253,7 +257,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
@@ -271,6 +275,8 @@ public class Cadastro_Item extends javax.swing.JFrame {
             .addComponent(panel_fechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(panel_minimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        jScrollPane2.setViewportView(lista_fornecedores);
 
         javax.swing.GroupLayout text_precoLayout = new javax.swing.GroupLayout(text_preco);
         text_preco.setLayout(text_precoLayout);
@@ -298,11 +304,11 @@ public class Cadastro_Item extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(text_precoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1)
-                                    .addGroup(text_precoLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, text_precoLayout.createSequentialGroup()
+                                        .addGap(0, 4, Short.MAX_VALUE)
                                         .addComponent(icon_pesquisarFornecedor)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(texto_cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(13, 13, 13))
                     .addGroup(text_precoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -327,12 +333,12 @@ public class Cadastro_Item extends javax.swing.JFrame {
                 .addGroup(text_precoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_desc1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(text_precoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label_fornecedor)
                     .addComponent(icon_pesquisarFornecedor)
-                    .addComponent(texto_cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addContainerGap())
         );
@@ -345,7 +351,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
     
     private void button_bebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_bebidaActionPerformed
         // TODO add your handling code here:
-        texto_cnpj.setEnabled(true); 
+        lista_fornecedores.setEnabled(true);
         icon_pesquisarFornecedor.setEnabled(true);
         
         texto_descricao.setEnabled(false);
@@ -356,11 +362,11 @@ public class Cadastro_Item extends javax.swing.JFrame {
 
     private void button_comidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_comidaActionPerformed
         // TODO add your handling code here:
-        texto_cnpj.setEnabled(false); 
+        lista_fornecedores.setVisible(false);
         icon_pesquisarFornecedor.setEnabled(false);
         
         texto_descricao.setEnabled(true);
-        texto_cnpj.setText("");
+        
         
         tp_item = 2;
     }//GEN-LAST:event_button_comidaActionPerformed
@@ -394,7 +400,10 @@ public class Cadastro_Item extends javax.swing.JFrame {
             Drink drink0 = new Drink();
             drink0.setName(texto_nome.getText());
             drink0.setPrice(valor);
-            drink0.setProvider(texto_cnpj.getText());
+            List<Provider> fornecedores = fornecedor.Carregar();
+            fornecedores.get(lista_fornecedores.getSelectedIndex()).getCnpj();
+            drink0.setProvider(fornecedores.get(lista_fornecedores.getSelectedIndex()).getCnpj());
+
             
             
             if(drink0.Inserir()){
@@ -403,7 +412,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
                 //limpeza dos campos da tela
                 texto_nome.setText("");
                 texto_preco.setText("");
-                texto_cnpj.setText("");
+                lista_fornecedores.setVisible(false);
                 
             }else
                 JOptionPane.showMessageDialog(null, "Não foi possível completar a operação!");
@@ -431,6 +440,16 @@ public class Cadastro_Item extends javax.swing.JFrame {
         //else
             //JOptionPane.showMessageDialog(null, "Opcão do tipo de item não foi especificada.");
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void icon_pesquisarFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_icon_pesquisarFornecedorMouseClicked
+        // TODO add your handling code here:
+        DefaultListModel model = new DefaultListModel(); 
+        lista_fornecedores.setModel(model); 
+        lista_fornecedores.setVisible(true);
+        for (Provider f1 : fornecedor.Carregar()){
+        model.addElement(f1.getNome());
+        }
+    }//GEN-LAST:event_icon_pesquisarFornecedorMouseClicked
 
     
     /**
@@ -478,6 +497,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
     private javax.swing.JLabel icon_pesquisarFornecedor;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel label_cadProduto;
     private javax.swing.JLabel label_desc1;
     private javax.swing.JLabel label_esqueciSenha1;
@@ -487,11 +507,11 @@ public class Cadastro_Item extends javax.swing.JFrame {
     private javax.swing.JLabel label_minimizar;
     private javax.swing.JLabel label_nome;
     private javax.swing.JLabel label_preco;
+    private javax.swing.JList<String> lista_fornecedores;
     private javax.swing.JPanel panel_fechar;
     private keeptoo.KGradientPanel panel_icon;
     private javax.swing.JPanel panel_minimizar;
     private javax.swing.JPanel text_preco;
-    private javax.swing.JFormattedTextField texto_cnpj;
     private javax.swing.JTextArea texto_descricao;
     private javax.swing.JTextField texto_nome;
     private javax.swing.JTextField texto_preco;

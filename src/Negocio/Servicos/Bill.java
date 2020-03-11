@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bill{
-    private static int contador = 1;
-    private int numero;
     private Client client;
     private String date;
     private float value = 0.0f;
@@ -18,20 +16,10 @@ public class Bill{
 
     public Bill(Client client) {
         this.client = client;
-        numero = contador++;
         Bill_DAO bill_dao = new Bill_DAO();
         bill_dao.Pre_Inserir(this);
     }
 
-    public void PrintBill(){
-        System.out.println(numero);
-        System.out.println(date);
-        client.getCpf();
-        for(Order order : orders)
-            order.PrintOrder();
-        System.out.println(payment_method);
-        System.out.println(value);
-    }
     
     public float CalcBill(){
         for(Order order : orders)
@@ -47,16 +35,6 @@ public class Bill{
     public void AddItem(Order pedido){
         orders.add(pedido);
     }
-    /*  Metodo inserir da classe Order_Item
-    public boolean MakeOrder(Menu_Item item, int quantity){
-        if(payment_method == null){
-            //Menu.PrintMenu(); Responsabilidade da interface grafica
-            Order_Item new_item = new Order_Item(item, quantity);
-            order.AddItem(new_item);
-        }
-        return true;
-    }
-    */
        
     public boolean CloseBill(String payment_method){
         System.out.println(CalcBill());
@@ -113,14 +91,6 @@ public class Bill{
         this.id = id;
     }
 
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
     public List<Order> getOrders() {
         return orders;
     }
@@ -152,6 +122,11 @@ public class Bill{
     public boolean Atualizar(){
         Bill_DAO bill_dao = new Bill_DAO();
         return bill_dao.Atualizar(this);
+    }
+    
+    public boolean Excluir(){
+        Bill_DAO bill_dao = new Bill_DAO();
+        return bill_dao.Excluir(this);
     }
 }
 

@@ -5,9 +5,7 @@
  */
 package Screens.Pesquisa;
 
-import Banco.Cadastros.Pessoa_DAO;
 import Negocio.Pessoas.Client;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -157,6 +155,11 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
                 "CPF", "Nome", "Email"
             }
         ));
+        tabela_clientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabela_clientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela_clientes);
 
         label_pesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-pesquisar-35.png"))); // NOI18N
@@ -360,7 +363,19 @@ public class Pesquisa_Cliente extends javax.swing.JFrame {
 
     private void label_excluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_excluirMouseClicked
         // TODO add your handling code here:
+        if(tabela_clientes.getSelectedRow() != -1){
+            Client cliente = new Client();
+            cliente.setCpf(tabela_clientes.getValueAt(tabela_clientes.getSelectedRow(), 0).toString());
+            cliente.Excluir();
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um dos clientes listados");
+        }
     }//GEN-LAST:event_label_excluirMouseClicked
+
+    private void tabela_clientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabela_clientesMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_tabela_clientesMouseClicked
     
     public void Carregar_tabela(){
         DefaultTableModel modelo = (DefaultTableModel) tabela_clientes.getModel();

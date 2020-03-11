@@ -28,14 +28,14 @@ public class Realizar_Pedido extends javax.swing.JFrame {
      */
     public Realizar_Pedido() {
         initComponents();
-        text_num.setText(Integer.toString(pedido.getNumero()));
+        text_num.setText(Integer.toString(conta.getId()));
     }
     
     public Realizar_Pedido(Bill c1) {
         initComponents();
         this.conta = c1;
         pedido.setId_conta(conta.getId());
-        text_num.setText(Integer.toString(this.pedido.getNumero()));
+        text_num.setText(Integer.toString(conta.getId()));
     }
     
     public void Add_List(Order_Item prod){

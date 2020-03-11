@@ -446,7 +446,7 @@ public class Cozinha extends javax.swing.JFrame {
             pedido.setId(Integer.parseInt(text_id.getText()));
             pedido.setStatus("Closed");
             pedido.Atualizar();
-            
+            JOptionPane.showMessageDialog(null, "Comanda fechada - pedido concluido");
             //Atualizando campos da tela
             Carregar_Tabela();
             DefaultTableModel modelo = (DefaultTableModel) table_items.getModel();

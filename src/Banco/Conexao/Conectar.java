@@ -26,7 +26,7 @@ public class Conectar {
     public Connection conectar(){
         try{
             //return DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_restaurante","root", "123456");
-            return DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10326340","sql10326340", "UCNxlVgRFq");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_test","root", "123456");
             
 
         }catch (SQLException e) { 

@@ -296,6 +296,9 @@
                   <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;CPF&quot;, &quot;Nome&quot;, &quot;Email&quot;&#xa;    }&#xa;)" type="code"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabela_clientesMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -33,7 +33,7 @@ public class Bonus_DAO {
         PreparedStatement stmt = null;
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("INSERT INTO sql10326340.BONUS(cpf_cliente,valor,data,situacao)VALUES(?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO sql10326340.bonus(cpf_cliente,valor,data,situacao)VALUES(?,?,?,?)");
             stmt.setString(1,c1.getCpf());
             stmt.setFloat(2,bonus.getValue());
             stmt.setString(3,bonus.getDate());
@@ -46,7 +46,7 @@ public class Bonus_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao inserir registro"+ex);
+            System.out.println( "Erro ao Inserir Bonus - Bonus_DAO.Inserir -"+ex);
             throw new RuntimeException(ex);
             //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
         }
@@ -59,7 +59,7 @@ public class Bonus_DAO {
         
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("UPDATE sql10326340.BONUS SET situacao = ? WHERE id = ?");
+            stmt = con.prepareStatement("UPDATE sql10326340.bonus SET situacao = ? WHERE id = ?");
             stmt.setInt(1,1);
             stmt.setInt(2,bonus.getId());
             
@@ -70,13 +70,34 @@ public class Bonus_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar registro"+ex);
+            System.out.println( "Erro ao atualizar identificador de uso - Bonus_DAO.Atualizar_Situacao -"+ex);
             throw new RuntimeException(ex);
             //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
         }
         return true;
     }
     
+    public boolean Excluir_pCpf(Client c1){
+        this.con = new Conectar().conectar();
+        PreparedStatement stmt = null;
+        try {
+            //Passagem de parametros
+            stmt = con.prepareStatement("DELETE FROM sql10326340.bonus WHERE cpf_cliente = ?");
+            stmt.setString(1,c1.getCpf());
+            
+            //Execução da SQL
+            stmt.executeUpdate();
+            
+            con.close();
+            stmt.close();
+            
+        } catch (SQLException ex) {
+            System.out.println( "Erro ao exluir bonus pelo cpf - Bonus_DAO.Excluir_pCpf -"+ex);
+            throw new RuntimeException(ex);
+            //Logger.getLogger(ProdutoDao.class.getName()).log(Level.SEVERE, null, ex); --> ex, acima
+        }
+        return true;
+    }
     //Resgatar bonus validos cliente por cpf
     public Bonus Buscar_pCpf(Client c1, String date){
         this.con = new Conectar().conectar();
@@ -85,7 +106,7 @@ public class Bonus_DAO {
         Bonus bonus = new Bonus();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.BONUS WHERE (cpf_cliente = ? AND data != ? AND situacao = 0)");  
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.bonus WHERE (cpf_cliente = ? AND data != ? AND situacao = 0)");  
             stmt.setString(1,c1.getCpf());
             stmt.setString(2,date);
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
@@ -103,7 +124,7 @@ public class Bonus_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            System.out.println( "Erro ao buscar bonus por cpf e data - Bonus_DAO.Buscar_pCpf-"+ex);
             throw new RuntimeException(ex);
         }
         return bonus;
@@ -117,7 +138,7 @@ public class Bonus_DAO {
         Bonus bonus = new Bonus();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.BONUS WHERE (cpf_cliente = ?  AND situacao = 0)");  
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.bonus WHERE (cpf_cliente = ?  AND situacao = 0)");  
             stmt.setString(1,c1.getCpf());
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             
@@ -134,7 +155,7 @@ public class Bonus_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            System.out.println( "Erro ao buscar bonus por cpf - Bonus_DAO.Buscar_pCpf-"+ex);
             throw new RuntimeException(ex);
         }
         return bonus;
@@ -149,7 +170,7 @@ public class Bonus_DAO {
         List<Client> clientes = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.BONUS");   //Selecione todas as colunas da tabela produto
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.bonus");   //Selecione todas as colunas da tabela produto
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             
             while (rs.next()){
@@ -167,7 +188,7 @@ public class Bonus_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            System.out.println( "Erro ao carregar Bonus - Bonus_DAO.CarregarBonus-"+ex);
             throw new RuntimeException(ex);
         }
  
@@ -181,7 +202,7 @@ public class Bonus_DAO {
         List<Bonus> bonus = new ArrayList<>();
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.BONUS WHERE cpf_cliente = ?");   //Selecione todas as colunas da tabela produto
+            stmt = con.prepareStatement("SELECT * FROM sql10326340.bonus WHERE cpf_cliente = ?");   //Selecione todas as colunas da tabela produto
             stmt.setString(1,c1.getCpf());
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             
@@ -197,7 +218,7 @@ public class Bonus_DAO {
             stmt.close();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao consultar registros"+ex);
+            System.out.println( "Erro ao carregar Bonus por cpf - Bonus_DAO.CarregarBonus_pCPF-"+ex);
             throw new RuntimeException(ex);
         }
  

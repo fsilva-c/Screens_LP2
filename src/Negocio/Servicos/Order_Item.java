@@ -37,5 +37,8 @@ public class Order_Item {
         this.id = id;
     }
     
+    public float getPrice(){
+        return item.getPrice()*quantity;
+    }
     
 }

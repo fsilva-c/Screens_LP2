@@ -6,6 +6,7 @@
 package Negocio.Servicos;
 
 import Banco.Cadastros.Fornecedor_DAO;
+import java.util.List;
 
 /**
  *
@@ -19,7 +20,9 @@ public class Provider {
         this.nome = nome;
         this.telefone = telefone;
     }
-
+    
+    public Provider(){}
+    
     public String getCnpj() {
         return cnpj;
     }
@@ -48,5 +51,9 @@ public class Provider {
         Fornecedor_DAO fornecedor_dao = new Fornecedor_DAO();
         return fornecedor_dao.Inserir(this);
     }
-
+    
+    public List<Provider> Carregar(){
+        Fornecedor_DAO fornecedor_dao = new Fornecedor_DAO();
+        return fornecedor_dao.Carregar();
+    }
 } //END CLASS
