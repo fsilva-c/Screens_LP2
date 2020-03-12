@@ -13,13 +13,19 @@ public class Bill{
     private String payment_method = "None";
     private List<Order> orders = new ArrayList<>();
     private int id;
-
+    
+    //Conta para insercao em BD - Ao ser instanciada prepara uma conta com campos nulos para ser atualizada conforme
+    //acoes do usuario
     public Bill(Client client) {
         this.client = client;
         Bill_DAO bill_dao = new Bill_DAO();
         bill_dao.Pre_Inserir(this);
     }
-
+    
+    //Conta referencia para consultas no BD
+    public Bill(){
+        
+    }
     
     public float CalcBill(){
         for(Order order : orders)

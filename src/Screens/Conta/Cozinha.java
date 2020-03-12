@@ -21,6 +21,10 @@ import javax.swing.table.TableRowSorter;
 public class Cozinha extends javax.swing.JFrame {
     int xMouse, yMouse;
     Kitchen cozinha = new Kitchen();
+    //Botao de verificacao de estado da tabela
+    //false - tabela de pedidos apresenta todos os pedidos
+    //true - tabela de pedidos apresenta pedidos abertos apenas
+    boolean show_opened = false;    
 
     /**
      * Creates new form Bonus
@@ -421,20 +425,11 @@ public class Cozinha extends javax.swing.JFrame {
 
     private void button_abertos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_abertos1ActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel modelo = (DefaultTableModel) table_pedidos.getModel();
-        modelo.setNumRows(0);
-        DefaultTableModel modelo1 = (DefaultTableModel) table_items.getModel();
-        modelo1.setNumRows(0);
-        
-        
-        for(Order pedido: cozinha.ComandasAbertas("Opened")){
-            Client c1 = cozinha.ClientePedido(pedido.getId_conta());            
-            modelo.addRow(new Object[]{
-                pedido.getId(),
-                c1.getName(),
-                pedido.getValue(),
-                pedido.getStatus(),
-            });
+        if(!show_opened)
+            show_opened = Carregar_Abertos();
+        else{
+            Carregar_Tabela();
+            show_opened = false;
         }
         
     }//GEN-LAST:event_button_abertos1ActionPerformed
@@ -448,9 +443,9 @@ public class Cozinha extends javax.swing.JFrame {
             pedido.Atualizar();
             JOptionPane.showMessageDialog(null, "Comanda fechada - pedido concluido");
             //Atualizando campos da tela
-            Carregar_Tabela();
             DefaultTableModel modelo = (DefaultTableModel) table_items.getModel();
             modelo.setNumRows(0);
+            Carregar_Tabela();
         }
         else{
             JOptionPane.showMessageDialog(null, "O pedido já está pronto");
@@ -476,6 +471,25 @@ public class Cozinha extends javax.swing.JFrame {
             Carregar_Tabela(pedido);
         }
     }//GEN-LAST:event_table_pedidosMouseClicked
+    public boolean Carregar_Abertos(){
+        
+        DefaultTableModel modelo = (DefaultTableModel) table_pedidos.getModel();
+        modelo.setNumRows(0);
+        DefaultTableModel modelo1 = (DefaultTableModel) table_items.getModel();
+        modelo1.setNumRows(0);
+        
+        
+        for(Order pedido: cozinha.ComandasAbertas("Opened")){
+            Client c1 = cozinha.ClientePedido(pedido.getId_conta());            
+            modelo.addRow(new Object[]{
+                pedido.getId(),
+                c1.getName(),
+                pedido.getValue(),
+                pedido.getStatus(),
+            });
+        }
+        return true;
+    }
     
     public void Carregar_Tabela(){
         DefaultTableModel modelo = (DefaultTableModel) table_pedidos.getModel();

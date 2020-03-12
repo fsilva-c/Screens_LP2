@@ -196,9 +196,10 @@ public class Bill_DAO {
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             
             while (rs.next()){
+                Bill conta = new Bill();
                 Client c1 = new Client();
                 c1.setCpf(rs.getString("cpf"));
-                Bill conta = new Bill(c1);
+                conta.setClient(c1);
                 conta.setDate(rs.getString("data"));
                 conta.setValue(rs.getFloat("valor"));
                 conta.setPayment_method(rs.getString("pagamento"));
@@ -230,7 +231,8 @@ public class Bill_DAO {
             rs = stmt.executeQuery();
             
             while (rs.next()){
-                Bill conta = new Bill(c1);
+                Bill conta = new Bill();
+                conta.setClient(c1);
                 conta.setId(rs.getInt("id"));
                 conta.setDate(rs.getString("data"));
                 conta.setValue(rs.getFloat("valor"));

@@ -359,7 +359,7 @@ public class Conta extends javax.swing.JFrame {
         CarregarPedidos();
         JOptionPane.showMessageDialog(null, "Pedidos abertos foram excluidos da conta");
         
-
+        Conta.this.dispose();
         tela_FormaPagamento = new Conta_formaPagamento(this.conta);   
         tela_FormaPagamento.setVisible(true);
         tela_FormaPagamento.setLocationRelativeTo(null);

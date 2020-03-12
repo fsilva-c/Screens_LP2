@@ -8,6 +8,7 @@ package Screens.Pesquisa;
 import Negocio.Estruturas.Restaurante;
 import Negocio.Pessoas.Client;
 import Negocio.Servicos.Bill;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -275,8 +276,9 @@ public class Pesquisa_Conta extends javax.swing.JFrame {
 
     private void label_pesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_pesquisaMouseClicked
         // TODO add your handling code here:
-        if(texto_pesquisar.getText().equals("   .   .   -  "))
+        if(texto_pesquisar.getText().equals("   .   .   -  ")){
             Carregar_tabela();
+        }
         else{
             Client cliente = new Client();
             cliente.setCpf(texto_pesquisar.getText());
