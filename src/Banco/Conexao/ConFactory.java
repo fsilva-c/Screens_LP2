@@ -26,7 +26,7 @@ public class ConFactory {
     public Connection conectar(){
         try{
             //return DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_restaurante","root", "123456");
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_test","root", "123456");
+            return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bd_restaurante","root", "123456");
             
 
         }catch (SQLException e) { 

@@ -132,7 +132,7 @@ public class Conta_formaPagamento extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
@@ -185,9 +185,10 @@ public class Conta_formaPagamento extends javax.swing.JFrame {
 
         icon_pagar1.setBackground(new java.awt.Color(204, 204, 204));
         icon_pagar1.setFont(new java.awt.Font("Ubuntu Light", 0, 16)); // NOI18N
+        icon_pagar1.setForeground(new java.awt.Color(204, 204, 204));
         icon_pagar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-solicitar-dinheiro-35.png"))); // NOI18N
         icon_pagar1.setText("Pagar");
-        icon_pagar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        icon_pagar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         icon_pagar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 icon_pagar1MouseClicked(evt);

@@ -33,7 +33,7 @@ public class Bonus_DAO {
         
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("INSERT INTO sql10326340.bonus(cpf_cliente,valor,data,situacao)VALUES(?,?,?,?)");
+            stmt = con.prepareStatement("INSERT INTO bd_restaurante.BONUS(cpf_cliente,valor,data,situacao)VALUES(?,?,?,?)");
             stmt.setString(1,c1.getCpf());
             stmt.setFloat(2,bonus.getValue());
             stmt.setString(3,bonus.getDate());
@@ -58,7 +58,7 @@ public class Bonus_DAO {
         
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("UPDATE sql10326340.bonus SET situacao = ? WHERE id = ?");
+            stmt = con.prepareStatement("UPDATE bd_restaurante.BONUS SET situacao = ? WHERE id = ?");
             stmt.setInt(1,1);
             stmt.setInt(2,bonus.getId());
             
@@ -82,7 +82,7 @@ public class Bonus_DAO {
         
         try {
             //Passagem de parametros
-            stmt = con.prepareStatement("DELETE FROM sql10326340.bonus WHERE cpf_cliente = ?");
+            stmt = con.prepareStatement("DELETE FROM bd_restaurante.BONUS WHERE cpf_cliente = ?");
             stmt.setString(1,c1.getCpf());
             
             //Execução da SQL
@@ -106,7 +106,7 @@ public class Bonus_DAO {
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.bonus WHERE (cpf_cliente = ? AND data != ? AND situacao = 0)");  
+            stmt = con.prepareStatement("SELECT * FROM bd_restaurante.BONUS WHERE (cpf_cliente = ? AND data != ? AND situacao = 0)");  
             stmt.setString(1,c1.getCpf());
             stmt.setString(2,date);
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
@@ -139,7 +139,7 @@ public class Bonus_DAO {
 
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.bonus WHERE (cpf_cliente = ?  AND situacao = 0)");  
+            stmt = con.prepareStatement("SELECT * FROM bd_restaurante.BONUS WHERE (cpf_cliente = ?  AND situacao = 0)");  
             stmt.setString(1,c1.getCpf());
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             
@@ -173,7 +173,7 @@ public class Bonus_DAO {
 
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.bonus");   //Selecione todas as colunas da tabela produto
+            stmt = con.prepareStatement("SELECT * FROM bd_restaurante.BONUS");   //Selecione todas as colunas da tabela produto
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             
             while (rs.next()){
@@ -207,7 +207,7 @@ public class Bonus_DAO {
 
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.bonus WHERE cpf_cliente = ?");   //Selecione todas as colunas da tabela produto
+            stmt = con.prepareStatement("SELECT * FROM bd_restaurante.BONUS WHERE cpf_cliente = ?");   //Selecione todas as colunas da tabela produto
             stmt.setString(1,c1.getCpf());
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             

@@ -131,7 +131,7 @@ public class Conta extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
@@ -190,7 +190,7 @@ public class Conta extends javax.swing.JFrame {
         label_pagar.setForeground(new java.awt.Color(204, 204, 204));
         label_pagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-solicitar-dinheiro-35.png"))); // NOI18N
         label_pagar.setText("Pagar");
-        label_pagar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        label_pagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         label_pagar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_pagarMouseClicked(evt);
@@ -248,7 +248,7 @@ public class Conta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                        .addGap(0, 103, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
                                 .addComponent(label_iconConta)

@@ -41,7 +41,6 @@ public class Cadastro_Fornecedor extends javax.swing.JFrame {
         label_cadFornecedor = new javax.swing.JLabel();
         text_cnpj = new javax.swing.JFormattedTextField();
         icone_CNPJ = new javax.swing.JLabel();
-        label_Gravar = new javax.swing.JLabel();
         label_salvar = new javax.swing.JLabel();
         label_cNPJ = new javax.swing.JLabel();
         label_nome = new javax.swing.JLabel();
@@ -150,13 +149,10 @@ public class Cadastro_Fornecedor extends javax.swing.JFrame {
         icone_CNPJ.setForeground(new java.awt.Color(204, 204, 204));
         icone_CNPJ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-login-arredondado-à-direita-25.png"))); // NOI18N
 
-        label_Gravar.setBackground(new java.awt.Color(204, 204, 204));
-        label_Gravar.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_Gravar.setForeground(new java.awt.Color(204, 204, 204));
-        label_Gravar.setText("Gravar");
-        label_Gravar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
+        label_salvar.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_salvar.setForeground(new java.awt.Color(204, 204, 204));
         label_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-salvar-35.png"))); // NOI18N
+        label_salvar.setText("Gravar");
         label_salvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         label_salvar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -213,10 +209,6 @@ public class Cadastro_Fornecedor extends javax.swing.JFrame {
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(barra_ferramentas4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(118, 118, 118))
             .addGroup(kGradientPanel1Layout.createSequentialGroup()
                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
@@ -228,38 +220,41 @@ public class Cadastro_Fornecedor extends javax.swing.JFrame {
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                                    .addComponent(label_cNPJ)
-                                    .addGap(95, 95, 95))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                        .addComponent(label_nome)
-                                        .addGap(93, 93, 93))
-                                    .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                        .addComponent(icone_CNPJ)
-                                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                                                .addGap(87, 87, 87)
-                                                .addComponent(label_telefone)
-                                                .addGap(81, 81, 81))
-                                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(text_cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kGradientPanel1Layout.createSequentialGroup()
-                                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(icone_nome)
-                                            .addComponent(icone_telefone))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(texto_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(texto_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(kGradientPanel1Layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addComponent(label_Gravar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label_salvar)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                                .addComponent(label_cNPJ)
+                                .addGap(95, 95, 95))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                    .addComponent(label_nome)
+                                    .addGap(93, 93, 93))
+                                .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                    .addComponent(icone_CNPJ)
+                                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                                            .addGap(87, 87, 87)
+                                            .addComponent(label_telefone)
+                                            .addGap(81, 81, 81))
+                                        .addGroup(kGradientPanel1Layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(text_cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, kGradientPanel1Layout.createSequentialGroup()
+                                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(icone_nome)
+                                        .addComponent(icone_telefone))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(texto_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(texto_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(43, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(118, 118, 118))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
+                        .addComponent(label_salvar)
+                        .addGap(119, 119, 119))))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,9 +285,7 @@ public class Cadastro_Fornecedor extends javax.swing.JFrame {
                     .addComponent(texto_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(icone_telefone))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(label_salvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_Gravar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(label_salvar)
                 .addGap(16, 16, 16))
         );
 
@@ -385,7 +378,6 @@ public class Cadastro_Fornecedor extends javax.swing.JFrame {
     private javax.swing.JLabel icone_telefone;
     private javax.swing.JLabel jLabel1;
     private keeptoo.KGradientPanel kGradientPanel1;
-    private javax.swing.JLabel label_Gravar;
     private javax.swing.JLabel label_cNPJ;
     private javax.swing.JLabel label_cadFornecedor;
     private javax.swing.JLabel label_fechar4;

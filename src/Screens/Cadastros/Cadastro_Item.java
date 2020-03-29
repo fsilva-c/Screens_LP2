@@ -73,7 +73,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
         panel_minimizar = new javax.swing.JPanel();
         label_minimizar = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        lista_fornecedores = new javax.swing.JList<>();
+        lista_fornecedores = new javax.swing.JList<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -162,20 +162,19 @@ public class Cadastro_Item extends javax.swing.JFrame {
         );
 
         label_nome.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_nome.setForeground(new java.awt.Color(51, 51, 51));
         label_nome.setText("Nome");
 
         texto_nome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
         label_preco.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_preco.setForeground(new java.awt.Color(51, 51, 51));
         label_preco.setText("Preço");
 
         texto_preco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
 
+        jLabel5.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-salvar-35.png"))); // NOI18N
         jLabel5.setText("Salvar");
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
@@ -188,15 +187,13 @@ public class Cadastro_Item extends javax.swing.JFrame {
         jScrollPane1.setViewportView(texto_descricao);
 
         label_fornecedor.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_fornecedor.setForeground(new java.awt.Color(51, 51, 51));
         label_fornecedor.setText("Fornecedor");
 
         label_desc1.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
-        label_desc1.setForeground(new java.awt.Color(51, 51, 51));
         label_desc1.setText("Descrição");
 
         icon_pesquisarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-pesquisar-25.png"))); // NOI18N
-        icon_pesquisarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        icon_pesquisarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         icon_pesquisarFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 icon_pesquisarFornecedorMouseClicked(evt);
@@ -257,7 +254,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
@@ -305,7 +302,7 @@ public class Cadastro_Item extends javax.swing.JFrame {
                                 .addGroup(text_precoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, text_precoLayout.createSequentialGroup()
-                                        .addGap(0, 4, Short.MAX_VALUE)
+                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(icon_pesquisarFornecedor)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))))

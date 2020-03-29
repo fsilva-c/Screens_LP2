@@ -117,7 +117,7 @@ public class Pesquisa_Conta extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
@@ -160,7 +160,7 @@ public class Pesquisa_Conta extends javax.swing.JFrame {
 
         label_pesquisa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-pesquisar-25.png"))); // NOI18N
         label_pesquisa.setToolTipText("");
-        label_pesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        label_pesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         label_pesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_pesquisaMouseClicked(evt);

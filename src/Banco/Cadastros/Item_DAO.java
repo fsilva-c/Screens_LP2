@@ -30,7 +30,7 @@ public class Item_DAO {
     public boolean Inserir(Drink drink0, short tp_item){
        con = new ConFactory().conectar();
        PreparedStatement stmt = null;
-       String sql = "INSERT INTO sql10326340.item(nome, preco, fornecedor, tp_item)VALUES(UPPER(?), ?, ?, ?)"; 
+       String sql = "INSERT INTO bd_restaurante.ITEM(nome, preco, fornecedor, tp_item)VALUES(UPPER(?), ?, ?, ?)"; 
        
        try {     
             stmt = con.prepareStatement(sql);
@@ -57,7 +57,7 @@ public class Item_DAO {
     public boolean Inserir(Food food0, short tp_item){
        con = new ConFactory().conectar();
        PreparedStatement stmt = null;
-       String sql = "INSERT INTO sql10326340.item(nome, preco, descricao, tp_item)VALUES(UPPER(?), ?, ?, ?)"; 
+       String sql = "INSERT INTO bd_restaurante.ITEM(nome, preco, descricao, tp_item)VALUES(UPPER(?), ?, ?, ?)"; 
        
        try {     
              stmt = con.prepareStatement(sql);
@@ -86,7 +86,7 @@ public class Item_DAO {
         con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String sql = "SELECT id_item, nome, preco FROM sql10326340.item WHERE tp_item = 1";
+        String sql = "SELECT id_item, nome, preco FROM bd_restaurante.ITEM WHERE tp_item = 1";
         
         try {
                 stmt = con.prepareStatement(sql);
@@ -120,7 +120,7 @@ public class Item_DAO {
         con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String sql = "SELECT id_item, nome, descricao, preco FROM sql10326340.item WHERE tp_item = 2";
+        String sql = "SELECT id_item, nome, descricao, preco FROM bd_restaurante.ITEM WHERE tp_item = 2";
         
         try {
             
@@ -158,7 +158,7 @@ public class Item_DAO {
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("SELECT nome, preco FROM sql10326340.item WHERE id_item = ?");  
+            stmt = con.prepareStatement("SELECT nome, preco FROM bd_restaurante.ITEM WHERE id_item = ?");  
             stmt.setInt(1,id);
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             

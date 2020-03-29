@@ -29,7 +29,7 @@ public class Fornecedor_DAO {
     public boolean Inserir(Provider fornecedor0){
        con = new ConFactory().conectar();
        PreparedStatement stmt = null;
-       String sql = "INSERT INTO sql10326340.fornecedor(cnpj, nome, telefone)VALUES(?, UPPER(?), ?)"; 
+       String sql = "INSERT INTO bd_restaurante.FORNECEDOR(cnpj, nome, telefone)VALUES(?, UPPER(?), ?)"; 
        
        try {     
             stmt = con.prepareStatement(sql);
@@ -58,7 +58,7 @@ public class Fornecedor_DAO {
         ResultSet rs = null;
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.fornecedor");   //Selecione todas as colunas da tabela produto
+            stmt = con.prepareStatement("SELECT * FROM bd_restaurante.FORNECEDOR");   //Selecione todas as colunas da tabela produto
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             
             while (rs.next()){

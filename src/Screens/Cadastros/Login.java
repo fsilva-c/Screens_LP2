@@ -121,7 +121,7 @@ public class Login extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
@@ -162,7 +162,7 @@ public class Login extends javax.swing.JFrame {
         label_lembrarme.setFont(new java.awt.Font("Ubuntu Light", 0, 14)); // NOI18N
         label_lembrarme.setForeground(new java.awt.Color(204, 204, 204));
         label_lembrarme.setText("Registrar-me");
-        label_lembrarme.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        label_lembrarme.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         label_lembrarme.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_lembrarmeMouseClicked(evt);

@@ -114,7 +114,7 @@ public class Bonus_Cliente extends javax.swing.JFrame {
         );
         panel_minimizarLayout.setVerticalGroup(
             panel_minimizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(label_minimizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout barra_ferramentasLayout = new javax.swing.GroupLayout(barra_ferramentas);
@@ -155,7 +155,7 @@ public class Bonus_Cliente extends javax.swing.JFrame {
         label_sair1.setForeground(new java.awt.Color(222, 222, 222));
         label_sair1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-sair-35.png"))); // NOI18N
         label_sair1.setText("Sair");
-        label_sair1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        label_sair1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         label_sair1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_sair1MouseClicked(evt);

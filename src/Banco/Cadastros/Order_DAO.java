@@ -31,7 +31,7 @@ public class Order_DAO {
         con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String sql = "INSERT INTO sql10326340.pedido(id_conta,valor,status)VALUES(?,?,?)";
+        String sql = "INSERT INTO bd_restaurante.PEDIDO(id_conta,valor,status)VALUES(?,?,?)";
         
         try {
             //Passagem de parametros
@@ -64,7 +64,7 @@ public class Order_DAO {
         this.ExcluirItems(pedido);
         con = new ConFactory().conectar();
         PreparedStatement stmt = null;
-        String sql = "DELETE FROM sql10326340.pedido WHERE id = ?";
+        String sql = "DELETE FROM bd_restaurante.PEDIDO WHERE id = ?";
         
         try {
             //Passagem de parametros
@@ -89,7 +89,7 @@ public class Order_DAO {
 
         con = new ConFactory().conectar();
         PreparedStatement stmt = null;
-        String sql = "DELETE FROM sql10326340.itemspedido WHERE id_pedido = ?";
+        String sql = "DELETE FROM bd_restaurante.ITEMSPEDIDO WHERE id_pedido = ?";
         try {
             //Passagem de parametros
             stmt = con.prepareStatement(sql);
@@ -114,7 +114,7 @@ public class Order_DAO {
         con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM sql10326340.pedido";
+        String sql = "SELECT * FROM bd_restaurante.PEDIDO";
 
         
         try {
@@ -143,7 +143,7 @@ public class Order_DAO {
     public boolean Atualizar(Order pedido){
         con = new ConFactory().conectar();
         PreparedStatement stmt = null;
-        String sql = "UPDATE sql10326340.pedido SET status = ? WHERE id = ?";
+        String sql = "UPDATE bd_restaurante.PEDIDO SET status = ? WHERE id = ?";
         
         try {
             //Passagem de parametros
@@ -169,7 +169,7 @@ public class Order_DAO {
         con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM sql10326340.pedido WHERE status LIKE ?";
+        String sql = "SELECT * FROM bd_restaurante.PEDIDO WHERE status LIKE ?";
    
         
         try {
@@ -201,7 +201,7 @@ public class Order_DAO {
         con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM sql10326340.pedido WHERE id_conta = ?";
+        String sql = "SELECT * FROM bd_restaurante.PEDIDO WHERE id_conta = ?";
 
         
         try {
@@ -235,7 +235,7 @@ public class Order_DAO {
         for(Order_Item item: items){
             con = new ConFactory().conectar();
             PreparedStatement stmt = null;
-            String sql = "INSERT INTO sql10326340.itemspedido(id_pedido,id_item,qntd)VALUES(?,?,?)";
+            String sql = "INSERT INTO bd_restaurante.ITEMSPEDIDO(id_pedido,id_item,qntd)VALUES(?,?,?)";
             try {
                //Passagem de parametros
                 stmt = con.prepareStatement(sql);
@@ -262,7 +262,7 @@ public class Order_DAO {
         con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM sql10326340.itemspedido WHERE id_pedido LIKE ?";
+        String sql = "SELECT * FROM bd_restaurante.ITEMSPEDIDO WHERE id_pedido LIKE ?";
         
         try {
             stmt = con.prepareStatement(sql);  

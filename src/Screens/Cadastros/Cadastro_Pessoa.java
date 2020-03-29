@@ -215,6 +215,7 @@ public class Cadastro_Pessoa extends javax.swing.JFrame {
         label_emailCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         label_salvar.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
+        label_salvar.setForeground(new java.awt.Color(204, 204, 204));
         label_salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Screens/icons/icons8-salvar-35.png"))); // NOI18N
         label_salvar.setText("Gravar");
         label_salvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

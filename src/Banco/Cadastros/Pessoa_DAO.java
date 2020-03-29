@@ -30,7 +30,7 @@ public class Pessoa_DAO {
     public boolean Inserir(Client c0){
        con = new ConFactory().conectar();
        PreparedStatement stmt = null;
-       String sql = "INSERT INTO sql10326340.cliente(cpf, nome, email, senha)VALUES(?, ?, ?, MD5(?))"; 
+       String sql = "INSERT INTO bd_restaurante.CLIENTE(cpf, nome, email, senha)VALUES(?, ?, ?, MD5(?))"; 
        
        try {     
             stmt = con.prepareStatement(sql);
@@ -62,7 +62,7 @@ public class Pessoa_DAO {
 
         
         try {
-            stmt = con.prepareStatement("SELECT * FROM sql10326340.cliente WHERE cpf = ?");  
+            stmt = con.prepareStatement("SELECT * FROM bd_restaurante.CLIENTE WHERE cpf = ?");  
             stmt.setString(1,cpf);
             rs = stmt.executeQuery(); //Metodo responsavel por consultas ao banco
             
@@ -93,11 +93,11 @@ public class Pessoa_DAO {
         String campo;
         
         if(c1.getCpf().equals("")){
-            sql = "SELECT cpf, nome, email FROM sql10326340.cliente WHERE nome LIKE ?";
+            sql = "SELECT cpf, nome, email FROM bd_restaurante.CLIENTE WHERE nome LIKE ?";
             campo = c1.getName();
         }
         else{
-            sql = "SELECT cpf, nome, email FROM sql10326340.cliente WHERE cpf LIKE ?";
+            sql = "SELECT cpf, nome, email FROM bd_restaurante.CLIENTE WHERE cpf LIKE ?";
             campo = c1.getCpf();
         }
         
@@ -135,7 +135,7 @@ public class Pessoa_DAO {
     public boolean Atualizar(Client c1){
         con = new ConFactory().conectar();
         PreparedStatement stmt = null;
-        String sql = "UPDATE sql10326340.cliente SET nome = ?,email = ? WHERE cpf = ?";
+        String sql = "UPDATE bd_restaurante.CLIENTE SET nome = ?,email = ? WHERE cpf = ?";
         
         try {
             //Passagem de parametros
@@ -171,7 +171,7 @@ public class Pessoa_DAO {
         
         con = new ConFactory().conectar();
         PreparedStatement stmt = null;
-        String sql = "DELETE FROM sql10326340.cliente WHERE cpf = ?";
+        String sql = "DELETE FROM bd_restaurante.CLIENTE WHERE cpf = ?";
 
         try {
             //Passagem de parametros
@@ -195,7 +195,7 @@ public class Pessoa_DAO {
     public boolean Alterar_Senha(Client c1){
         con = new ConFactory().conectar();
         PreparedStatement stmt = null;
-        String sql = "UPDATE sql10326340.cliente SET senha = MD5(?) WHERE cpf = ?";
+        String sql = "UPDATE bd_restaurante.CLIENTE SET senha = MD5(?) WHERE cpf = ?";
         
         try {
             //Passagem de parametros
@@ -222,7 +222,7 @@ public class Pessoa_DAO {
         con = new ConFactory().conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM sql10326340.cliente WHERE cpf = ? and senha = MD5(?)";
+        String sql = "SELECT * FROM bd_restaurante.CLIENTE WHERE cpf = ? and senha = MD5(?)";
         
         try {
             stmt = con.prepareStatement(sql);  
